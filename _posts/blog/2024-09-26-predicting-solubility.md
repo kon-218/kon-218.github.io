@@ -2,7 +2,7 @@
 layout: page
 sidebar: right
 subheadline: Computational Chemistry
-title:  "A Machine learning approach to the prediction of solubility"
+title:  "Predicting molecular properties: Solubility"
 teaser: "Save the tedious lab work!"
 breadcrumb: true
 tags:
@@ -17,24 +17,67 @@ categories:
 image:
     thumb: solubility.png
     title: solubility.png
-    caption: A Data Science approach to predicting solubility
+    caption: A Data Science approach
 permalink: /blog/predicting-solubility
 header: no
 ---
 
-In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. For pharmaceuticals, solubility determines how well a drug can dissolve in bodily fluids, impacting its bioavailability and therapeutic effectiveness. Poor solubility can lead to inadequate drug absorption, reduced efficacy, and potential toxicity due to crystallization within the body1. In agrochemicals, solubility affects the environmental behavior and toxicity of compounds, influencing their effectiveness and safety in agricultural applications1.
+<p>In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. It is defined as the amount of a substance that will dissolve in a given volume of solvent. relating to both
+the solute and the solvent, as well as the temperature and pressure. Solubility  is commonly expressed in terms
+of intrinsic solubility, where the solubility of a buffered solution is taken at a given temperature and
+pressure. The intrinsic solubility of a substrate reflects its inherent ability to dissolve in a specific solvent,
+acting as a straightforward representation of a molecule's likelihood to dissolve. The intrinsic solubility of
+a compound at a given pH level is denoted by logS pH and can be derived from the Henderson-Hasselbalch
+equation
+</p>
 
-Why Solubility Matters:
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Equation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <p>
+        $$ \log S_{pH} = \log S_{0} + \log \left( 1 + \alpha \right) $$
+        $$ \text{where} \ \alpha = \frac{\sum \alpha_{cA_i}}{\sum \alpha_{nA_j}} $$
+    </p>
+</body>
 
-Pharmaceuticals: High solubility ensures that drugs can be absorbed efficiently into the bloodstream, enhancing their therapeutic impact. It also mitigates risks associated with poorly soluble drugs, such as crystallization and toxicity1.
-Agrochemicals: Solubility influences how chemicals interact with the environment, affecting their distribution, effectiveness, and potential environmental impact1.
-Challenges in Solubility Prediction: Traditional methods for determining solubility, such as turbidimetric and potentiometric techniques, are time-consuming and resource-intensive1. High-throughput screening methods have improved efficiency but still face limitations in terms of cost and scalability1.
+In this form, $$ \alpha_{cA_i} $$ is the distribution percentage of the i-th charged microspecies while $$ \alpha_{nA_j} $$ is the
+distribution percentage of the j-th neutral microspecies at a given pH. This equation can be used to
+determine the pH-dependent solubility curves and the intrinsic solubility making it vital for
+understanding the behavior of a given compound.
 
-Machine Learning to the Rescue: Machine learning (ML) offers a transformative approach to predicting solubility. By leveraging vast datasets and advanced algorithms, ML models can predict solubility with high accuracy, reducing the need for extensive experimental testing1. Graph Convolutional Networks (GCNs), in particular, have shown promise in modeling molecular structures and predicting properties like solubility1.
+#### Why Solubility Matters
 
-Benefits of ML in Solubility Prediction:
+<p>
+Solubility is extremely important, for example in the pharmaceutical industry, the aqueous solubility of a
+potential drug has a high impact on the progression of a target molecule. High aqueous solubility is
+essential to produce drug compounds with the potential to enter the bloodstream circulation so that it
+can have an active effect where needed. The aqueous solubility can be a limiting factor in the
+progression of a compound, not only due to its impact on the bioavailability, but also due to problems
+with the toxicity of poorly soluble molecules, with consequences such as crystallization in the body. In
+fact, a lack of efficacy is the major problem encountered with the formulation and development of new
+drug compounds, together with pharmacokinetics it accounts for over 50 % of failed development
+projects. Similarly, solubility is a vital consideration in the development of agrochemicals, impacting their
+environmental and toxicological properties. The accurate prediction of solubility allows for more rapid
+development of more robust and effective target compounds. Moreover, it decreases the probability ofan ineffective target making it past the screening stage, thereby allowing for the allocation of more resources to more promising candidates.
+</p>
 
-Efficiency: ML models can rapidly screen large libraries of compounds, identifying promising candidates without the need for exhaustive experimental testing1.
-Accuracy: Advanced ML algorithms can capture complex relationships between molecular structures and solubility, providing reliable predictions1.
-Resource Optimization: By reducing the reliance on experimental methods, ML helps conserve valuable resources and accelerates the development process1.
-In conclusion, the integration of machine learning into solubility prediction represents a significant advancement for both the pharmaceutical and agrochemical industries. It not only enhances the efficiency and accuracy of solubility assessments but also supports the development of safer and more effective compounds.
+#### Benefits of ML in Solubility Prediction:
+
+The demand for new drug-like compounds is ever-growing, motivated by the exponentially increasing
+population size as well as the constant emergence of new diseases and viruses. As such, the empirical
+techniques used to predict solubility become less and less suitable for the mammoth task of rapidly
+screening lead compounds due to the sheer number that could be considered. New techniques are required for the prediction of solubility, that are
+robust and accurate to help minimize the cost of drug development as well as reduce the wastage of
+resources. The advent of machine learning, coupled with developments in computational chemistry
+provide a natural progression to the in-silico simulation of molecular properties such as solubility. By utilizing models such as Graph Convolutional Networks (GCNs) and Random Forests, researchers can predict solubility based on molecular structure and other relevant features, providing valuable insights early in the development pipeline.
+
+<h3>Other Blog posts</h3>
+{: .t60 }
+{% include list-posts category='blog' %}

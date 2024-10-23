@@ -12,7 +12,61 @@
 				<title>The Nuclear Ensemble Approach</title>
 				<link>http://localhost:4000/blog/nuclear-ensemble-approach</link>
 				<pubDate>Fri, 27 Sep 2024 00:00:00 +0000</pubDate>
-				<description>
+				<description>&lt;p&gt;The Atmosphere is an extremely complex environment with many reactions occuring at the same time, some of those reactions are spontaneous on exposure to light. For example, smog is a result of light induced photochemical reactions between nitrous oxides (NOx) and other volatile organic compounds (VOCs). Traditionally, the reactive properties of such volatile gasses are measured empirically, however this is extremely difficult due to their unstable nature. So how do scientists predict the interaction of molecules with light?&lt;/p&gt;
+
+&lt;p&gt;Recent advances in Computational Chemistry have enabled the insilico calculation of photochemical properties, using Quantum Chemistry methods to predict quantities such as the molecular photoabsorption cross-section. One fascinating method called the Nuclear Ensemble Approach (NEA), has revolutionized our ability to calculate these interactions efficiently. This method bridges the gap between complex quantum mechanical calculations and practical spectroscopy.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-nuclear-ensemble-approach&quot;&gt;What is the Nuclear Ensemble Approach?&lt;/h2&gt;
+
+&lt;p&gt;Imagine trying to predict how a molecule will absorb light. The traditional quantum mechanical way would require solving the Schrödinger equation for both ground and excited states, considering all possible vibrational and electronic states - an extremely complex task! The Nuclear Ensemble Approach offers a clever shortcut that gives us surprisingly accurate results by sampling the ground state wavefunction and using these samples to predict the photoabsorption spectra.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-quantum-mechanical-foundation&quot;&gt;The Quantum Mechanical Foundation&lt;/h3&gt;
+
+&lt;p&gt;At its core, NEA is based on the reflection principle from quantum mechanics. Instead of calculating the full quantum mechanical problem, we:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sample the ground state quantum wavefunction&lt;/li&gt;
+  &lt;li&gt;Calculate vertical excitations for each sample&lt;/li&gt;
+  &lt;li&gt;Combine these excitations into a spectrum&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This approach cleverly avoids calculating the excited state wavefunction, which is typically the most computationally expensive part of traditional methods.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;In plain English:&lt;/strong&gt; We’re calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule’s structure affects its interaction with light.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;applications&quot;&gt;Applications&lt;/h3&gt;
+
+&lt;p&gt;The presented method stands as a reliable and relatively cheap way of predicting photoabsorption cross-sections of Volatile Organic Compounds, making it extremely attractive to Atmospheric Chemists. As the calculation of photoabsorption cross-sections plays a crutial role in the evaluation of photolysis rate of such molecules in the atmosphere, and they are extremely difficult to deteremine empiricaly, the use of insilico methods is becoming more and more viable. To further drive this, optimal sampling has been proposed by Stepan Srsen, whereby a reduction of the sample is performed to improve the efficiency of the overall calculation.&lt;/p&gt;
+
+&lt;h3 id=&quot;practicality-vs-precision&quot;&gt;Practicality vs. Precision&lt;/h3&gt;
+&lt;p&gt;While the NEA might not provide the extremely fine details that more complex quantum mechanical methods offer, this trade-off is often exactly what atmospheric chemists need. In studying atmospheric processes, we’re typically more interested in the overall shape and intensity of absorption bands rather than their precise vibronic structure. 
+The NEA’s ability to efficiently calculate photoabsorption cross-sections for unstable VOCs has made it an invaluable tool in atmospheric chemistry. When combined with optimal sampling techniques, it provides a practical pathway for studying these elusive molecules that are so crucial to our understanding of atmospheric processes, from urban smog formation to global climate chemistry.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Key Takeaway:&lt;/strong&gt; The Nuclear Ensemble Approach represents a significant breakthrough in computational photochemistry, offering atmospheric scientists a practical tool for studying light-molecule interactions that were previously either computationally intractable or experimentally challenging to measure.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 class=&quot;t60&quot;&gt;Other Blog posts&lt;/h3&gt;
+
+&lt;ul class=&quot;side-nav&quot;&gt;
+
+  
+
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/what-is-atmospec&quot;&gt;Atmospheric Chemistry &amp;middot; &lt;strong&gt;AtmoSpec: A Revolutionary Tool for Atmospheric Chemists&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Predicting molecular properties: Solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+  
+&lt;/ul&gt;
+
 </description>
 				<guid isPermaLink="true">http://localhost:4000/blog/nuclear-ensemble-approach</guid>
 			</item>
@@ -51,7 +105,7 @@ Understanding how VOCs interact with sunlight is essential for developing accura
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/what-is-atmospec&quot;&gt;Atmospheric Chemistry &amp;middot; &lt;strong&gt;AtmoSpec: A Revolutionary Tool for Atmospheric Chemists&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;A Machine learning approach to the prediction of solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Predicting molecular properties: Solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 
@@ -64,25 +118,83 @@ Understanding how VOCs interact with sunlight is essential for developing accura
 			</item>
 		
 			<item>
-				<title>A Machine learning approach to the prediction of solubility</title>
+				<title>Predicting molecular properties: Solubility</title>
 				<link>http://localhost:4000/blog/predicting-solubility</link>
 				<pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate>
-				<description>&lt;p&gt;In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. For pharmaceuticals, solubility determines how well a drug can dissolve in bodily fluids, impacting its bioavailability and therapeutic effectiveness. Poor solubility can lead to inadequate drug absorption, reduced efficacy, and potential toxicity due to crystallization within the body1. In agrochemicals, solubility affects the environmental behavior and toxicity of compounds, influencing their effectiveness and safety in agricultural applications1.&lt;/p&gt;
+				<description>&lt;p&gt;In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. It is defined as the amount of a substance that will dissolve in a given volume of solvent. relating to both
+the solute and the solvent, as well as the temperature and pressure. Solubility  is commonly expressed in terms
+of intrinsic solubility, where the solubility of a buffered solution is taken at a given temperature and
+pressure. The intrinsic solubility of a substrate reflects its inherent ability to dissolve in a specific solvent,
+acting as a straightforward representation of a molecule&apos;s likelihood to dissolve. The intrinsic solubility of
+a compound at a given pH level is denoted by logS pH and can be derived from the Henderson-Hasselbalch
+equation
+&lt;/p&gt;
 
-&lt;p&gt;Why Solubility Matters:&lt;/p&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Math Equation&lt;/title&gt;
+    &lt;script src=&quot;https://polyfill.io/v3/polyfill.min.js?features=es6&quot;&gt;&lt;/script&gt;
+    &lt;script id=&quot;MathJax-script&quot; async=&quot;&quot; src=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;&gt;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        $$ \log S_{pH} = \log S_{0} + \log \left( 1 + \alpha \right) $$
+        $$ \text{where} \ \alpha = \frac{\sum \alpha_{cA_i}}{\sum \alpha_{nA_j}} $$
+    &lt;/p&gt;
+&lt;/body&gt;
 
-&lt;p&gt;Pharmaceuticals: High solubility ensures that drugs can be absorbed efficiently into the bloodstream, enhancing their therapeutic impact. It also mitigates risks associated with poorly soluble drugs, such as crystallization and toxicity1.
-Agrochemicals: Solubility influences how chemicals interact with the environment, affecting their distribution, effectiveness, and potential environmental impact1.
-Challenges in Solubility Prediction: Traditional methods for determining solubility, such as turbidimetric and potentiometric techniques, are time-consuming and resource-intensive1. High-throughput screening methods have improved efficiency but still face limitations in terms of cost and scalability1.&lt;/p&gt;
+&lt;p&gt;In this form, \(\alpha_{cA_i}\) is the distribution percentage of the i-th charged microspecies while \(\alpha_{nA_j}\) is the
+distribution percentage of the j-th neutral microspecies at a given pH. This equation can be used to
+determine the pH-dependent solubility curves and the intrinsic solubility making it vital for
+understanding the behavior of a given compound.&lt;/p&gt;
 
-&lt;p&gt;Machine Learning to the Rescue: Machine learning (ML) offers a transformative approach to predicting solubility. By leveraging vast datasets and advanced algorithms, ML models can predict solubility with high accuracy, reducing the need for extensive experimental testing1. Graph Convolutional Networks (GCNs), in particular, have shown promise in modeling molecular structures and predicting properties like solubility1.&lt;/p&gt;
+&lt;h4 id=&quot;why-solubility-matters&quot;&gt;Why Solubility Matters&lt;/h4&gt;
 
-&lt;p&gt;Benefits of ML in Solubility Prediction:&lt;/p&gt;
+&lt;p&gt;
+Solubility is extremely important, for example in the pharmaceutical industry, the aqueous solubility of a
+potential drug has a high impact on the progression of a target molecule. High aqueous solubility is
+essential to produce drug compounds with the potential to enter the bloodstream circulation so that it
+can have an active effect where needed. The aqueous solubility can be a limiting factor in the
+progression of a compound, not only due to its impact on the bioavailability, but also due to problems
+with the toxicity of poorly soluble molecules, with consequences such as crystallization in the body. In
+fact, a lack of efficacy is the major problem encountered with the formulation and development of new
+drug compounds, together with pharmacokinetics it accounts for over 50 % of failed development
+projects. Similarly, solubility is a vital consideration in the development of agrochemicals, impacting their
+environmental and toxicological properties. The accurate prediction of solubility allows for more rapid
+development of more robust and effective target compounds. Moreover, it decreases the probability ofan ineffective target making it past the screening stage, thereby allowing for the allocation of more resources to more promising candidates.
+&lt;/p&gt;
 
-&lt;p&gt;Efficiency: ML models can rapidly screen large libraries of compounds, identifying promising candidates without the need for exhaustive experimental testing1.
-Accuracy: Advanced ML algorithms can capture complex relationships between molecular structures and solubility, providing reliable predictions1.
-Resource Optimization: By reducing the reliance on experimental methods, ML helps conserve valuable resources and accelerates the development process1.
-In conclusion, the integration of machine learning into solubility prediction represents a significant advancement for both the pharmaceutical and agrochemical industries. It not only enhances the efficiency and accuracy of solubility assessments but also supports the development of safer and more effective compounds.&lt;/p&gt;
+&lt;h4 id=&quot;benefits-of-ml-in-solubility-prediction&quot;&gt;Benefits of ML in Solubility Prediction:&lt;/h4&gt;
+
+&lt;p&gt;The demand for new drug-like compounds is ever-growing, motivated by the exponentially increasing
+population size as well as the constant emergence of new diseases and viruses. As such, the empirical
+techniques used to predict solubility become less and less suitable for the mammoth task of rapidly
+screening lead compounds due to the sheer number that could be considered. New techniques are required for the prediction of solubility, that are
+robust and accurate to help minimize the cost of drug development as well as reduce the wastage of
+resources. The advent of machine learning, coupled with developments in computational chemistry
+provide a natural progression to the in-silico simulation of molecular properties such as solubility. By utilizing models such as Graph Convolutional Networks (GCNs) and Random Forests, researchers can predict solubility based on molecular structure and other relevant features, providing valuable insights early in the development pipeline.&lt;/p&gt;
+
+&lt;h3 class=&quot;t60&quot;&gt;Other Blog posts&lt;/h3&gt;
+
+&lt;ul class=&quot;side-nav&quot;&gt;
+
+  
+
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/what-is-atmospec&quot;&gt;Atmospheric Chemistry &amp;middot; &lt;strong&gt;AtmoSpec: A Revolutionary Tool for Atmospheric Chemists&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Predicting molecular properties: Solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+  
+&lt;/ul&gt;
+
 </description>
 				<guid isPermaLink="true">http://localhost:4000/blog/predicting-solubility</guid>
 			</item>
