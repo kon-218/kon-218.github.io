@@ -3,7 +3,7 @@ layout: page-fullwidth
 subheadline: An interactive graphing module
 title:  "Atmospec data visualization module report"
 permalink: /portfolio/atmospec-data-visualization-module/atmospec-report/
-teaser: "This website is an ongoing project, developing my abities in HTML and CSS."
+teaser: ""
 breadcrumb: true
 tags:
     - HTML

@@ -32,9 +32,9 @@ permalink: /cv/
                 </p>
                 
                 <ul>
-                    <li>Implemented a Simulated Annealing algorithm within the Nuclear Ensemble Approach to optimize sampling for photoabsorption cross-sections, significantly reducing computational intensity in the Atmospec workflow.</li>
-                    <li>Applied advanced Quantum Chemistry methods to calculate excited state properties of volatile organic compounds, enabling accurate modeling of their photochemical behaviors.</li>
-                    <li>Validated and presented results to an audience of 50 students and professors, demonstrating the method's effectiveness in capturing essential spectral features while maintaining computational efficiency.</li>
+                    <li>Implemented representative sampling method using simulated annealing and Kullback-Leibler divergence algorithms, reducing computational burden by 70% while maintaining spectral accuracy</li>
+                    <li>Developed a high-performance Python framework integrating with open source quantum chemistry modules, enabling efficient exploration of larger and more complex molecules</li>
+                    <li>Designed automated workflow using SLURM and Bash scripts, streamlining complex quantum chemistry calculations including data postprocessing and visualization</li>
                 </ul>
             </div>
         </div>
@@ -42,8 +42,10 @@ permalink: /cv/
         <div class="cv-section">
             <h2>Technical Proficiencies</h2>
             <ul>
-                <li>Programming Languages: Python | SQL | C++</li>
-                <li>Frameworks and Tools: Git | Linux (Ubuntu) | Bash | Unix | MS | Latex | Docker </li>
+                <li>Programming Languages: Python | SQL | C++ | Bash</li>
+                <li>Frameworks and Tools: Git | Linux (Ubuntu) | SLURM | MPI | Bash | Unix | MS | Latex | Docker </li>
+                <li>Scientific Computing: NumPy | SciPy | Pandas | Scikit-learn | MolML | ORCA</li>
+                <li>Visualization Tools: Matplotlib | Bokeh | Seaborn | Jupyter | iPyWidgets</li>
             </ul>
         </div>
 
@@ -58,9 +60,12 @@ permalink: /cv/
                 </h3>
                 <p>Feb 2024 - Apr 2024</p>
                 <ul>
-                    <li>Conducted exploratory data analysis (EDA) to clean and interpret biscuit dunking experiment data, providing actionable insights on capillary action in various biscuit types.</li>
-                    <li>Applied advanced regression models, including the Washburn model and Random Forest Regression, to accurately predict biscuit pore size, enhancing understanding of liquid absorption rates.</li>
-                    <li>Developed and fine-tuned a Random Forest Classifier, achieving an average 96% accuracy in classifying biscuit types, with perfect accuracy for Digestives.</li>
+                    <li>Conducted comprehensive exploratory data analysis (EDA) on biscuit dunking experiment data using Pandas
+                        and Matplotlib to investigate the porosity of different types of biscuits.</li>
+                    <li>Implemented and compared multiple regression models, including the physics-based Washburn model and
+                    Random Forest Regression, enabling the prediction of biscuit capillary flow without costly lab experiments</li>
+                    <li>Developed and fine-tuned a Random Forest Classifier achieving 96% average accuracy classification, providing
+                    a viable insilico method for the classification of biscuits using machine learning</li>
                 </ul>
             </div>
             <div class="cv-item">
@@ -72,9 +77,12 @@ permalink: /cv/
                 </h3>
                 <p>Oct 2023 – Dec 2023</p>
                 <ul>
-                    <li>Developed a multiservice application for distributed processing of ATLAS open data, enhancing the efficiency of analyzing Higgs boson decay pathways.</li>
-                    <li>Leveraged Docker Swarm for containerization, ensuring consistent deployment across environments and improved scalability of data processing scripts.</li>
-                    <li>Optimized inter-service communication with RabbitMQ, eliminating race conditions and reducing storage requirements, while demonstrating scalability using a service-based architecture.</li>
+                    <li>Engineered multiservice application for analyzing Higgs boson decay pathways, transforming monolithic script
+                    into scalable microservices architecture</li>
+                    <li>Containerized analysis pipeline using Docker and demonstrated scalability using Docker Swarm, leveraging
+                    consistent deployment across environments and dynamic resource allocation</li>
+                    <li>Implemented asynchronous message queuing with RabbitMQ, eliminating race conditions and reducing inter-
+                    mediate storage requirements by 40%</li>
                 </ul>
             </div>
             <div class="cv-item">

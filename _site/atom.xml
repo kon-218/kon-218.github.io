@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>http://localhost:4000/</id>
 	<title>Konstantin Nomerotski - Portfolio</title>
-	<updated>2024-10-23T03:24:27+00:00</updated>
+	<updated>2024-11-08T17:52:00+00:00</updated>
 
 	<subtitle>» Showcasing my portfolio in Chemistry, Computing, and Data Science «</subtitle>
 
@@ -427,7 +427,7 @@ provide a natural progression to the in-silico simulation of molecular propertie
 					
 				</author>
 			
-			<summary>This website is an ongoing project, developing my abities in HTML and CSS.</summary>
+			<summary></summary>
 			<content type="html" xml:base="http://localhost:4000/portfolio/atmospec-data-visualization-module/atmospec-report/">&lt;embed src=&quot;/assets/atmospec_report.pdf&quot; width=&quot;100%&quot; height=&quot;600px&quot; type=&quot;application/pdf&quot; /&gt;
 
 </content>
