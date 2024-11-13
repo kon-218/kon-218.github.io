@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>http://localhost:4000/</id>
 	<title>Konstantin Nomerotski - Portfolio</title>
-	<updated>2024-11-08T17:52:00+00:00</updated>
+	<updated>2024-11-13T16:30:14+00:00</updated>
 
 	<subtitle>» Showcasing my portfolio in Chemistry, Computing, and Data Science «</subtitle>
 
@@ -24,6 +24,125 @@
 
 	<generator uri="http://jekyllrb.com" version="4.3.3">Jekyll</generator>
 
+	
+		<entry>
+			<id>http://localhost:4000/blog/identifying-functional-groups</id>
+			<title>Identifying molecular functional groups</title>
+			<link href="http://localhost:4000/blog/identifying-functional-groups" rel="alternate" type="text/html" title="Identifying molecular functional groups" />
+			<updated>2024-11-08T00:00:00+00:00</updated>
+
+			
+				
+				<author>
+					
+						<name>Konstantin N</name>
+					
+					
+						<email>kon50@hotmail.co.uk</email>
+					
+					
+						<uri>http://k-nom.com</uri>
+					
+				</author>
+			
+			<summary>An algorithm for FG analysis</summary>
+			<content type="html" xml:base="http://localhost:4000/blog/identifying-functional-groups">&lt;p&gt;In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. It is defined as the amount of a substance that will dissolve in a given volume of solvent. relating to both
+the solute and the solvent, as well as the temperature and pressure. Solubility  is commonly expressed in terms
+of intrinsic solubility, where the solubility of a buffered solution is taken at a given temperature and
+pressure. The intrinsic solubility of a substrate reflects its inherent ability to dissolve in a specific solvent,
+acting as a straightforward representation of a molecule&apos;s likelihood to dissolve. The intrinsic solubility of
+a compound at a given pH level is denoted by logS pH and can be derived from the Henderson-Hasselbalch
+equation
+&lt;/p&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Math Equation&lt;/title&gt;
+    &lt;script src=&quot;https://polyfill.io/v3/polyfill.min.js?features=es6&quot;&gt;&lt;/script&gt;
+    &lt;script id=&quot;MathJax-script&quot; async=&quot;&quot; src=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;&gt;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;
+        $$ \log S_{pH} = \log S_{0} + \log \left( 1 + \alpha \right) $$
+        $$ \text{where} \ \alpha = \frac{\sum \alpha_{cA_i}}{\sum \alpha_{nA_j}} $$
+    &lt;/p&gt;
+&lt;/body&gt;
+
+&lt;p&gt;In this form, \(\alpha_{cA_i}\) is the distribution percentage of the i-th charged microspecies while \(\alpha_{nA_j}\) is the
+distribution percentage of the j-th neutral microspecies at a given pH. This equation can be used to
+determine the pH-dependent solubility curves and the intrinsic solubility making it vital for
+understanding the behavior of a given compound.&lt;/p&gt;
+
+&lt;h4 id=&quot;why-solubility-matters&quot;&gt;Why Solubility Matters&lt;/h4&gt;
+
+&lt;p&gt;
+Solubility is extremely important, for example in the pharmaceutical industry, the aqueous solubility of a
+potential drug has a high impact on the progression of a target molecule. High aqueous solubility is
+essential to produce drug compounds with the potential to enter the bloodstream circulation so that it
+can have an active effect where needed. The aqueous solubility can be a limiting factor in the
+progression of a compound, not only due to its impact on the bioavailability, but also due to problems
+with the toxicity of poorly soluble molecules, with consequences such as crystallization in the body. In
+fact, a lack of efficacy is the major problem encountered with the formulation and development of new
+drug compounds, together with pharmacokinetics it accounts for over 50 % of failed development
+projects. Similarly, solubility is a vital consideration in the development of agrochemicals, impacting their
+environmental and toxicological properties. The accurate prediction of solubility allows for more rapid
+development of more robust and effective target compounds. Moreover, it decreases the probability ofan ineffective target making it past the screening stage, thereby allowing for the allocation of more resources to more promising candidates.
+&lt;/p&gt;
+
+&lt;h4 id=&quot;benefits-of-ml-in-solubility-prediction&quot;&gt;Benefits of ML in Solubility Prediction:&lt;/h4&gt;
+
+&lt;p&gt;The demand for new drug-like compounds is ever-growing, motivated by the exponentially increasing
+population size as well as the constant emergence of new diseases and viruses. As such, the empirical
+techniques used to predict solubility become less and less suitable for the mammoth task of rapidly
+screening lead compounds due to the sheer number that could be considered. New techniques are required for the prediction of solubility, that are
+robust and accurate to help minimize the cost of drug development as well as reduce the wastage of
+resources. The advent of machine learning, coupled with developments in computational chemistry
+provide a natural progression to the in-silico simulation of molecular properties such as solubility. By utilizing models such as Graph Convolutional Networks (GCNs) and Random Forests, researchers can predict solubility based on molecular structure and other relevant features, providing valuable insights early in the development pipeline.&lt;/p&gt;
+
+&lt;h3 class=&quot;t60&quot;&gt;Other Blog posts&lt;/h3&gt;
+
+&lt;ul class=&quot;side-nav&quot;&gt;
+
+  
+
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/what-is-atmospec&quot;&gt;Atmospheric Chemistry &amp;middot; &lt;strong&gt;AtmoSpec: A Revolutionary Tool for Atmospheric Chemists&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Predicting molecular properties: Solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+  
+&lt;/ul&gt;
+
+</content>
+
+			
+				<category term="blog" />
+			
+			
+				<category term="Structure" />
+			
+				<category term="Computational Chemistry" />
+			
+				<category term="RDKit" />
+			
+				<category term="Machine Learning" />
+			
+				<category term="Molecular Representations" />
+			
+				<category term="Python" />
+			
+
+			<published>2024-11-08T00:00:00+00:00</published>
+		</entry>
 	
 		<entry>
 			<id>http://localhost:4000/blog/nuclear-ensemble-approach</id>
@@ -88,6 +207,8 @@ The NEA’s ability to efficiently calculate photoabsorption cross-sections for 
 
   
 
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
@@ -169,6 +290,8 @@ Understanding how VOCs interact with sunlight is essential for developing accura
 
   
 
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
@@ -286,6 +409,8 @@ provide a natural progression to the in-silico simulation of molecular propertie
 
   
 
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
@@ -584,6 +709,8 @@ provide a natural progression to the in-silico simulation of molecular propertie
 				
 			
 				
+			
+				
 					&lt;dd class=&quot;accordion-navigation&quot;&gt;
 						&lt;a href=&quot;#panel1&quot;&gt;&lt;span class=&quot;iconfont&quot;&gt;&lt;/span&gt; HTML and CSS › &lt;strong&gt;Web Building Homepage&lt;/strong&gt;&lt;/a&gt;
 						&lt;div id=&quot;panel1&quot; class=&quot;content&quot;&gt;
@@ -716,56 +843,6 @@ provide a natural progression to the in-silico simulation of molecular propertie
 
 			
 				<category term="guides" />
-			
-			
-
-			<published>2024-08-07T00:00:00+00:00</published>
-		</entry>
-	
-		<entry>
-			<id>http://localhost:4000/guides/python/</id>
-			<title>Python Homepage</title>
-			<link href="http://localhost:4000/guides/python/" rel="alternate" type="text/html" title="Python Homepage" />
-			<updated>2024-08-07T00:00:00+00:00</updated>
-
-			
-				
-				<author>
-					
-						<name>Konstantin N</name>
-					
-					
-						<email>kon50@hotmail.co.uk</email>
-					
-					
-						<uri>http://k-nom.com</uri>
-					
-				</author>
-			
-			<summary>Python ... </summary>
-			<content type="html" xml:base="http://localhost:4000/guides/python/">&lt;!--more--&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-&lt;div class=&quot;medium-4 medium-push-8 columns&quot;&gt;
-    &lt;div class=&quot;panel radius&quot;&gt;
-      &lt;p id=&quot;toc&quot;&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#coming-soon&quot; id=&quot;markdown-toc-coming-soon&quot;&gt;Coming Soon!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;/div&gt;
-  &lt;/div&gt;&lt;!-- /.medium-4.columns --&gt;
-
-&lt;div class=&quot;medium-8 medium-pull-4 columns&quot;&gt;
-
-    &lt;h2 id=&quot;coming-soon&quot;&gt;Coming Soon!&lt;/h2&gt;
-  &lt;/div&gt;&lt;/div&gt;
-</content>
-
-			
-				<category term="guides" />
-			
-				<category term="python" />
 			
 			
 

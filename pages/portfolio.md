@@ -142,4 +142,17 @@ Feel free to explore the various projects by clicking the image above for the co
             </ul>
         </div>
     </div><!-- /.medium-4.columns -->
+
+    <div class="medium-4 columns t30 project">
+        <a href="/portfolio/coming_soon">
+            <img src="{{ site.urlimg }}coming_soon.png" alt="">
+        </a>
+        <div class="project-content">
+            <h6>New Project</h6>
+            <span class="project-skills"> Python | RDKit | Chemistry </span>
+            <ul>
+                <li>Coming soon!</li>
+            </ul>
+        </div>
+    </div><!-- /.medium-4.columns -->
 </div><!-- /.row -->

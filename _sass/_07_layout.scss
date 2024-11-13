@@ -409,12 +409,36 @@ body.video cite { color: #fff; }
     text-align: left; /* Center-align the button */
 }
 
+/* Button for widgets*/
 .button {
 
     &:hover {
         background-color: #28af60; /* Darker shade for hover */
         color: rgb(124, 34, 34); /* Keep the text color white */
         border-color: rgb(124, 34, 34); /* Optional: Border change on hover */
+    }
+}
+
+/* Button for call to action*/
+.custom-button {
+    padding: 1em 2em; // Default button padding
+
+    &.small-button {
+        padding: 0.75em 1.5em;
+        font-size: 1rem; // Smaller font size for mobile
+
+        // Ensure button width adapts to smaller screens
+        @media (max-width: 600px) {
+            padding: 0.5em 1em;
+            font-size: 0.9rem;
+            width: 90%; // Adjust width
+            display: block;
+            margin: 0 auto; // Center align on smaller screens
+        }
+    }
+
+    &.large-button {
+        font-size: 1.25rem;
     }
 }
 
