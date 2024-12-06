@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>http://localhost:4000/</id>
 	<title>Konstantin Nomerotski - Portfolio</title>
-	<updated>2024-12-05T15:44:37+00:00</updated>
+	<updated>2024-12-06T18:40:43+00:00</updated>
 
 	<subtitle>» Showcasing my portfolio in Chemistry, Computing, and Data Science «</subtitle>
 
@@ -24,101 +24,6 @@
 
 	<generator uri="http://jekyllrb.com" version="4.3.3">Jekyll</generator>
 
-	
-		<entry>
-			<id>http://localhost:4000/portfolio/an-investigation-on-wine/</id>
-			<title>Euler&apos;s method</title>
-			<link href="http://localhost:4000/portfolio/an-investigation-on-wine/" rel="alternate" type="text/html" title="Euler&apos;s method" />
-			<updated>2024-12-04T00:00:00+00:00</updated>
-
-			
-				
-				<author>
-					
-						<name>Konstantin N</name>
-					
-					
-						<email>kon50@hotmail.co.uk</email>
-					
-					
-						<uri>http://k-nom.com</uri>
-					
-				</author>
-			
-			<summary>Solving differential equations with numerical methods</summary>
-			<content type="html" xml:base="http://localhost:4000/portfolio/an-investigation-on-wine/">&lt;h2 id=&quot;applying-numerical-methods-in-chemistry&quot;&gt;Applying Numerical Methods in Chemistry&lt;/h2&gt;
-
-&lt;p&gt;The sources and our conversation history provide a foundation for understanding how numerical methods like Euler’s method and the Improved Euler’s method (Heun’s method) can be applied in chemistry.  Here’s a look at how these methods can be used to simulate various chemical phenomena:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Molecular Vibrations:&lt;/strong&gt;  Molecules vibrate due to the bonds between atoms acting like springs. These vibrations can be modelled as damped, driven oscillations, similar to the weight-on-a-spring example in our previous conversation. Using the Euler or Improved Euler methods, we can simulate these vibrations and predict their frequencies. These frequencies are essential in spectroscopic techniques like IR and Raman spectroscopy, which help identify and characterise molecules.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Chemical Kinetics:&lt;/strong&gt;  In chemical reactions, the concentrations of reactants and products change over time. These changes are governed by differential equations that describe the reaction rates. We can apply the Euler or Improved Euler methods to solve these equations and simulate how concentrations evolve over time. This can provide valuable insights into reaction mechanisms and help optimise reaction conditions.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Molecular Dynamics:&lt;/strong&gt;  This field involves simulating the movements and interactions of atoms within a molecule. The forces acting on atoms determine their trajectories, which can be calculated using numerical methods. By understanding these trajectories, we can study processes like protein folding, drug binding, and diffusion.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Spectroscopy:&lt;/strong&gt; Molecules interact with electromagnetic radiation, leading to absorption or emission of energy at specific frequencies. These interactions can be modelled using quantum mechanics, often involving complex differential equations. Numerical methods like Euler’s method can help solve these equations and predict spectral features, aiding in the interpretation of experimental spectroscopic data. This is particularly useful in techniques like NMR spectroscopy, where the behaviour of nuclei in a magnetic field is studied.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;key-considerations&quot;&gt;Key Considerations:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Choice of Method:&lt;/strong&gt;  The Euler method is simpler to implement but less accurate than the Improved Euler method, especially for larger step sizes. The Improved Euler method offers greater accuracy with fewer steps, making it more efficient. The choice depends on the desired accuracy and available computational resources.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Step Size (&lt;em&gt;h&lt;/em&gt;):&lt;/strong&gt;  Smaller step sizes generally lead to more accurate simulations but require more computational time.  Balancing accuracy and computational cost is crucial.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Complexity of the System:&lt;/strong&gt;  More complex systems, with a larger number of particles or more intricate interactions, require more sophisticated models and potentially more advanced numerical methods beyond Euler or Improved Euler.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;additional-insights-from-the-sources&quot;&gt;Additional Insights from the Sources:&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The source “Blog of Feeling Responsive” highlights the author’s interest in merging chemistry and computing, particularly through data science and software engineering.  This suggests a growing trend of applying computational techniques to advance chemical research.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The source “Euler method - Wikipedia” discusses the concept of numerical stability, which is important for ensuring that simulations produce reliable results.  Unstable simulations can produce unrealistic, diverging solutions.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The sources demonstrate that Euler’s method and its variants, like the Improved Euler method, are fundamental tools for tackling differential equations that arise in various scientific fields, including chemistry.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Please note that the specific applications of numerical methods to these chemical phenomena, as described above, are based on general knowledge and are not explicitly discussed in the provided sources. Further research and verification are recommended.&lt;/strong&gt;&lt;/p&gt;
-</content>
-
-			
-				<category term="projects" />
-			
-			
-				<category term="Data Science" />
-			
-				<category term="Wine" />
-			
-				<category term="Bayesian inference" />
-			
-				<category term="Machine Learning" />
-			
-				<category term="Data visualization" />
-			
-				<category term="Python" />
-			
-				<category term="Wine Classification" />
-			
-				<category term="Regression" />
-			
-
-			<published>2024-12-04T00:00:00+00:00</published>
-		</entry>
 	
 		<entry>
 			<id>http://localhost:4000/portfolio/an-investigation-on-wine/</id>
@@ -151,33 +56,67 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Can we accurately classify wines as red or white based on their chemical properties, what are the chemical differences between red and white wines?&lt;/p&gt;
+    &lt;p&gt;Can we classify wines as red or white based on their chemical properties?&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;What factors influence a wine’s quality score?&lt;/p&gt;
+    &lt;p&gt;Can we predict the “goodness” of wines?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How do we make better wines?&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Binary logistic regression was chosen to classify the wines. To explore the latter question, I used Bayesian inference to investigate the relationship between the physiochemical properties and the probability of a wine being classified as “good,” based on the quality score.&lt;/p&gt;
 
+&lt;h3 id=&quot;the-results&quot;&gt;The Results!&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;A binary logistic regression (BLR) model was constructed to predict wine type using six variables. The model achieved 97.3% accuracy, with precision, recall, and F1 scores all above 98%. Five-fold cross-validation showed consistent performance across different subsets of the data.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bayesian inference was used to estimate the probability of a wine being classified as “good” based on a quality score threshold of six. The average probability (theta) was found to be 63%, with a narrow posterior distribution indicating high confidence in the estimate.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The relationship between citric acid concentration and the probability of a wine being “good” was investigated using Bayesian inference. The results showed that wines with citric acid levels between 0.29 and 0.34 g.dm-3 had the highest probability of being rated as “good”. This suggests that winemakers could aim for this citric acid range to increase the likelihood of producing high-quality wines.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;techincal-details&quot;&gt;Techincal details&lt;/h3&gt;
-&lt;h5 id=&quot;data-cleaning-and-preprocessing&quot;&gt;Data cleaning and preprocessing&lt;/h5&gt;
+&lt;h5 id=&quot;data-exploration-cleaning-and-preprocessing&quot;&gt;Data exploration, cleaning and preprocessing&lt;/h5&gt;
 &lt;p&gt;Before diving into modelling, I preprocessed the data to ensure its quality and suitability for analysis. This involved handling missing values (if any), addressing potential outliers, and scaling numerical features to a standard range. Additionally, I encoded the wine type (red or white) as a binary variable for use in logistic regression.&lt;/p&gt;
 
 &lt;h5 id=&quot;logistic-regression&quot;&gt;Logistic regression&lt;/h5&gt;
 &lt;p&gt;Logistic regression is a suitable algorithm for binary classification tasks, making it a good choice for predicting wine type. Using Recursive Feature Elimination (RFE) with logistic regression, I selected six features for the model: chlorides, residual sugar, fixed acidity, volatile acidity, pH, and sulphates.&lt;/p&gt;
 
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/conf_mat_wine.png&quot; style=&quot;width:100%;&quot; /&gt;
+&lt;/div&gt;
+
 &lt;p&gt;The model achieved an impressive accuracy of 97.3% on the test data, demonstrating its effectiveness in distinguishing between red and white wines. Further evaluation using precision, recall, and F1-score all yielded values above 98%, indicating a high level of confidence in the model’s predictions. The confusion matrix visually confirmed the model’s performance, showing a low number of misclassifications. Finally, the ROC curve, with an area under the curve (AUC) of 0.97, reinforces the model’s excellent discriminatory ability. Furthermore, the model showed to be robust with a k-fold cross-val score of 0.97 using 5 folds, suggesting little variation in accuracy for new sets of data.&lt;/p&gt;
 
 &lt;p&gt;While logistic regression is a powerful tool, it has some limitations. It assumes a linear relationship between the independent variables and the logit of the dependent variable, which may not always hold true. Additionally, it requires careful handling of multicollinearity, which I addressed through feature selection.&lt;/p&gt;
+
 &lt;h5 id=&quot;bayesian-inference---good-or-bad-wine&quot;&gt;Bayesian inference - Good or Bad wine?&lt;/h5&gt;
 &lt;p&gt;To gain a deeper understanding of wine quality, I turned to Bayesian inference. This approach allows us to incorporate prior knowledge and update our beliefs about the probability of a wine being “good” as we observe more data.&lt;/p&gt;
 
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/quality_count_wine.png&quot; style=&quot;width:80%;&quot; /&gt;
+&lt;/div&gt;
+
 &lt;p&gt;For this analysis, I defined a wine as “good” if its quality score was 6 or higher. I used a beta distribution as the prior, reflecting the initial belief that a slightly higher proportion of wines would be classified as “good”. The binomial likelihood function was used to update the prior based on the observed data.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/bay_inf_wine.png&quot; style=&quot;width:100%;&quot; /&gt;
+&lt;/div&gt;
 
 &lt;p&gt;The Bayesian analysis resulted in an average theta (θ) value of 0.632, representing the overall probability of a wine being “good” in the dataset. The narrow posterior width of 0.006 indicates a high level of certainty in this estimate&lt;/p&gt;
 &lt;h5 id=&quot;a-closer-look-at-citric-acid&quot;&gt;A closer look at citric acid&lt;/h5&gt;
 &lt;p&gt;To investigate the influence of citric acid on wine quality, I divided the citric acid values into eight approximately equally populated bins. I then performed Bayesian inference for each bin, calculating the average theta and posterior width.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/Citric_acid_wine.png&quot; style=&quot;width:100%;&quot; /&gt;
+&lt;/div&gt;
 
 &lt;p&gt;The results revealed an interesting trend: wines with citric acid levels between 0.29 and 0.34 g.dm-3 had the highest probability of being classified as “good”. This suggests a “sweet spot” for citric acid content, where it positively contributes to perceived quality.
 This insight can be valuable for winemakers, allowing them to optimise citric acid levels to potentially enhance the quality of their wines.&lt;/p&gt;
@@ -185,10 +124,9 @@ This insight can be valuable for winemakers, allowing them to optimise citric ac
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;div class=&quot;widget-grid&quot;&gt;
   &lt;div class=&quot;widget&quot;&gt;
-    &lt;a href=&quot;https://github.com/kon-218/LaunchNEM&quot; target=&quot;_blank&quot;&gt;
+    &lt;a href=&quot;https://github.com/kon-218/wine_investigation&quot; target=&quot;_blank&quot;&gt;
   &lt;img src=&quot;https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&quot; alt=&quot;GitHub&quot; style=&quot;width:40px; height:40px;&quot; /&gt;
 &lt;/a&gt;
-
     &lt;h3&gt;See the Code! (As a notebook)&lt;/h3&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -199,8 +137,6 @@ This insight can be valuable for winemakers, allowing them to optimise citric ac
 
   
 
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/an-investigation-on-wine/&quot;&gt;Numerical Methods &amp;middot; &lt;strong&gt;Euler&apos;s method&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/an-investigation-on-wine/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;An investigation on wine&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
@@ -781,6 +717,56 @@ provide a natural progression to the in-silico simulation of molecular propertie
 			
 
 			<published>2024-09-25T00:00:00+00:00</published>
+		</entry>
+	
+		<entry>
+			<id>http://localhost:4000/guides/web-building/</id>
+			<title>Web Building Homepage</title>
+			<link href="http://localhost:4000/guides/web-building/" rel="alternate" type="text/html" title="Web Building Homepage" />
+			<updated>2024-08-07T00:00:00+00:00</updated>
+
+			
+				
+				<author>
+					
+						<name>Konstantin N</name>
+					
+					
+						<email>kon50@hotmail.co.uk</email>
+					
+					
+						<uri>http://k-nom.com</uri>
+					
+				</author>
+			
+			<summary>web design and implementation... </summary>
+			<content type="html" xml:base="http://localhost:4000/guides/web-building/">&lt;!--more--&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+&lt;div class=&quot;medium-4 medium-push-8 columns&quot;&gt;
+    &lt;div class=&quot;panel radius&quot;&gt;
+      &lt;p id=&quot;toc&quot;&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#coming-soon&quot; id=&quot;markdown-toc-coming-soon&quot;&gt;Coming Soon!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;&lt;!-- /.medium-4.columns --&gt;
+
+&lt;div class=&quot;medium-8 medium-pull-4 columns&quot;&gt;
+
+    &lt;h2 id=&quot;coming-soon&quot;&gt;Coming Soon!&lt;/h2&gt;
+  &lt;/div&gt;&lt;/div&gt;
+</content>
+
+			
+				<category term="guides" />
+			
+				<category term="python" />
+			
+			
+
+			<published>2024-08-07T00:00:00+00:00</published>
 		</entry>
 	
 </feed>
