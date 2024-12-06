@@ -95,9 +95,22 @@ Feel free to explore the various projects by clicking the image above for the co
             </ul>
         </div>
     </div><!-- /.medium-4.columns -->
-</div><!-- /.row -->
 
-<div class="row">
+    <div class="medium-4 columns t30 project">
+        <a href="/portfolio/an-investigation-on-wine">
+            <img src="{{ site.urlimg }}wine.png" alt="">
+        </a>
+        <div class="project-content">
+            <h6>An investigation on wine</h6>
+            <span class="project-skills"> Machine Learning | Bayesian Inference  </span>
+            <ul>
+                <li>Trained a logistic regression model for the classification of wine as red or white from physiochemical properties</li>
+                <li> Investigated the probability of a good or bad wine</li>
+                <li>Used bayesian inference to investigate optimal citric acid concentration for best "goodness"</li>
+            </ul>
+        </div>
+    </div><!-- /.medium-4.columns -->
+
     <div class="medium-4 columns t30 project">
         <a href="/portfolio/atmospec-data-visualization-module">
             <img src="{{ site.urlimg }}atmospecvis.png" alt="">

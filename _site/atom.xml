@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>http://localhost:4000/</id>
 	<title>Konstantin Nomerotski - Portfolio</title>
-	<updated>2024-11-13T16:30:14+00:00</updated>
+	<updated>2024-12-06T18:40:43+00:00</updated>
 
 	<subtitle>» Showcasing my portfolio in Chemistry, Computing, and Data Science «</subtitle>
 
@@ -24,6 +24,165 @@
 
 	<generator uri="http://jekyllrb.com" version="4.3.3">Jekyll</generator>
 
+	
+		<entry>
+			<id>http://localhost:4000/portfolio/an-investigation-on-wine/</id>
+			<title>An investigation on wine</title>
+			<link href="http://localhost:4000/portfolio/an-investigation-on-wine/" rel="alternate" type="text/html" title="An investigation on wine" />
+			<updated>2024-12-03T00:00:00+00:00</updated>
+
+			
+				
+				<author>
+					
+						<name>Konstantin N</name>
+					
+					
+						<email>kon50@hotmail.co.uk</email>
+					
+					
+						<uri>http://k-nom.com</uri>
+					
+				</author>
+			
+			<summary>Can we use machine learning for classifying wine? How can we tell if a wine is good or bad?</summary>
+			<content type="html" xml:base="http://localhost:4000/portfolio/an-investigation-on-wine/">&lt;h3 id=&quot;the-dataset&quot;&gt;The Dataset&lt;/h3&gt;
+
+&lt;p&gt;For this project, I used the “wine-dataset” sourced from the UCI machine learning repository. The dataset contains 6497 samples, each representing a different wine. The dataset has 12 features, including physiochemical properties such as fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, and alcohol content. Additionally, the dataset provides a quality score ranging from 0 to 9, with higher scores indicating better quality, although the lowest score given is 3.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-objective&quot;&gt;The Objective&lt;/h3&gt;
+
+&lt;p&gt;The project aimed to address two key questions:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Can we classify wines as red or white based on their chemical properties?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Can we predict the “goodness” of wines?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How do we make better wines?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Binary logistic regression was chosen to classify the wines. To explore the latter question, I used Bayesian inference to investigate the relationship between the physiochemical properties and the probability of a wine being classified as “good,” based on the quality score.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-results&quot;&gt;The Results!&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;A binary logistic regression (BLR) model was constructed to predict wine type using six variables. The model achieved 97.3% accuracy, with precision, recall, and F1 scores all above 98%. Five-fold cross-validation showed consistent performance across different subsets of the data.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bayesian inference was used to estimate the probability of a wine being classified as “good” based on a quality score threshold of six. The average probability (theta) was found to be 63%, with a narrow posterior distribution indicating high confidence in the estimate.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The relationship between citric acid concentration and the probability of a wine being “good” was investigated using Bayesian inference. The results showed that wines with citric acid levels between 0.29 and 0.34 g.dm-3 had the highest probability of being rated as “good”. This suggests that winemakers could aim for this citric acid range to increase the likelihood of producing high-quality wines.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;techincal-details&quot;&gt;Techincal details&lt;/h3&gt;
+&lt;h5 id=&quot;data-exploration-cleaning-and-preprocessing&quot;&gt;Data exploration, cleaning and preprocessing&lt;/h5&gt;
+&lt;p&gt;Before diving into modelling, I preprocessed the data to ensure its quality and suitability for analysis. This involved handling missing values (if any), addressing potential outliers, and scaling numerical features to a standard range. Additionally, I encoded the wine type (red or white) as a binary variable for use in logistic regression.&lt;/p&gt;
+
+&lt;h5 id=&quot;logistic-regression&quot;&gt;Logistic regression&lt;/h5&gt;
+&lt;p&gt;Logistic regression is a suitable algorithm for binary classification tasks, making it a good choice for predicting wine type. Using Recursive Feature Elimination (RFE) with logistic regression, I selected six features for the model: chlorides, residual sugar, fixed acidity, volatile acidity, pH, and sulphates.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/conf_mat_wine.png&quot; style=&quot;width:100%;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The model achieved an impressive accuracy of 97.3% on the test data, demonstrating its effectiveness in distinguishing between red and white wines. Further evaluation using precision, recall, and F1-score all yielded values above 98%, indicating a high level of confidence in the model’s predictions. The confusion matrix visually confirmed the model’s performance, showing a low number of misclassifications. Finally, the ROC curve, with an area under the curve (AUC) of 0.97, reinforces the model’s excellent discriminatory ability. Furthermore, the model showed to be robust with a k-fold cross-val score of 0.97 using 5 folds, suggesting little variation in accuracy for new sets of data.&lt;/p&gt;
+
+&lt;p&gt;While logistic regression is a powerful tool, it has some limitations. It assumes a linear relationship between the independent variables and the logit of the dependent variable, which may not always hold true. Additionally, it requires careful handling of multicollinearity, which I addressed through feature selection.&lt;/p&gt;
+
+&lt;h5 id=&quot;bayesian-inference---good-or-bad-wine&quot;&gt;Bayesian inference - Good or Bad wine?&lt;/h5&gt;
+&lt;p&gt;To gain a deeper understanding of wine quality, I turned to Bayesian inference. This approach allows us to incorporate prior knowledge and update our beliefs about the probability of a wine being “good” as we observe more data.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/quality_count_wine.png&quot; style=&quot;width:80%;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For this analysis, I defined a wine as “good” if its quality score was 6 or higher. I used a beta distribution as the prior, reflecting the initial belief that a slightly higher proportion of wines would be classified as “good”. The binomial likelihood function was used to update the prior based on the observed data.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/bay_inf_wine.png&quot; style=&quot;width:100%;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The Bayesian analysis resulted in an average theta (θ) value of 0.632, representing the overall probability of a wine being “good” in the dataset. The narrow posterior width of 0.006 indicates a high level of certainty in this estimate&lt;/p&gt;
+&lt;h5 id=&quot;a-closer-look-at-citric-acid&quot;&gt;A closer look at citric acid&lt;/h5&gt;
+&lt;p&gt;To investigate the influence of citric acid on wine quality, I divided the citric acid values into eight approximately equally populated bins. I then performed Bayesian inference for each bin, calculating the average theta and posterior width.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;../../images/Citric_acid_wine.png&quot; style=&quot;width:100%;&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The results revealed an interesting trend: wines with citric acid levels between 0.29 and 0.34 g.dm-3 had the highest probability of being classified as “good”. This suggests a “sweet spot” for citric acid content, where it positively contributes to perceived quality.
+This insight can be valuable for winemakers, allowing them to optimise citric acid levels to potentially enhance the quality of their wines.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;widget-grid&quot;&gt;
+  &lt;div class=&quot;widget&quot;&gt;
+    &lt;a href=&quot;https://github.com/kon-218/wine_investigation&quot; target=&quot;_blank&quot;&gt;
+  &lt;img src=&quot;https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&quot; alt=&quot;GitHub&quot; style=&quot;width:40px; height:40px;&quot; /&gt;
+&lt;/a&gt;
+    &lt;h3&gt;See the Code! (As a notebook)&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 class=&quot;t60&quot;&gt;Other Projects&lt;/h3&gt;
+
+&lt;ul class=&quot;side-nav&quot;&gt;
+
+  
+
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/an-investigation-on-wine/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;An investigation on wine&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/this-website/&quot;&gt;Web development &amp;middot; &lt;strong&gt;This Website&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/rep-sampling-for-nea/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;Representative Samping for the Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/&quot;&gt;Cloud paradigms &amp;middot; &lt;strong&gt;Improving scalability using cloud paradigms&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/biscuit-dunking-analysis/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;Biscuit Dunking Data Analysis&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/atmospec-data-visualization-module/&quot;&gt;Data Visualization &amp;middot; &lt;strong&gt;Atmospec Visualization Module&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/accelerating-python-code/&quot;&gt;Increasing Efficiency &amp;middot; &lt;strong&gt;Accelerating Python code&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+  
+&lt;/ul&gt;
+
+</content>
+
+			
+				<category term="projects" />
+			
+			
+				<category term="Data Science" />
+			
+				<category term="Wine" />
+			
+				<category term="Bayesian inference" />
+			
+				<category term="Machine Learning" />
+			
+				<category term="Data visualization" />
+			
+				<category term="Python" />
+			
+				<category term="Wine Classification" />
+			
+				<category term="Regression" />
+			
+
+			<published>2024-12-03T00:00:00+00:00</published>
+		</entry>
 	
 		<entry>
 			<id>http://localhost:4000/blog/identifying-functional-groups</id>
@@ -46,61 +205,7 @@
 				</author>
 			
 			<summary>An algorithm for FG analysis</summary>
-			<content type="html" xml:base="http://localhost:4000/blog/identifying-functional-groups">&lt;p&gt;In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. It is defined as the amount of a substance that will dissolve in a given volume of solvent. relating to both
-the solute and the solvent, as well as the temperature and pressure. Solubility  is commonly expressed in terms
-of intrinsic solubility, where the solubility of a buffered solution is taken at a given temperature and
-pressure. The intrinsic solubility of a substrate reflects its inherent ability to dissolve in a specific solvent,
-acting as a straightforward representation of a molecule&apos;s likelihood to dissolve. The intrinsic solubility of
-a compound at a given pH level is denoted by logS pH and can be derived from the Henderson-Hasselbalch
-equation
-&lt;/p&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-    &lt;title&gt;Math Equation&lt;/title&gt;
-    &lt;script src=&quot;https://polyfill.io/v3/polyfill.min.js?features=es6&quot;&gt;&lt;/script&gt;
-    &lt;script id=&quot;MathJax-script&quot; async=&quot;&quot; src=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;&gt;
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;
-        $$ \log S_{pH} = \log S_{0} + \log \left( 1 + \alpha \right) $$
-        $$ \text{where} \ \alpha = \frac{\sum \alpha_{cA_i}}{\sum \alpha_{nA_j}} $$
-    &lt;/p&gt;
-&lt;/body&gt;
-
-&lt;p&gt;In this form, \(\alpha_{cA_i}\) is the distribution percentage of the i-th charged microspecies while \(\alpha_{nA_j}\) is the
-distribution percentage of the j-th neutral microspecies at a given pH. This equation can be used to
-determine the pH-dependent solubility curves and the intrinsic solubility making it vital for
-understanding the behavior of a given compound.&lt;/p&gt;
-
-&lt;h4 id=&quot;why-solubility-matters&quot;&gt;Why Solubility Matters&lt;/h4&gt;
-
-&lt;p&gt;
-Solubility is extremely important, for example in the pharmaceutical industry, the aqueous solubility of a
-potential drug has a high impact on the progression of a target molecule. High aqueous solubility is
-essential to produce drug compounds with the potential to enter the bloodstream circulation so that it
-can have an active effect where needed. The aqueous solubility can be a limiting factor in the
-progression of a compound, not only due to its impact on the bioavailability, but also due to problems
-with the toxicity of poorly soluble molecules, with consequences such as crystallization in the body. In
-fact, a lack of efficacy is the major problem encountered with the formulation and development of new
-drug compounds, together with pharmacokinetics it accounts for over 50 % of failed development
-projects. Similarly, solubility is a vital consideration in the development of agrochemicals, impacting their
-environmental and toxicological properties. The accurate prediction of solubility allows for more rapid
-development of more robust and effective target compounds. Moreover, it decreases the probability ofan ineffective target making it past the screening stage, thereby allowing for the allocation of more resources to more promising candidates.
-&lt;/p&gt;
-
-&lt;h4 id=&quot;benefits-of-ml-in-solubility-prediction&quot;&gt;Benefits of ML in Solubility Prediction:&lt;/h4&gt;
-
-&lt;p&gt;The demand for new drug-like compounds is ever-growing, motivated by the exponentially increasing
-population size as well as the constant emergence of new diseases and viruses. As such, the empirical
-techniques used to predict solubility become less and less suitable for the mammoth task of rapidly
-screening lead compounds due to the sheer number that could be considered. New techniques are required for the prediction of solubility, that are
-robust and accurate to help minimize the cost of drug development as well as reduce the wastage of
-resources. The advent of machine learning, coupled with developments in computational chemistry
-provide a natural progression to the in-silico simulation of molecular properties such as solubility. By utilizing models such as Graph Convolutional Networks (GCNs) and Random Forests, researchers can predict solubility based on molecular structure and other relevant features, providing valuable insights early in the development pipeline.&lt;/p&gt;
-
+			<content type="html" xml:base="http://localhost:4000/blog/identifying-functional-groups">&lt;h3 id=&quot;coming-soon&quot;&gt;Coming soon!&lt;/h3&gt;
 &lt;h3 class=&quot;t60&quot;&gt;Other Blog posts&lt;/h3&gt;
 
 &lt;ul class=&quot;side-nav&quot;&gt;
@@ -658,191 +763,6 @@ provide a natural progression to the in-silico simulation of molecular propertie
 				<category term="guides" />
 			
 				<category term="python" />
-			
-			
-
-			<published>2024-08-07T00:00:00+00:00</published>
-		</entry>
-	
-		<entry>
-			<id>http://localhost:4000/guides/toc/</id>
-			<title>Guides Archive</title>
-			<link href="http://localhost:4000/guides/toc/" rel="alternate" type="text/html" title="Guides Archive" />
-			<updated>2024-08-07T00:00:00+00:00</updated>
-
-			
-				
-				<author>
-					
-						<name>Konstantin N</name>
-					
-					
-						<email>kon50@hotmail.co.uk</email>
-					
-					
-						<uri>http://k-nom.com</uri>
-					
-				</author>
-			
-			<summary>Explore all the guides and tutorials available in the Guides section.</summary>
-			<content type="html" xml:base="http://localhost:4000/guides/toc/">&lt;div id=&quot;guides-index&quot; class=&quot;row&quot;&gt;
-	&lt;div class=&quot;small-12 columns t30&quot;&gt;
-		&lt;h1&gt;Guides Archive&lt;/h1&gt;
-		&lt;p class=&quot;teaser&quot;&gt;Explore all the guides and tutorials available in the Guides section.&lt;/p&gt;
-
-		&lt;dl class=&quot;accordion&quot; data-accordion=&quot;&quot;&gt;
-			
-
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-					&lt;dd class=&quot;accordion-navigation&quot;&gt;
-						&lt;a href=&quot;#panel1&quot;&gt;&lt;span class=&quot;iconfont&quot;&gt;&lt;/span&gt; HTML and CSS › &lt;strong&gt;Web Building Homepage&lt;/strong&gt;&lt;/a&gt;
-						&lt;div id=&quot;panel1&quot; class=&quot;content&quot;&gt;
-							web design and implementation... 
-							&lt;a href=&quot;/guides/web-building/&quot; title=&quot;Read Web Building Homepage&quot;&gt;&lt;strong&gt;Read More&amp;nbsp;›&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
-						&lt;/div&gt;
-					&lt;/dd&gt;
-					
-				
-			
-				
-					&lt;dd class=&quot;accordion-navigation&quot;&gt;
-						&lt;a href=&quot;#panel2&quot;&gt;&lt;span class=&quot;iconfont&quot;&gt;&lt;/span&gt; &lt;strong&gt;Guides Archive&lt;/strong&gt;&lt;/a&gt;
-						&lt;div id=&quot;panel2&quot; class=&quot;content&quot;&gt;
-							Explore all the guides and tutorials available in the Guides section.
-							&lt;a href=&quot;/guides/toc/&quot; title=&quot;Read Guides Archive&quot;&gt;&lt;strong&gt;Read More&amp;nbsp;›&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
-						&lt;/div&gt;
-					&lt;/dd&gt;
-					
-				
-			
-				
-					&lt;dd class=&quot;accordion-navigation&quot;&gt;
-						&lt;a href=&quot;#panel3&quot;&gt;&lt;span class=&quot;iconfont&quot;&gt;&lt;/span&gt; Python › &lt;strong&gt;Python Homepage&lt;/strong&gt;&lt;/a&gt;
-						&lt;div id=&quot;panel3&quot; class=&quot;content&quot;&gt;
-							Python ... 
-							&lt;a href=&quot;/guides/python/&quot; title=&quot;Read Python Homepage&quot;&gt;&lt;strong&gt;Read More&amp;nbsp;›&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
-						&lt;/div&gt;
-					&lt;/dd&gt;
-					
-				
-			
-				
-					&lt;dd class=&quot;accordion-navigation&quot;&gt;
-						&lt;a href=&quot;#panel4&quot;&gt;&lt;span class=&quot;iconfont&quot;&gt;&lt;/span&gt; Other Guides › &lt;strong&gt;Other Homepage&lt;/strong&gt;&lt;/a&gt;
-						&lt;div id=&quot;panel4&quot; class=&quot;content&quot;&gt;
-							Other Guides... 
-							&lt;a href=&quot;/guides/other/&quot; title=&quot;Read Other Homepage&quot;&gt;&lt;strong&gt;Read More&amp;nbsp;›&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
-						&lt;/div&gt;
-					&lt;/dd&gt;
-					
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-					&lt;dd class=&quot;accordion-navigation&quot;&gt;
-						&lt;a href=&quot;#panel5&quot;&gt;&lt;span class=&quot;iconfont&quot;&gt;&lt;/span&gt; &lt;strong&gt;Learn with me!&lt;/strong&gt;&lt;/a&gt;
-						&lt;div id=&quot;panel5&quot; class=&quot;content&quot;&gt;
-							Topics include Python coding and packages, as well as Jekyll, HTML and SCSS
-							&lt;a href=&quot;/guides/&quot; title=&quot;Read Learn with me!&quot;&gt;&lt;strong&gt;Read More&amp;nbsp;›&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
-						&lt;/div&gt;
-					&lt;/dd&gt;
-					
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
-		&lt;/dl&gt;
-	&lt;/div&gt;&lt;!-- /.small-12.columns --&gt;
-&lt;/div&gt;
-&lt;!-- /.row --&gt;
-</content>
-
-			
-				<category term="guides" />
 			
 			
 
