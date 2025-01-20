@@ -6,11 +6,13 @@ permalink: /portfolio/rep-sampling-for-nea/thesis-report/
 teaser: ""
 breadcrumb: true
 tags:
-    - numpy
-    - EDA
+    - ORCA
+    - Quantum Chemistry
     - pandas
     - matplotlib
     - python
+    - bash
+    - SLURM
 categories:
     - reports
 header: no
