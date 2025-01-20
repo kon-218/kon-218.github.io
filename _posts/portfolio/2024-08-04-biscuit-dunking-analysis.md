@@ -36,7 +36,9 @@ This investigation aimed to explore the physical differences between biscuits th
 
 Biscuit classification was attempted with and without the pore radius, finding greatly improved classification with the pore radius included. Both Supervised and Unsupervised methods were used, K-means clustering was attempted, however it was found to misinterpret Rich Tea for Hobnobs, and vice versa. A tuned Random Forest Classifier was found to be the best supervised predictor of biscuit type, with a 93.5 % minimum accuracy for Hobnobs, ranging to 100 % accuracy for Digestive biscuits
 
-<h5>Regression..</h5>
+<h5>Regression</h5>
+
+A regression analysis was performed to find the biscuit absorption rates, resolved for both short and long timescales. The classification algorithm was applied to absorption data to classify the absorption curves according to biscuit properties. The resulting regression model was used in combination with the classifier to give an approximation of biscuit type and absorption properties based on physical biscuit properties. Most importantly, this combined approach allows the classification of biscuits without the measurement of pore radius, our most significant classifying variable, saving great laboratory costs.
 
 <h3>Results</h3>
 
