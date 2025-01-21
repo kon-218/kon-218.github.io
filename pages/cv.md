@@ -32,7 +32,7 @@ permalink: /cv/
                 </p>
                 
                 <ul>
-                    <li>Implemented representative sampling method using simulated annealing and Kullback-Leibler divergence algorithms, reducing computational burden by 70% while maintaining spectral accuracy</li>
+                    <li>Implemented representative sampling method using simulated annealing and Kullback-Leibler divergence algorithms, reducing computational burden by 80% while maintaining spectral accuracy</li>
                     <li>Developed a high-performance Python framework integrating with open source quantum chemistry modules, enabling efficient exploration of larger and more complex molecules</li>
                     <li>Designed automated workflow using SLURM and Bash scripts, streamlining complex quantum chemistry calculations including data postprocessing and visualization</li>
                 </ul>
