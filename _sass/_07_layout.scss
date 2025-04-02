@@ -583,54 +583,194 @@ body.video cite { color: #fff; }
   
   
 // CV
-
 .cv-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Helvetica', 'Arial', sans-serif;
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+font-family: 'Helvetica', 'Arial', sans-serif;
+line-height: 1.4;
 }
 
 .cv-header {
-    text-align: center;
-    margin-bottom: 20px;
+text-align: center;
+margin-bottom: 30px;
 }
 
 .cv-header h1 {
-    margin: 0;
-    font-size: 2em;
+margin: 0;
+font-size: 2.2em;
+color: #2c3e50;
 }
 
 .cv-header p {
-    margin: 5px 0;
+margin: 5px 0;
+color: #34495e;
 }
 
 .cv-section {
-    margin-bottom: 20px;
+margin-bottom: 30px;
 }
 
 .cv-section h2 {
-    border-bottom: 2px solid #333;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+border-bottom: 2px solid #3498db;
+padding-bottom: 8px;
+margin-bottom: 15px;
+color: #2c3e50;
+font-size: 1.5em;
+}
+
+.cv-item {
+margin-bottom: 15px;
+padding-bottom: 15px;
+border-bottom: 1px solid #ecf0f1;
+}
+
+.cv-item:last-child {
+border-bottom: none;
 }
 
 .cv-item h3 {
-    margin: 0;
-    font-size: 1.2em;
+margin: 0;
+font-size: 1.2em;
+color: #34495e;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+}
+
+.cv-date {
+white-space: nowrap;
+margin-left: 10px;
+font-weight: normal;
+font-size: 0.9em;
+color: #7f8c8d;
 }
 
 .cv-item p {
-    margin: 5px 0;
+margin: 5px 0;
+color: #555;
 }
 
 .cv-item ul {
-    list-style-type: disc;
-    padding-left: 20px;
+list-style-type: disc;
+padding-left: 20px;
+margin-top: 8px;
 }
 
 .cv-item ul li {
-    margin-bottom: 5px;
+margin-bottom: 5px;
+}
+
+/* Improved Project Section */
+.project-section .cv-item {
+display: flex;
+flex-direction: column;
+background-color: #f9f9f9;
+border-radius: 5px;
+padding: 12px 15px;
+margin-bottom: 12px;
+border-left: 3px solid #30659b;
+transition: all 0.2s ease;
+position: relative;
+}
+
+.project-section .cv-item:hover {
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+background-color: #f5f9f8;
+}
+
+.project-section .cv-item h3 {
+color: #34495e;
+margin-bottom: 5px;
+}
+
+.project-section .cv-item p {
+color: #7f8c8d;
+font-style: italic;
+margin: 0 0 8px 0;
+}
+
+.cv-subitem {
+margin: 10px 0 10px 20px;
+padding: 10px 15px;
+border-left: 2px solid #e0e0e0;
+transition: all 0.2s ease;
+background-color: #f9f9f9;
+border-radius: 4px;
+position: relative;
+}
+
+.cv-subitem:hover {
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+background-color: #f5f9f8;
+border-left: 2px solid #2770a0;
+}
+
+.cv-subitem h4 {
+color: #34495e;
+margin: 0 0 5px 0;
+font-size: 1.05em;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.cv-subitem p {
+margin: 3px 0;
+}
+
+/* Tech stack styling */
+.tech-stack {
+font-size: 0.85em;
+color: #7f8c8d;
+background-color: #f2f2f2;
+padding: 3px 8px;
+border-radius: 3px;
+display: inline-block;
+margin-top: 3px;
+}
+
+/* Project links styling */
+.project-link {
+text-decoration: none;
+color: inherit;
+display: block;
+cursor: pointer;
+}
+
+.project-link:hover .cv-item {
+border-left-color: #29353f;
+}
+
+.project-link:hover .cv-subitem {
+border-left-color: #29353f;
+}
+
+.project-link:hover h3, 
+.project-link:hover h4 {
+color: #29353f;
+}
+
+.project-link:active .cv-item,
+.project-link:active .cv-subitem {
+transform: translateY(1px);
+}
+
+/* Add a subtle indicator that items are clickable */
+.project-link .cv-item::after,
+.project-link .cv-subitem::after {
+content: "→";
+position: absolute;
+right: 15px;
+opacity: 0;
+transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.project-link:hover .cv-item::after,
+.project-link:hover .cv-subitem::after {
+opacity: 0.7;
+transform: translateX(3px);
 }
 
 .hover-trigger {
@@ -910,4 +1050,23 @@ input[type=text], select, textarea {
     border-radius: 3px;
     cursor: pointer;
   }
-  
+
+figure {
+    max-width: 80%; /* Adjust as needed */
+    margin: auto;
+    text-align: center;
+}
+
+figure img {
+    width: 100%; /* Ensures it scales within the container */
+    max-width: 600px; /* Prevents it from getting too large */
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+figcaption {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+}

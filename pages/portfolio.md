@@ -62,7 +62,21 @@ Feel free to explore the various projects by clicking the image above for the co
             <ul>
                 <li>Implemented the representative sampling method with the Nuclear Ensemble Method</li>
                 <li>Acheived a subset reduction of 99 %</li>
-                <li>Decreased the runtime of spectra calculations by two orders of magnitude</li>
+                <li>Decreased the runtime of spectra calculations by 80 %</li>
+            </ul>
+        </div>
+    </div><!-- /.medium-4.columns -->
+
+    <div class="medium-4 columns t30 project">
+        <a href="/blog/simulating-protein-ligand-complexes">
+            <img src="{{ site.urlimg }}protein_complex.png" alt="">
+        </a>
+        <div class="project-content">
+            <h6>Simulating Protein-Ligand complexes using Open Source tools</h6>
+            <span class="project-skills"> Python | RDKit | OpenMM | OpenFF </span>
+            <ul>
+                <li>Researched methods for computation of binding free energies</li>
+                <li>Implemented frameworks for setting up and running OpenMM protein-ligand simulations</li>
             </ul>
         </div>
     </div><!-- /.medium-4.columns -->
@@ -152,19 +166,6 @@ Feel free to explore the various projects by clicking the image above for the co
                 <li>Identifying and analysing code bottlenecks</li>
                 <li>Reducing computational intensity using a combination of Cython, MPI and C++</li>
                 <li>Comparative analysis of methods attempted</li>
-            </ul>
-        </div>
-    </div><!-- /.medium-4.columns -->
-
-    <div class="medium-4 columns t30 project">
-        <a href="/portfolio/coming_soon">
-            <img src="{{ site.urlimg }}coming_soon.png" alt="">
-        </a>
-        <div class="project-content">
-            <h6>New Project</h6>
-            <span class="project-skills"> Python | RDKit | Chemistry </span>
-            <ul>
-                <li>Coming soon!</li>
             </ul>
         </div>
     </div><!-- /.medium-4.columns -->
