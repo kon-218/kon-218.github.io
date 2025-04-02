@@ -4,7 +4,7 @@ sidebar: right
 sidebar_content: "_sidebar_atmospec.html"
 subheadline: Data Visualization
 title:  "Atmospec Visualization Module"
-teaser: "An interactive data visualization module"
+teaser: "An interactive data visualization module, allowing for the exploration of photolysis properties in Atmospec. The photolysis rate constant was calculated using dynamic inputs from the user, and the graph is updated in real-time, allowing for researchers to interact with their results, and explore changes in data."
 breadcrumb: true
 tags:
     - Atmospec

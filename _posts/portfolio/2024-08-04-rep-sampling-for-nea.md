@@ -4,7 +4,7 @@ sidebar: right
 sidebar_content: "_sidebar_nea.html"
 subheadline: Data Science
 title:  "Representative Samping for the Nuclear Ensemble Approach"
-teaser: "Implemented the Representative Sampling Method using Simulated Annealing to increase the efficiency of high-cost Quantum Chemistry photoabsorption cross-section calculations"
+teaser: "The Nuclear Ensemble Method allows for exploring UV vis spectroscopy properties of small molecules accurately, however, it suffers from high computational burden due to large ensemble sizes, which become increasingly limiting with larger, more complex organic compounds. As such, methods for reducing intensity of calculations have been proposed. The Representative sampling method, aiming to reduce the subset while maintaining a high quality spectrum, was implemented as an automated workflow using Python."
 breadcrumb: true
 tags:
     - Python
@@ -47,13 +47,15 @@ Representative sampling aims to reduce the number of nuclear geometries needed i
 
 <h3>Results</h3>
 
-Representative sampling method within the Nuclear Ensemble Approach was successfully implemented. 
+Representative sampling method within the Nuclear Ensemble Approach was successfully implemented in an automated python workflow. 
 
 <ul>
 <li>Significantly reduced computational burden associated with photoabsorption cross-section calculation. This allows for the efficient exploration of larger and more complex molecules.</li>
 <li>Spectra calculated using reduced ensemble effectively capture the essential features of the photoabsorption cross-sections.</li>
 <li>Demonstrated robustness across multiple Volatile Organic Compounds.</li>
 </ul>
+
+Next steps include integrating the sampling method into applications such as Atmospec, to allow more scientists to openly use representative sampling. 
 <!--more-->
 
 <br>

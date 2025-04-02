@@ -4,7 +4,7 @@ sidebar: right
 sidebar_content: "_sidebar_cloud.html"
 subheadline: Cloud paradigms
 title:  "Improving scalability using cloud paradigms"
-teaser: "Scaling an ATLAS data processing script using service based model. Functionality demonstrated locally using Docker swarm"
+teaser: "Scaling an ATLAS data processing script, going from a monolithic script to a containerized, service-based architecture. Functionality demonstrated locally using Docker swarm, with dynamic scaling of containers for fetching and processing tasks."
 breadcrumb: true
 tags:
     - Python

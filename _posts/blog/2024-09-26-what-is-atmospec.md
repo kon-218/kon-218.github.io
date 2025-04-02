@@ -1,9 +1,9 @@
 ---
 layout: page
-sidebar: right
+sidebar: none
 subheadline: Atmospheric Chemistry 
 title:  "AtmoSpec: A Revolutionary Tool for Atmospheric Chemists"
-teaser: "UV/Vis Spectroscopy for all!"
+teaser: "AtmoSpec is an innovative UV/Vis spectroscopy tool designed to streamline the calculation of photoabsorption cross-sections for volatile organic compounds (VOCs). Developed by the InSilico Photochemistry group at the University of Bristol, AtmoSpec enables users to input a molecule's SMILES code, select a theoretical framework, and perform quantum chemistry calculations using ORCA."
 breadcrumb: true
 tags:
     - Atmospec

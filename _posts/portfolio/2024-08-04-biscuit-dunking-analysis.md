@@ -4,7 +4,7 @@ sidebar: right
 sidebar_content: _sidebar_biscuit.html
 subheadline: Data Science
 title:  "Biscuit Dunking Data Analysis"
-teaser: "A comprehensive analysis of biscuit dunking data"
+teaser: "How do you dunk your biscuit? Everyone seems to have an opinion, sometimes a strong one. Well it turns out that science does too, the Washburn equation for capillary action, has been shown to have great applicability to biscuits! This analysis presents a comprehensive description of biscuit dunking data to distinguish and predict brand of biscuit, as well as soaking time using physical data."
 breadcrumb: true
 tags:
     - Python

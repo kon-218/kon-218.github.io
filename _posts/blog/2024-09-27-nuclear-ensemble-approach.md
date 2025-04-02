@@ -1,9 +1,9 @@
 ---
 layout: page
-sidebar: right
+sidebar: none
 subheadline: Photochemistry 
 title:  "The Nuclear Ensemble Approach"
-teaser: "A method for the calculation of photoabsorption cross-sections"
+teaser: "The Nuclear Ensemble Approach (NEA) is a computational chemistry approach used in photochemistry to model photoabsorption spectra and simulate nonadiabatic dynamics. By generating a representative set of molecular geometries (ensemble) from a Boltzmann-weighted distribution, NEM captures the effects of vibrational broadening and conformational flexibility on electronic transitions. Recent advancements, such as simulated annealing and optimal sampling, improve efficiency by reducing redundant configurations, enhancing accuracy in predicting UV-Vis absorption spectra and excited-state properties of gas-phase molecules and biomolecules."
 breadcrumb: true
 tags:
     - Nuclear Ensemble Approach
@@ -40,7 +40,7 @@ At its core, NEA is based on the reflection principle from quantum mechanics. In
 
 This approach cleverly avoids calculating the excited state wavefunction, which is typically the most computationally expensive part of traditional methods.
 
-> **In plain English:** We're calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule's structure affects its interaction with light.
+> **Essentially:** We're calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule's structure affects its interaction with light.
 
 
 ### Applications 

@@ -4,7 +4,7 @@ sidebar: right
 sidebar_content: "_sidebar_wine.html"
 subheadline: Data Science
 title:  "An investigation on wine"
-teaser: "Can we use machine learning for classifying wine? How can we tell if a wine is good or bad?"
+teaser: "Can machine learning determine whether a wine is red or white based on its chemical composition? Can it predict whether a wine is good or bad? Using a dataset of 6,497 wines from the UCI Machine Learning Repository, this project explored wine classification and quality prediction. Binary Logistic Regression acheived a 97.3% accuracy in distinguishing between red and white wines. Further investigation using bayesian inference revealed optimal citric acid levels of 0.29 and 0.34 g.dm⁻³."
 breadcrumb: true
 tags:
     - Data Science

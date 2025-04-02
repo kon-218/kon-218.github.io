@@ -5,7 +5,7 @@ sidebar_content: "_sidebar_website.html"
 subheadline: Web development
 title:  "This Website"
 permalink: /portfolio/this-website/
-teaser: "This website is an ongoing project, developing my abities in HTML and CSS."
+teaser: "This website is an ongoing project, developing my abities in HTML and CSS. It aims to showcase my work, and help me track my development as a programmer and a chemist."
 breadcrumb: true
 tags:
     - HTML
