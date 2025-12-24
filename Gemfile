@@ -13,7 +13,9 @@ group :jekyll_plugins do
   gem "jekyll-seo-tag"
   gem "jekyll-sitemap"
   gem "jekyll-compose"
+  gem 'jekyll-spaceship'
 end
+
 
 gem 'asciidoctor', '~> 1.5.4'
 gem 'coderay', '1.1.1'

@@ -9,9 +9,521 @@
 		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Simulating Protein-Ligand Complexes using Open Source tools</title>
+				<link>http://localhost:4000/blog/simulating-protein-ligand-complexes/</link>
+				<pubDate>Mon, 31 Mar 2025 00:00:00 -0400</pubDate>
+				<description>&lt;h3&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;As part of my current internship, we are working on Flyte workflows to perform short molecular dynamics (MD) simulations for parameterized and solvated ligands derived from SMILES strings. This effort is part of a broader initiative to develop a framework for cloud based computational workflows, including Molecular Dynamics simulations which are highly sought after. Here I will summarize some key steps and challenges to setting up MD simulations for protein-ligand complexes using open source tools.&lt;/p&gt;
+
+&lt;h3&gt;Project Scope and Objectives&lt;/h3&gt;
+
+&lt;p&gt;The primary goal is to automate the process of setting up and running MD simulations for small molecules in solution, with the long-term aim of integrating these results into free energy calculations. By leveraging Flyte, a workflow automation platform, and Kubernetes cluster deployment, we aim to ensure scalable, reproducible, and efficient simulations. The workflow begins by parsing a SMILES string to generate molecular structures, followed by parameterizing the ligand using appropriate force fields. After parameterization, the system is solvated and equilibrated before running a short MD simulation to sample conformations. Finally, the results are stored and analyzed for further free energy estimation. The framework developed aims to provide a rigorous and applicable workflow to a wide range of protein-ligand complexes to provide pathways for seamlessly optimizing lead compounds.&lt;/p&gt;
+
+&lt;h3&gt;Open Source vs Proprietary tools available&lt;/h3&gt;
+
+&lt;p&gt;A key consideration in setting up MD simulations and free energy calculations is the choice between open-source and proprietary software. Open-source tools, such as OpenMM, Ambertools, and OpenFF provide flexibility, transparency, and cost-effectiveness, making them widely used in academic and research settings. They offer extensive community support and continuous development but may require additional effort in setup and maintenance. Proprietary solutions, such as Schrödinger’s Desmond or AMBER, often provide more streamlined workflows with vendor support, optimised performance, and additional validation. However, they come with licensing costs and potential restrictions on customisation. This project primarily focuses on open-source implementations to ensure accessibility and adaptability.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;../../images/workflow.png&quot; alt=&quot;Workflow Diagram&quot; /&gt;
+    &lt;figcaption&gt;Snippet of an energy minimization workflow diagram&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3&gt;Progress and Achievements&lt;/h3&gt;
+
+&lt;p&gt;Significant progress has been made in designing and implementing the workflow. The initial workflow design has been outlined, breaking down the process into modular Flyte tasks. The conversion of SMILES strings into 3D molecular structures has been successfully implemented using cheminformatics tools. Additionally, preliminary workflows for assigning force fields to ligands have been established. The workflow also integrates steps for solvating and equilibrating the molecular system prior to simulation. A short MD simulation pipeline has been configured to ensure compatibility with Flyte’s execution model, and initial runs have been conducted to validate the correctness of input preparation and simulation stability.&lt;/p&gt;
+
+&lt;p&gt;Several challenges have been encountered throughout the development process. Managing computational resources efficiently while maintaining scalability is a key concern. Ensuring accurate parameterization of ligands, particularly for molecules with unusual functional groups, has required careful selection and combination of force fields, and handling of exceptions. Optimizing the workflow to reduce the inputs from the user, allowing for a more hands-off approach from the user. Additionally, planning how best to integrate MD results into free energy calculations remains an important consideration moving forward.&lt;/p&gt;
+
+&lt;h3&gt;Future Directions&lt;/h3&gt;
+
+&lt;p&gt;In the next stages of development, I plan to optimize workflow efficiency by streamlining data handling and improving automation and error-handling mechanisms. Expanding parameterization support to cover a wider range of molecules will be an important step toward increasing the robustness of the workflow. Further validation of simulation outputs against experimental or high-quality computational benchmarks will help ensure reliability. Post-processing steps will also be integrated to extract relevant thermodynamic quantities, enhancing the overall predictive power of the approach.&lt;/p&gt;
+
+&lt;h3 class=&quot;t60&quot;&gt;Other Projects&lt;/h3&gt;
+
+&lt;ul class=&quot;side-nav&quot;&gt;
+
+  
+
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/simulating-protein-ligand-complexes/&quot;&gt;Bioinformatics &amp;middot; &lt;strong&gt;Simulating Protein-Ligand Complexes using Open Source tools&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/ligand-x/&quot;&gt;Full Stack Data Science &amp;middot; &lt;strong&gt;Ligand-X: Automated Protein Simulation Platform&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/an-investigation-on-wine/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;An investigation on wine&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/this-website/&quot;&gt;Web development &amp;middot; &lt;strong&gt;This Website&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/rep-sampling-for-nea/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;Representative Samping for the Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/&quot;&gt;Cloud paradigms &amp;middot; &lt;strong&gt;Improving scalability using cloud paradigms&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/biscuit-dunking-analysis/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;Biscuit Dunking Data Analysis&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/atmospec-data-visualization-module/&quot;&gt;Data Visualization &amp;middot; &lt;strong&gt;Atmospec Visualization Module&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/accelerating-python-code/&quot;&gt;Increasing Efficiency &amp;middot; &lt;strong&gt;Accelerating Python code&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+  
+&lt;/ul&gt;
+
+</description>
+				<guid isPermaLink="true">http://localhost:4000/blog/simulating-protein-ligand-complexes/</guid>
+			</item>
+		
+			<item>
+				<title>Ligand-X: Automated Protein Simulation Platform</title>
+				<link>http://localhost:4000/portfolio/ligand-x/</link>
+				<pubDate>Sun, 22 Dec 2024 00:00:00 -0500</pubDate>
+				<description>&lt;h3 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h3&gt;
+
+&lt;p&gt;Ligand-X serves as a bridge between complex computational chemistry tools and researchers who may not have years of experience in the field. It provides a suite of microservices for cheminformatics/bioinformatics simulation, all accessible through a modern, intuitive web interface. It is powered by open source Python tools and toolkits in the backend, and has a modular setup, so you only have to download what you want to use.&lt;/p&gt;
+
+&lt;h3 id=&quot;key-features&quot;&gt;Key Features&lt;/h3&gt;
+
+&lt;p&gt;Ligand-X offers tools for every stage of the simulation pipeline:&lt;/p&gt;
+
+&lt;style&gt;
+    .feature-card {
+        margin-bottom: 20px;
+        transition: transform 0.2s;
+    }
+    .feature-card .row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .feature-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .feature-icon {
+        color: #45B29D; /* ci-2 turquoise */
+        margin-top: 10px;
+    }
+    .feature-image {
+        border-radius: 8px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .feature-content h4 {
+        margin-bottom: 5px;
+    }
+    .feature-actions {
+        margin-top: 15px;
+    }
+    @media only screen and (min-width: 40.063em) {
+        .feature-image {
+            margin-bottom: 0;
+        }
+        .feature-actions {
+            margin-top: 0;
+            text-align: right;
+        }
+    }
+&lt;/style&gt;
+
+&lt;!-- Protein Cleaning --&gt;
+&lt;div class=&quot;panel radius feature-card&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;small-12 medium-3 columns text-center&quot;&gt;
+            &lt;img src=&quot;../../images/cleaning.jpeg&quot; alt=&quot;Protein Cleaning&quot; class=&quot;feature-image&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-10 medium-6 columns feature-content&quot;&gt;
+            &lt;h4&gt;Structure Cleaning&lt;/h4&gt;
+            &lt;p&gt;Automated preparation of raw PDB structures, including protonation and residue repair.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-12 medium-3 columns feature-actions&quot;&gt;
+            &lt;a href=&quot;/blog/protein-cleaning-theory&quot; class=&quot;button tiny radius secondary&quot;&gt;Theory&lt;/a&gt;
+            &lt;a href=&quot;/portfolio/ligand-x/protein-cleaning-demo&quot; class=&quot;button tiny radius&quot;&gt;Demo&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Molecular Docking --&gt;
+&lt;div class=&quot;panel radius feature-card&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;small-12 medium-3 columns text-center&quot;&gt;
+            &lt;img src=&quot;../../images/docking.jpeg&quot; alt=&quot;Molecular Docking&quot; class=&quot;feature-image&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-10 medium-6 columns feature-content&quot;&gt;
+            &lt;h4&gt;Molecular Docking&lt;/h4&gt;
+            &lt;p&gt;High-throughput ligand pose prediction and affinity scoring using AutoDock Vina.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-12 medium-3 columns feature-actions&quot;&gt;
+            &lt;a href=&quot;/blog/molecular-docking-theory&quot; class=&quot;button tiny radius secondary&quot;&gt;Theory&lt;/a&gt;
+            &lt;a href=&quot;/portfolio/ligand-x/molecular-docking-demo&quot; class=&quot;button tiny radius&quot;&gt;Demo&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Molecular Dynamics --&gt;
+&lt;div class=&quot;panel radius feature-card&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;small-12 medium-3 columns text-center&quot;&gt;
+            &lt;img src=&quot;../../images/md.jpeg&quot; alt=&quot;Molecular Dynamics&quot; class=&quot;feature-image&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-10 medium-6 columns feature-content&quot;&gt;
+            &lt;h4&gt;Molecular Dynamics&lt;/h4&gt;
+            &lt;p&gt;GPU-accelerated simulations with OpenMM to study complex biological movements.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-12 medium-3 columns feature-actions&quot;&gt;
+            &lt;a href=&quot;/blog/molecular-dynamics-theory&quot; class=&quot;button tiny radius secondary&quot;&gt;Theory&lt;/a&gt;
+            &lt;a href=&quot;/portfolio/ligand-x/molecular-dynamics-demo&quot; class=&quot;button tiny radius&quot;&gt;Demo&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Binding Free Energy --&gt;
+&lt;div class=&quot;panel radius feature-card&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;small-12 medium-3 columns text-center&quot;&gt;
+            &lt;img src=&quot;../../images/fe.jpeg&quot; alt=&quot;Binding Free Energy&quot; class=&quot;feature-image&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-10 medium-6 columns feature-content&quot;&gt;
+            &lt;h4&gt;Binding Free Energy&lt;/h4&gt;
+            &lt;p&gt;Rigorous quantification of binding affinity using Alchemical Free Energy Perturbation methods.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-12 medium-3 columns feature-actions&quot;&gt;
+            &lt;a href=&quot;/blog/binding-free-energy-theory&quot; class=&quot;button tiny radius secondary&quot;&gt;Theory&lt;/a&gt;
+            &lt;a href=&quot;/portfolio/ligand-x/binding-free-energy-demo&quot; class=&quot;button tiny radius&quot;&gt;Demo&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Quantum Chemistry --&gt;
+&lt;div class=&quot;panel radius feature-card&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;small-12 medium-3 columns text-center&quot;&gt;
+            &lt;img src=&quot;../../images/qm.jpeg&quot; alt=&quot;Quantum Chemistry&quot; class=&quot;feature-image&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-10 medium-6 columns feature-content&quot;&gt;
+            &lt;h4&gt;Quantum Chemistry&lt;/h4&gt;
+            &lt;p&gt;Detailed electronic analysis and ligand parameterization using DFT calculations.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-12 medium-3 columns feature-actions&quot;&gt;
+            &lt;a href=&quot;/blog/quantum-chemistry-theory&quot; class=&quot;button tiny radius secondary&quot;&gt;Theory&lt;/a&gt;
+            &lt;a href=&quot;/portfolio/ligand-x/quantum-chemistry-demo&quot; class=&quot;button tiny radius&quot;&gt;Demo&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Extra --&gt;
+&lt;div class=&quot;panel radius feature-card callout&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;small-2 medium-1 columns text-center&quot;&gt;
+            &lt;i class=&quot;fa-solid fa-circle-info fa-2x feature-icon&quot;&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-10 medium-8 columns feature-content&quot;&gt;
+            &lt;h4&gt;Coming Soon&lt;/h4&gt;
+            &lt;p&gt;I&apos;m always working on Ligand-X, get in touch if you want to chat!&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;small-12 medium-3 columns feature-actions&quot;&gt;
+            &lt;a href=&quot;/contact&quot; class=&quot;button tiny radius secondary&quot;&gt;Contact Me&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;technical-stack&quot;&gt;Technical Stack&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Frontend&lt;/strong&gt;: React, Next.js, Tailwind SCSS&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Backend&lt;/strong&gt;: Python Microservices&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Chemistry Tools&lt;/strong&gt;: RDKit, OpenMM, AutoDock Vina, OpenFF, Psi4&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Infrastructure&lt;/strong&gt;: Docker, Kubernetes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;workflow-examples&quot;&gt;Workflow Examples&lt;/h3&gt;
+
+&lt;p&gt;The application is designed to be modular. You can run a full pipeline from cleaning to free energy calculation, or just use individual tools as needed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[!NOTE]
+This project is currently in active development.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;other-projects&quot;&gt;Other Projects&lt;/h3&gt;
+
+&lt;ul class=&quot;side-nav&quot;&gt;
+
+  
+
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/simulating-protein-ligand-complexes/&quot;&gt;Bioinformatics &amp;middot; &lt;strong&gt;Simulating Protein-Ligand Complexes using Open Source tools&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/ligand-x/&quot;&gt;Full Stack Data Science &amp;middot; &lt;strong&gt;Ligand-X: Automated Protein Simulation Platform&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/an-investigation-on-wine/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;An investigation on wine&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/this-website/&quot;&gt;Web development &amp;middot; &lt;strong&gt;This Website&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/rep-sampling-for-nea/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;Representative Samping for the Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/&quot;&gt;Cloud paradigms &amp;middot; &lt;strong&gt;Improving scalability using cloud paradigms&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/biscuit-dunking-analysis/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;Biscuit Dunking Data Analysis&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/atmospec-data-visualization-module/&quot;&gt;Data Visualization &amp;middot; &lt;strong&gt;Atmospec Visualization Module&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/accelerating-python-code/&quot;&gt;Increasing Efficiency &amp;middot; &lt;strong&gt;Accelerating Python code&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+
+
+  
+&lt;/ul&gt;
+
+</description>
+				<guid isPermaLink="true">http://localhost:4000/portfolio/ligand-x/</guid>
+			</item>
+		
+			<item>
+				<title>Quantum Chemistry: Probing the Electronic Architecture of Molecules</title>
+				<link>http://localhost:4000/blog/quantum-chemistry-theory</link>
+				<pubDate>Sun, 22 Dec 2024 00:00:00 -0500</pubDate>
+				<description>&lt;h3 id=&quot;the-electronic-foundation-of-molecular-science&quot;&gt;&lt;strong&gt;The Electronic Foundation of Molecular Science&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;While classical force fields allow us to simulate the large-scale movements of proteins, they often fail to capture the underlying electronic interactions that dictate chemical reactivity and binding. &lt;strong&gt;Quantum chemistry&lt;/strong&gt; fills this gap by applying the principles of quantum mechanics to describe the behaviour of electrons and nuclei. This is particularly critical in drug discovery, where QM methods offer insights into electronic interactions and reaction mechanisms that are otherwise unattainable. At the heart of these calculations lies the &lt;strong&gt;Potential Energy Surface (PES)&lt;/strong&gt;, a mathematical representation of the total energy of a system as a function of the positions of its nuclei.&lt;/p&gt;
+
+&lt;h3 id=&quot;geometry-optimization-navigating-the-energy-landscape&quot;&gt;&lt;strong&gt;Geometry Optimization: Navigating the Energy Landscape&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The primary objective of a &lt;strong&gt;geometry optimization (opt)&lt;/strong&gt; is to navigate the PES to find stationary points where the first derivative of the energy, known as the gradient ($\mathbf{g}$), is zero.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Algorithmic Framework:&lt;/strong&gt; Optimization is an iterative journey “downhill” from an initial guess toward a local energy minimum. Most modern codes use gradient-based algorithms like &lt;strong&gt;BFGS&lt;/strong&gt; to determine the direction and magnitude of nuclear steps.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Convergence Criteria:&lt;/strong&gt; To ensure a structure is truly at a stationary point, software monitors four quantities: total energy change, maximum nuclear gradient, root-mean-square (RMS) of the gradients, and maximum step size. Reaching a state where these values fall below predefined thresholds indicates the system has reached equilibrium.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;frequency-analysis-distinguishing-minima-from-saddle-points&quot;&gt;&lt;strong&gt;Frequency Analysis: Distinguishing Minima from Saddle Points&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;An optimization only identifies a stationary point; it does not confirm if that point is a stable minimum or a transition state. A &lt;strong&gt;frequency calculation (freq)&lt;/strong&gt; is required to distinguish between these by computing the &lt;strong&gt;Hessian matrix&lt;/strong&gt; (second derivatives of energy).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Stationary Point Characterization:&lt;/strong&gt; A true energy minimum must have all positive Hessian eigenvalues. If exactly one &lt;strong&gt;imaginary frequency&lt;/strong&gt; (represented as a negative value) is found, the structure is a first-order saddle point, corresponding to a &lt;strong&gt;transition state&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Thermodynamic Corrections:&lt;/strong&gt; Frequency calculations provide the &lt;strong&gt;Zero-Point Energy (ZPE)&lt;/strong&gt;—the vibrational energy a molecule possesses even at absolute zero. This, alongside thermal corrections for enthalpy and entropy, allows for the conversion of electronic energy into &lt;strong&gt;Gibbs free energy ($G$)&lt;/strong&gt;, which is essential for determining reaction spontaneity.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;predicting-infrared-ir-spectroscopy&quot;&gt;&lt;strong&gt;Predicting Infrared (IR) Spectroscopy&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Computational simulation of &lt;strong&gt;IR spectra&lt;/strong&gt; provides a theoretical benchmark for chemical characterization. A vibrational mode is IR active only if it results in a net change in the molecular &lt;strong&gt;dipole moment ($\mu$)&lt;/strong&gt;. The intensity of an IR transition is proportional to the square of the derivative of the dipole moment with respect to the normal coordinate. Because standard harmonic approximations tend to overstate bond stiffness, &lt;strong&gt;scaling factors&lt;/strong&gt; (typically 0.95–0.98) are often applied to improve agreement with experimental data.&lt;/p&gt;
+
+&lt;h3 id=&quot;fukui-indices-mapping-molecular-reactivity&quot;&gt;&lt;strong&gt;Fukui Indices: Mapping Molecular Reactivity&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Identifying reactive centers is a primary goal of theoretical chemistry. &lt;strong&gt;Conceptual Density Functional Theory (CDFT)&lt;/strong&gt; provides descriptors like the &lt;strong&gt;Fukui function ($f$)&lt;/strong&gt;, which identifies regions where electron density is most susceptible to change.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Electrophilic Attack ($f^-$):&lt;/strong&gt; Identifies sites where the molecule is most likely to be attacked by an electron-deficient species (related to HOMO density).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nucleophilic Attack ($f^+$):&lt;/strong&gt; Identifies sites most susceptible to attack by an electron donor (related to LUMO density).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Condensed Indices:&lt;/strong&gt; By condensing these 3D functions onto individual atoms, researchers can numerically rank atoms to predict &lt;strong&gt;regioselectivity&lt;/strong&gt; in complex organic reactions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ensuring-accuracy-the-model-chemistry&quot;&gt;&lt;strong&gt;Ensuring Accuracy: The “Model Chemistry”&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The reliability of a calculation is limited by the “model chemistry”—the combination of the &lt;strong&gt;functional&lt;/strong&gt; and the &lt;strong&gt;basis set&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Jacob’s Ladder of Functionals:&lt;/strong&gt; Functionals range from simple Local Density Approximations (LDA) to sophisticated &lt;strong&gt;Double Hybrids&lt;/strong&gt; that approach gold-standard accuracy. Including &lt;strong&gt;dispersion corrections&lt;/strong&gt; (e.g., D3 or D4) is essential for describing the London dispersion forces critical to large organic molecules.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Basis Set Selection:&lt;/strong&gt; A basis set defines the mathematical space for the electronic wave function. For reliable thermochemistry, basis sets of at least &lt;strong&gt;triple-$\zeta$ quality&lt;/strong&gt; (e.g., def2-TZVP) are required. &lt;strong&gt;Diffuse functions&lt;/strong&gt; must be added for anions or systems with spread-out electron density.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Analogy for Understanding:&lt;/strong&gt;
+Imagine the Potential Energy Surface as a &lt;strong&gt;mountainous landscape covered in fog&lt;/strong&gt;. &lt;strong&gt;Geometry optimization&lt;/strong&gt; is like a hiker trying to find the bottom of a valley (a stable molecule) by only feeling the slope of the ground under their feet. &lt;strong&gt;Frequency analysis&lt;/strong&gt; is like the hiker jumping slightly once they think they are at the bottom; if every jump lands them back in the same spot, they are in a valley (minimum). If one jump makes them slide down a different path, they are actually on a mountain pass (a transition state). &lt;strong&gt;Fukui indices&lt;/strong&gt; are like a thermal map of that landscape, showing exactly which parts of a building are most likely to catch fire or be struck by lightning.&lt;/p&gt;
+</description>
+				<guid isPermaLink="true">http://localhost:4000/blog/quantum-chemistry-theory</guid>
+			</item>
+		
+			<item>
+				<title>Input Sanitization: Preparing for Simulation</title>
+				<link>http://localhost:4000/blog/protein-cleaning-theory</link>
+				<pubDate>Sun, 22 Dec 2024 00:00:00 -0500</pubDate>
+				<description>&lt;h3 id=&quot;the-imperative-of-structural-integrity&quot;&gt;&lt;strong&gt;The Imperative of Structural Integrity&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The integrity of molecular dynamics (MD) simulations and other structure-based computational methodologies is profoundly contingent upon the precision of the initial atomic models. In contemporary computational biophysics, the transition from raw experimental data—such as a &lt;strong&gt;Simplified Molecular Input Line Entry System (SMILES)&lt;/strong&gt; string or a &lt;strong&gt;Protein Data Bank (PDB)&lt;/strong&gt; file—to a simulation-ready topology involves a series of complex chemical and topological transformations. This preparation phase is necessitated by the inherent limitations of experimental structural determination; for instance, X-ray crystallography frequently fails to resolve hydrogen atom positions, complete flexible loops, or physiologically relevant protonation states.&lt;/p&gt;
+
+&lt;h3 id=&quot;protein-refinement-from-static-snapshots-to-dynamic-models&quot;&gt;&lt;strong&gt;Protein Refinement: From Static Snapshots to Dynamic Models&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Raw protein structures retrieved from the PDB are rarely “simulation-ready”. They frequently contain defects, such as missing coordinates for residues or atoms, which would destabilise a simulation run. Preparation is therefore a process of &lt;strong&gt;structural repair and physiological contextualization&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Addressing Structural Incompleteness:&lt;/strong&gt; Utilities like &lt;strong&gt;PDBFixer&lt;/strong&gt; are employed to programmatically resolve missing atoms and residues. Discrepancies between SEQRES records and ATOM records often reveal missing loops that must be reconstructed to maintain primary sequence integrity. &lt;strong&gt;Loop reconstruction&lt;/strong&gt; is vital, as a discontinuous backbone would result in unphysical behaviour during MD propagation.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Protonation Dynamics and the $pK_a$ Challenge:&lt;/strong&gt; Assigning hydrogen atoms and determining residue protonation states is perhaps the most chemically significant step. The charges of titratable residues (such as Histidine, Aspartate, and Glutamate) are governed by the local electrostatic environment, which can shift their $pK_a$ values from standard solution values. For example, &lt;strong&gt;Histidine&lt;/strong&gt; can exist in two neutral tautomeric states (HID or HIE) or a positively charged state (HIP), and incorrect assignment can cause a protein to “unfold” as it seeks a lower energy state.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Chemical Cleaning:&lt;/strong&gt; Experimental structures often contain “heterogens”—ligands, ions, and crystallization buffers (like glycerol or PEG) that are not biologically relevant. These must be removed to prevent interference with the simulated biology.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ligand-preparation-topological-reconstruction&quot;&gt;&lt;strong&gt;Ligand Preparation: Topological Reconstruction&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Small molecule ligands often initiate as a 1D SMILES string, which functions as a skeletal framework encoding connectivity but lacking 3D spatial coordinates.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Graph-Theoretical Foundations:&lt;/strong&gt; The preparation involves translating the SMILES string into a &lt;strong&gt;molecular graph&lt;/strong&gt; where atoms are nodes and covalent bonds are edges. This reconstruction includes the management of &lt;strong&gt;implicit hydrogens&lt;/strong&gt; to satisfy standard valency, a prerequisite for force field parameterisation.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;3D Coordinate Generation and State Enumeration:&lt;/strong&gt; Transitioning to a 3D model requires conformational sampling to identify various ring puckers and rotameric states. Furthermore, the biological activity is dictated by the dominant state at &lt;strong&gt;physiological pH (7.4)&lt;/strong&gt;, requiring software like Dimorphite-DL to calculate $pK_a$ values and assign proper charge states. Failure to select the correct tautomer or ionization state can lead to the failure of docking simulations or incorrect binding free energy predictions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;system-integration-and-relaxation&quot;&gt;&lt;strong&gt;System Integration and Relaxation&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The final phase involves merging the protein and ligand into a unified simulation system, which requires merging disparate topologies (e.g., merging the &lt;strong&gt;GAFF2&lt;/strong&gt; ligand force field with the &lt;strong&gt;ff14SB&lt;/strong&gt; protein force field).&lt;/p&gt;
+
+&lt;p&gt;To replicate cellular conditions, the system is placed in a &lt;strong&gt;periodic box of solvent&lt;/strong&gt; (commonly TIP3P water) with a sufficient margin—typically 10 Å—to prevent the protein from interacting with its own periodic image. &lt;strong&gt;Neutralization&lt;/strong&gt; is achieved by adding counter-ions ($Na^+$, $Cl^-$) to reach physiological salinity. Finally, a tiered relaxation protocol involving &lt;strong&gt;energy minimisation&lt;/strong&gt; and equilibration (NVT and NPT ensembles) is executed to resolve steric clashes and stabilise system density before data collection begins.&lt;/p&gt;
+
+&lt;p&gt;As the “garbage in, garbage out” principle suggests, the quality of this structural preparation dictates the reliability of every subsequent measurement in the simulation.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Analogy for Understanding:&lt;/strong&gt;
+Preparing a molecular system for simulation is like &lt;strong&gt;restoring a historic car for a high-speed race&lt;/strong&gt;. The raw PDB structure is the car as found in a barn: it might be missing bolts (hydrogens), have a broken axle (missing loops), and be covered in dust and old storage tar (crystallization artifacts). If you simply turn the key and drive (start the simulation), the engine will explode. “Cleaning” the structure is the meticulous process of replacing missing parts, tuning the engine for modern fuel (pH adjustment), and ensuring every bolt is tightened so the car can handle the dynamic forces of the track.&lt;/p&gt;
+</description>
+				<guid isPermaLink="true">http://localhost:4000/blog/protein-cleaning-theory</guid>
+			</item>
+		
+			<item>
+				<title>Molecular Dynamics: Deciphering the Microscopic Dance of Biomolecules</title>
+				<link>http://localhost:4000/blog/molecular-dynamics-theory</link>
+				<pubDate>Sun, 22 Dec 2024 00:00:00 -0500</pubDate>
+				<description>&lt;h3 id=&quot;the-dynamic-chasm-beyond-static-structures&quot;&gt;&lt;strong&gt;The Dynamic Chasm: Beyond Static Structures&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The emergence of &lt;strong&gt;molecular dynamics (MD)&lt;/strong&gt; as a primary tool for scientific inquiry marks a fundamental shift in our ability to probe the microscopic world. For decades, structural biology relied on static characterisations—such as those obtained via X-ray crystallography or cryo-electron microscopy—to understand molecular function. However, &lt;strong&gt;proteins are not static sculptures; they are dynamic machines&lt;/strong&gt;. MD bridges the chasm between these static snapshots and the dynamic reality of biological processes by providing a &lt;strong&gt;time-resolved trajectory&lt;/strong&gt; of atomic motion. This computational approach allows for the observation of phenomena ranging from ultrafast hydrogen bond vibrations to massive conformational shifts associated with protein folding.&lt;/p&gt;
+
+&lt;h3 id=&quot;theoretical-foundations-the-physics-of-motion&quot;&gt;&lt;strong&gt;Theoretical Foundations: The Physics of Motion&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The physical paradigm of MD is rooted in the &lt;strong&gt;Born-Oppenheimer approximation&lt;/strong&gt;, which facilitates the separation of nuclear and electronic motion. By assuming that nuclei move on a potential energy surface defined by a constant electronic environment, we can treat atoms as classical entities governed by &lt;strong&gt;Newton’s second law of motion&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;p&gt;$$
+m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \dots, \mathbf{r}_N)$$&lt;/p&gt;
+
+&lt;p&gt;In this framework, the reliability of a simulation depends on the &lt;strong&gt;potential energy function ($U$)&lt;/strong&gt;, also known as a &lt;strong&gt;force field&lt;/strong&gt;, which encompasses the physics of the system.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-architecture-of-empirical-force-fields&quot;&gt;&lt;strong&gt;The Architecture of Empirical Force Fields&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;A force field is a mathematical construct that approximates the total potential energy through &lt;strong&gt;bonded and non-bonded terms&lt;/strong&gt;. The standard additive expression is typically decomposed into several discrete components:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Bonded Terms ($U_{bond}, U_{angle}, U_{dihedral}$):&lt;/strong&gt; These maintain structural integrity via harmonic potentials that penalise deviations from equilibrium bond lengths and angles. Torsional rotations are described by periodic functions to capture energy barriers between molecular conformations.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Non-bonded Interactions ($U_{vdW}, U_{electrostatic}$):&lt;/strong&gt; These are the most computationally expensive part of a simulation. Van der Waals interactions are traditionally modelled using the &lt;strong&gt;12-6 Lennard-Jones potential&lt;/strong&gt;, providing repulsion at short distances and dispersion at long ranges. Electrostatics are governed by &lt;strong&gt;Coulomb’s Law&lt;/strong&gt;, utilizing partial atomic charges.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;numerical-integration-and-propagation&quot;&gt;&lt;strong&gt;Numerical Integration and Propagation&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Because these equations have no analytical solution for large systems, they must be solved numerically through &lt;strong&gt;finite-difference methods&lt;/strong&gt;. The integrator advances the system by a discrete &lt;strong&gt;time step ($\Delta t$)&lt;/strong&gt;, typically &lt;strong&gt;1 to 2 femtoseconds (fs)&lt;/strong&gt;, to capture the fastest vibrational modes, such as hydrogen bond stretching. Standard algorithms include the &lt;strong&gt;Leap-frog variant&lt;/strong&gt;, which updates positions and velocities at staggered half-steps, and the &lt;strong&gt;Velocity Verlet scheme&lt;/strong&gt;, preferred for its explicit handling of kinetic energy.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-procedural-workflow-from-garbage-in-to-production&quot;&gt;&lt;strong&gt;The Procedural Workflow: From “Garbage In” to Production&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;A successful MD trajectory requires meticulous system preparation to avoid the &lt;strong&gt;“garbage in, garbage out”&lt;/strong&gt; pitfall. The workflow typically follows these stages:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;System Preparation:&lt;/strong&gt; Raw PDB structures are “cleaned” by adding missing hydrogen atoms, repairing unresolved loops, and assigning a topology.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Solvation and Ionisation:&lt;/strong&gt; The solute is surrounded by explicit water molecules (e.g., TIP3P) and ions ($Na^+, Cl^-$) to reach physiological salinity and ensure electrical neutrality.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Energy Minimisation:&lt;/strong&gt; Algorithms like &lt;strong&gt;Steepest Descent&lt;/strong&gt; relax high-energy steric clashes that could otherwise cause the simulation to “explode”.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Equilibration:&lt;/strong&gt; The system is gently heated (&lt;strong&gt;NVT ensemble&lt;/strong&gt;) and pressurized (&lt;strong&gt;NPT ensemble&lt;/strong&gt;) to stabilise temperature, density, and pressure before the “production” data collection phase begins.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;analyzing-the-trajectory-key-performance-indicators-kpis&quot;&gt;&lt;strong&gt;Analyzing the Trajectory: Key Performance Indicators (KPIs)&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Once a trajectory is generated, researchers extract &lt;strong&gt;Key Performance Indicators&lt;/strong&gt; to describe the system’s state:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Root Mean Square Deviation (RMSD):&lt;/strong&gt; Measures global structural stability; a plateauing RMSD indicates convergence.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Root Mean Square Fluctuation (RMSF):&lt;/strong&gt; Quantifies the flexibility of individual residues, identifying functional disordered regions.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Radius of Gyration ($R_g$):&lt;/strong&gt; A measure of molecular compactness, often used to study protein folding or hydrophobic collapse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Platforms like &lt;strong&gt;Ligand-X&lt;/strong&gt; aim to lower the barrier to these advanced bioinformatics simulations by providing modular, GPU-accelerated microservices for the entire pipeline—from structure cleaning to &lt;strong&gt;Binding Free Energy&lt;/strong&gt; quantification.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Analogy for Understanding:&lt;/strong&gt;
+To understand Molecular Dynamics, imagine a protein as a &lt;strong&gt;complex, multi-part marionette&lt;/strong&gt; in a crowded room. A static X-ray structure is like a single photograph of that marionette; it shows you the shape, but not how it dances. MD is like a &lt;strong&gt;high-speed video&lt;/strong&gt; that calculates exactly how every string pulls and every part swings based on the laws of physics, allowing us to see the full performance and understand how the marionette interacts with everything around it.&lt;/p&gt;
+</description>
+				<guid isPermaLink="true">http://localhost:4000/blog/molecular-dynamics-theory</guid>
+			</item>
+		
+			<item>
+				<title>Molecular Docking: Simulating the Microscopic Handshake</title>
+				<link>http://localhost:4000/blog/molecular-docking-theory</link>
+				<pubDate>Sun, 22 Dec 2024 00:00:00 -0500</pubDate>
+				<description>&lt;h3 id=&quot;the-epicentre-of-rational-design&quot;&gt;&lt;strong&gt;The Epicentre of Rational Design&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;In the pursuit of pharmaceutical innovation, the industry has transitioned from serendipitous discovery toward rational, structure-based methodologies. At the heart of this shift lies &lt;strong&gt;molecular docking&lt;/strong&gt;, a technique that simulates the biological “handshake” between a small molecule (ligand) and a protein receptor. By predicting how these molecules orient themselves and how tightly they bind, docking facilitates the identification of lead compounds with high potency and specificity.&lt;/p&gt;
+
+&lt;h3 id=&quot;thermodynamic-drivers-of-association&quot;&gt;&lt;strong&gt;Thermodynamic Drivers of Association&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The association between a protein ($P$) and a ligand ($L$) to form a complex ($PL$) is fundamentally governed by the change in &lt;strong&gt;Gibbs free energy ($\Delta G_{bind}$)&lt;/strong&gt;. This relationship is expressed as:&lt;/p&gt;
+
+&lt;p&gt;$$\Delta G_{bind} = \Delta H_{bind} - T\Delta S_{bind}$$&lt;/p&gt;
+
+&lt;p&gt;In structure-based design, the enthalpic term ($\Delta H$) is dominated by non-covalent interactions such as &lt;strong&gt;hydrogen bonding, van der Waals forces, and electrostatic interactions&lt;/strong&gt; like salt bridges. Conversely, the entropic term ($-T\Delta S$) remains the most challenging to compute, as it encompasses the loss of conformational entropy when a flexible ligand binds and the gain in desolvation entropy as ordered water molecules are released into the bulk solvent.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-search-space-navigating-conformational-complexity&quot;&gt;&lt;strong&gt;The Search Space: Navigating Conformational Complexity&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;A docking algorithm must navigate an astronomical number of possible configurations to identify the global energy minimum. Modern computational frameworks employ several strategies to manage this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Stochastic Methods:&lt;/strong&gt; These rely on random sampling. &lt;strong&gt;Genetic Algorithms (GA)&lt;/strong&gt;, used in tools like AutoDock 4.2, simulate biological evolution by evolving a population of poses through “crossover” and “mutation” to improve their “fitness”.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Systematic Search:&lt;/strong&gt; This often uses &lt;strong&gt;incremental construction&lt;/strong&gt;, where a molecule is broken into fragments, docked into sub-pockets, and then rebuilt sequentially.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Rigid vs. Flexible Docking:&lt;/strong&gt; While early “lock and key” models assumed rigid structures, modern “induced fit” models account for ligand flexibility and, in advanced cases, receptor side-chain or backbone movement.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;the-evaluators-scoring-functions&quot;&gt;&lt;strong&gt;The Evaluators: Scoring Functions&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;Once a pose is generated, it must be ranked by a &lt;strong&gt;scoring function&lt;/strong&gt;. The “scoring problem”—discriminating between native-like poses and non-physiological decoys—remains a primary bottleneck in the field. Scoring functions are generally classified into:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Physics-Based:&lt;/strong&gt; Utilising classical mechanics to calculate van der Waals and coulombic potentials.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Empirical:&lt;/strong&gt; Approximating binding affinity as a weighted sum of hydrogen bonds, ionic interactions, and hydrophobic effects, trained against experimental datasets.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Knowledge-Based and ML:&lt;/strong&gt; Extracting preferred interaction geometries from structural databases like the PDB or using &lt;strong&gt;Deep Learning&lt;/strong&gt; (e.g., GNINA) to learn directly from raw atomic data.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;methodological-rigor-in-the-ligand-x-pipeline&quot;&gt;&lt;strong&gt;Methodological Rigor in the Ligand-X Pipeline&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;To ensure accuracy, &lt;strong&gt;Ligand-X&lt;/strong&gt; incorporates meticulous preparation stages. The workflow mirrors professional standards by including:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Receptor Refinement:&lt;/strong&gt; Selecting high-resolution structures, managing “structural” water molecules, and assigning protonation states based on physiological pH.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Ligand Preparation:&lt;/strong&gt; Converting 1D SMILES into energy-minimized 3D models and accounting for various tautomers and enantiomers.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;High-Throughput Prediction:&lt;/strong&gt; Utilising &lt;strong&gt;AutoDock Vina&lt;/strong&gt; for rapid affinity scoring, which offers a balance of speed and an approximately 49% success rate for top-scored poses.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;measuring-success-key-performance-indicators&quot;&gt;&lt;strong&gt;Measuring Success: Key Performance Indicators&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;The reliability of a docking methodology is validated through specific KPIs. The &lt;strong&gt;Root-Mean-Square Deviation (RMSD)&lt;/strong&gt; is the standard metric for accuracy, with a value of &lt;strong&gt;$\leq 2.0$ Å&lt;/strong&gt; relative to the native crystallographic structure considered a successful prediction. In virtual screening, the &lt;strong&gt;Enrichment Factor (EF)&lt;/strong&gt; is used to quantify how many known active ligands are found in the top ranks of a screened library compared to random chance.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Analogy for Understanding:&lt;/strong&gt;
+Think of molecular docking as trying to find the perfect way to fit a &lt;strong&gt;complex key into a high-security lock&lt;/strong&gt;. The &lt;strong&gt;search algorithm&lt;/strong&gt; is like trying different angles and rotations to get the key in. The &lt;strong&gt;scoring function&lt;/strong&gt; is the internal mechanism of the lock that determines how well the key’s teeth align with the pins; if the “score” is high enough, the lock turns, representing a successful, high-affinity binding event.&lt;/p&gt;
+</description>
+				<guid isPermaLink="true">http://localhost:4000/blog/molecular-docking-theory</guid>
+			</item>
+		
+			<item>
+				<title>Binding Free Energy: Quantifying Affinity</title>
+				<link>http://localhost:4000/blog/binding-free-energy-theory</link>
+				<pubDate>Sun, 22 Dec 2024 00:00:00 -0500</pubDate>
+				<description>&lt;h3 id=&quot;the-holy-grail-of-drug-design&quot;&gt;The Holy Grail of Drug Design&lt;/h3&gt;
+
+&lt;p&gt;Predicting the binding affinity ($$\Delta G_{bind}$$) is crucial for optimizing drug leads.&lt;/p&gt;
+
+&lt;h3 id=&quot;methods&quot;&gt;Methods&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;MM/PBSA&lt;/strong&gt;: A popular end-point method that balances accuracy and computational cost.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;FEP (Free Energy Perturbation)&lt;/strong&gt;: A rigorous alchemical method that is more accurate but computationally expensive.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Binding free energy calculations help rank ligands and guide chemical modifications to improve potency.&lt;/p&gt;
+</description>
+				<guid isPermaLink="true">http://localhost:4000/blog/binding-free-energy-theory</guid>
+			</item>
+		
+			<item>
 				<title>An investigation on wine</title>
 				<link>http://localhost:4000/portfolio/an-investigation-on-wine/</link>
-				<pubDate>Tue, 03 Dec 2024 00:00:00 +0000</pubDate>
+				<pubDate>Tue, 03 Dec 2024 00:00:00 -0500</pubDate>
 				<description>&lt;h3 id=&quot;the-dataset&quot;&gt;The Dataset&lt;/h3&gt;
 
 &lt;p&gt;For this project, I used the “wine-dataset” sourced from the UCI machine learning repository. The dataset contains 6497 samples, each representing a different wine. The dataset has 12 features, including physiochemical properties such as fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, and alcohol content. Additionally, the dataset provides a quality score ranging from 0 to 9, with higher scores indicating better quality, although the lowest score given is 3.&lt;/p&gt;
@@ -104,6 +616,10 @@ This insight can be valuable for winemakers, allowing them to optimise citric ac
   
 
     
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/simulating-protein-ligand-complexes/&quot;&gt;Bioinformatics &amp;middot; &lt;strong&gt;Simulating Protein-Ligand Complexes using Open Source tools&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/ligand-x/&quot;&gt;Full Stack Data Science &amp;middot; &lt;strong&gt;Ligand-X: Automated Protein Simulation Platform&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/an-investigation-on-wine/&quot;&gt;Data Science &amp;middot; &lt;strong&gt;An investigation on wine&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/portfolio/this-website/&quot;&gt;Web development &amp;middot; &lt;strong&gt;This Website&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
@@ -129,39 +645,9 @@ This insight can be valuable for winemakers, allowing them to optimise citric ac
 			</item>
 		
 			<item>
-				<title>Identifying molecular functional groups</title>
-				<link>http://localhost:4000/blog/identifying-functional-groups</link>
-				<pubDate>Fri, 08 Nov 2024 00:00:00 +0000</pubDate>
-				<description>&lt;h3 id=&quot;coming-soon&quot;&gt;Coming soon!&lt;/h3&gt;
-&lt;h3 class=&quot;t60&quot;&gt;Other Blog posts&lt;/h3&gt;
-
-&lt;ul class=&quot;side-nav&quot;&gt;
-
-  
-
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/what-is-atmospec&quot;&gt;Atmospheric Chemistry &amp;middot; &lt;strong&gt;AtmoSpec: A Revolutionary Tool for Atmospheric Chemists&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Predicting molecular properties: Solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-
-
-  
-&lt;/ul&gt;
-
-</description>
-				<guid isPermaLink="true">http://localhost:4000/blog/identifying-functional-groups</guid>
-			</item>
-		
-			<item>
 				<title>The Nuclear Ensemble Approach</title>
 				<link>http://localhost:4000/blog/nuclear-ensemble-approach</link>
-				<pubDate>Fri, 27 Sep 2024 00:00:00 +0000</pubDate>
+				<pubDate>Fri, 27 Sep 2024 00:00:00 -0400</pubDate>
 				<description>&lt;p&gt;The Atmosphere is an extremely complex environment with many reactions occuring at the same time, some of those reactions are spontaneous on exposure to light. For example, smog is a result of light induced photochemical reactions between nitrous oxides (NOx) and other volatile organic compounds (VOCs). Traditionally, the reactive properties of such volatile gasses are measured empirically, however this is extremely difficult due to their unstable nature. So how do scientists predict the interaction of molecules with light?&lt;/p&gt;
 
 &lt;p&gt;Recent advances in Computational Chemistry have enabled the insilico calculation of photochemical properties, using Quantum Chemistry methods to predict quantities such as the molecular photoabsorption cross-section. One fascinating method called the Nuclear Ensemble Approach (NEA), has revolutionized our ability to calculate these interactions efficiently. This method bridges the gap between complex quantum mechanical calculations and practical spectroscopy.&lt;/p&gt;
@@ -183,7 +669,7 @@ This insight can be valuable for winemakers, allowing them to optimise citric ac
 &lt;p&gt;This approach cleverly avoids calculating the excited state wavefunction, which is typically the most computationally expensive part of traditional methods.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;In plain English:&lt;/strong&gt; We’re calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule’s structure affects its interaction with light.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Essentially:&lt;/strong&gt; We’re calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule’s structure affects its interaction with light.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;applications&quot;&gt;Applications&lt;/h3&gt;
@@ -205,7 +691,15 @@ The NEA’s ability to efficiently calculate photoabsorption cross-sections for 
   
 
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/quantum-chemistry-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Quantum Chemistry: Probing the Electronic Architecture of Molecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/protein-cleaning-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Input Sanitization: Preparing for Simulation&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-dynamics-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Molecular Dynamics: Deciphering the Microscopic Dance of Biomolecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-docking-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Molecular Docking: Simulating the Microscopic Handshake&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/binding-free-energy-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Binding Free Energy: Quantifying Affinity&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
@@ -226,7 +720,7 @@ The NEA’s ability to efficiently calculate photoabsorption cross-sections for 
 			<item>
 				<title>AtmoSpec: A Revolutionary Tool for Atmospheric Chemists</title>
 				<link>http://localhost:4000/blog/what-is-atmospec</link>
-				<pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate>
+				<pubDate>Thu, 26 Sep 2024 00:00:00 -0400</pubDate>
 				<description>&lt;p&gt;In the realm of atmospheric chemistry, &lt;strong&gt;Volatile Organic Compounds (VOCs)&lt;/strong&gt; are extremely important, as they can significantly influence air quality and climate, yet their photochemical reactivities and lifetimes are often poorly understood. This lack of knowledge is primarily due to the challenges associated with isolating and measuring these transient VOCs, which stands in the way of conventional laboratory methods. 
 Understanding how VOCs interact with sunlight is essential for developing accurate atmospheric chemistry models. &lt;strong&gt;Photoabsorption cross-sections&lt;/strong&gt; are key parameters that describe how much light a molecule can absorb at different wavelengths. This information is crucial for predicting the photolysis processes that VOCs undergo, which in turn affects their reactivity and lifetime in the atmosphere. Unfortunately, obtaining these cross-sections experimentally can be difficult, often unfeasable due to their instability. Recent advances in computational photochemistry allow for the calculation of these photoabsorption cross-sections, but this can be inaccessible to those less computationally savvy.&lt;/p&gt;
 
@@ -253,7 +747,15 @@ Understanding how VOCs interact with sunlight is essential for developing accura
   
 
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/quantum-chemistry-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Quantum Chemistry: Probing the Electronic Architecture of Molecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/protein-cleaning-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Input Sanitization: Preparing for Simulation&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-dynamics-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Molecular Dynamics: Deciphering the Microscopic Dance of Biomolecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-docking-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Molecular Docking: Simulating the Microscopic Handshake&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/binding-free-energy-theory&quot;&gt;Ligand-X Theory &amp;middot; &lt;strong&gt;Binding Free Energy: Quantifying Affinity&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
@@ -269,155 +771,6 @@ Understanding how VOCs interact with sunlight is essential for developing accura
 
 </description>
 				<guid isPermaLink="true">http://localhost:4000/blog/what-is-atmospec</guid>
-			</item>
-		
-			<item>
-				<title>Predicting molecular properties: Solubility</title>
-				<link>http://localhost:4000/blog/predicting-solubility</link>
-				<pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate>
-				<description>&lt;p&gt;In the realms of pharmaceuticals and agrochemicals, solubility is a cornerstone of efficacy and safety. It is defined as the amount of a substance that will dissolve in a given volume of solvent. relating to both
-the solute and the solvent, as well as the temperature and pressure. Solubility  is commonly expressed in terms
-of intrinsic solubility, where the solubility of a buffered solution is taken at a given temperature and
-pressure. The intrinsic solubility of a substrate reflects its inherent ability to dissolve in a specific solvent,
-acting as a straightforward representation of a molecule&apos;s likelihood to dissolve. The intrinsic solubility of
-a compound at a given pH level is denoted by logS pH and can be derived from the Henderson-Hasselbalch
-equation
-&lt;/p&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-    &lt;title&gt;Math Equation&lt;/title&gt;
-    &lt;script src=&quot;https://polyfill.io/v3/polyfill.min.js?features=es6&quot;&gt;&lt;/script&gt;
-    &lt;script id=&quot;MathJax-script&quot; async=&quot;&quot; src=&quot;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&quot;&gt;
-    &lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;
-        $$ \log S_{pH} = \log S_{0} + \log \left( 1 + \alpha \right) $$
-        $$ \text{where} \ \alpha = \frac{\sum \alpha_{cA_i}}{\sum \alpha_{nA_j}} $$
-    &lt;/p&gt;
-&lt;/body&gt;
-
-&lt;p&gt;In this form, \(\alpha_{cA_i}\) is the distribution percentage of the i-th charged microspecies while \(\alpha_{nA_j}\) is the
-distribution percentage of the j-th neutral microspecies at a given pH. This equation can be used to
-determine the pH-dependent solubility curves and the intrinsic solubility making it vital for
-understanding the behavior of a given compound.&lt;/p&gt;
-
-&lt;h4 id=&quot;why-solubility-matters&quot;&gt;Why Solubility Matters&lt;/h4&gt;
-
-&lt;p&gt;
-Solubility is extremely important, for example in the pharmaceutical industry, the aqueous solubility of a
-potential drug has a high impact on the progression of a target molecule. High aqueous solubility is
-essential to produce drug compounds with the potential to enter the bloodstream circulation so that it
-can have an active effect where needed. The aqueous solubility can be a limiting factor in the
-progression of a compound, not only due to its impact on the bioavailability, but also due to problems
-with the toxicity of poorly soluble molecules, with consequences such as crystallization in the body. In
-fact, a lack of efficacy is the major problem encountered with the formulation and development of new
-drug compounds, together with pharmacokinetics it accounts for over 50 % of failed development
-projects. Similarly, solubility is a vital consideration in the development of agrochemicals, impacting their
-environmental and toxicological properties. The accurate prediction of solubility allows for more rapid
-development of more robust and effective target compounds. Moreover, it decreases the probability ofan ineffective target making it past the screening stage, thereby allowing for the allocation of more resources to more promising candidates.
-&lt;/p&gt;
-
-&lt;h4 id=&quot;benefits-of-ml-in-solubility-prediction&quot;&gt;Benefits of ML in Solubility Prediction:&lt;/h4&gt;
-
-&lt;p&gt;The demand for new drug-like compounds is ever-growing, motivated by the exponentially increasing
-population size as well as the constant emergence of new diseases and viruses. As such, the empirical
-techniques used to predict solubility become less and less suitable for the mammoth task of rapidly
-screening lead compounds due to the sheer number that could be considered. New techniques are required for the prediction of solubility, that are
-robust and accurate to help minimize the cost of drug development as well as reduce the wastage of
-resources. The advent of machine learning, coupled with developments in computational chemistry
-provide a natural progression to the in-silico simulation of molecular properties such as solubility. By utilizing models such as Graph Convolutional Networks (GCNs) and Random Forests, researchers can predict solubility based on molecular structure and other relevant features, providing valuable insights early in the development pipeline.&lt;/p&gt;
-
-&lt;h3 class=&quot;t60&quot;&gt;Other Blog posts&lt;/h3&gt;
-
-&lt;ul class=&quot;side-nav&quot;&gt;
-
-  
-
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/identifying-functional-groups&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Identifying molecular functional groups&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/what-is-atmospec&quot;&gt;Atmospheric Chemistry &amp;middot; &lt;strong&gt;AtmoSpec: A Revolutionary Tool for Atmospheric Chemists&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/predicting-solubility&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Predicting molecular properties: Solubility&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-    
-      &lt;li class=&quot;text-right&quot;&gt;&lt;a href=&quot;http://localhost:4000/blog/archive/&quot;&gt;&lt;strong&gt;More ›&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-
-
-  
-&lt;/ul&gt;
-
-</description>
-				<guid isPermaLink="true">http://localhost:4000/blog/predicting-solubility</guid>
-			</item>
-		
-			<item>
-				<title>Representative sampling in the Nuclear Ensemble Approach - full report</title>
-				<link>http://localhost:4000/portfolio/rep-sampling-for-nea/thesis-report/</link>
-				<pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
-				<description>&lt;embed src=&quot;/assets/thesis_report.pdf&quot; width=&quot;100%&quot; height=&quot;600px&quot; type=&quot;application/pdf&quot; /&gt;
-
-</description>
-				<guid isPermaLink="true">http://localhost:4000/portfolio/rep-sampling-for-nea/thesis-report/</guid>
-			</item>
-		
-			<item>
-				<title>Biscuit dunking analysis report</title>
-				<link>http://localhost:4000/portfolio/biscuit-dunking-analysis/biscuit-report/</link>
-				<pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
-				<description>&lt;embed src=&quot;/assets/biscuit_report.pdf&quot; width=&quot;100%&quot; height=&quot;600px&quot; type=&quot;application/pdf&quot; /&gt;
-
-</description>
-				<guid isPermaLink="true">http://localhost:4000/portfolio/biscuit-dunking-analysis/biscuit-report/</guid>
-			</item>
-		
-			<item>
-				<title>Atmospec data visualization module report</title>
-				<link>http://localhost:4000/portfolio/atmospec-data-visualization-module/atmospec-report/</link>
-				<pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
-				<description>&lt;embed src=&quot;/assets/atmospec_report.pdf&quot; width=&quot;100%&quot; height=&quot;600px&quot; type=&quot;application/pdf&quot; /&gt;
-
-</description>
-				<guid isPermaLink="true">http://localhost:4000/portfolio/atmospec-data-visualization-module/atmospec-report/</guid>
-			</item>
-		
-			<item>
-				<title>ATLAS data processing report</title>
-				<link>http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/atlas-report/</link>
-				<pubDate>Wed, 25 Sep 2024 00:00:00 +0000</pubDate>
-				<description>&lt;embed src=&quot;/assets/atlas_report.pdf&quot; width=&quot;100%&quot; height=&quot;600px&quot; type=&quot;application/pdf&quot; /&gt;
-
-</description>
-				<guid isPermaLink="true">http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/atlas-report/</guid>
-			</item>
-		
-			<item>
-				<title>Web Building Homepage</title>
-				<link>http://localhost:4000/guides/web-building/</link>
-				<pubDate>Wed, 07 Aug 2024 00:00:00 +0000</pubDate>
-				<description>&lt;!--more--&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-&lt;div class=&quot;medium-4 medium-push-8 columns&quot;&gt;
-    &lt;div class=&quot;panel radius&quot;&gt;
-      &lt;p id=&quot;toc&quot;&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#coming-soon&quot; id=&quot;markdown-toc-coming-soon&quot;&gt;Coming Soon!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-    &lt;/div&gt;
-  &lt;/div&gt;&lt;!-- /.medium-4.columns --&gt;
-
-&lt;div class=&quot;medium-8 medium-pull-4 columns&quot;&gt;
-
-    &lt;h2 id=&quot;coming-soon&quot;&gt;Coming Soon!&lt;/h2&gt;
-  &lt;/div&gt;&lt;/div&gt;
-</description>
-				<guid isPermaLink="true">http://localhost:4000/guides/web-building/</guid>
 			</item>
 		
 	</channel>

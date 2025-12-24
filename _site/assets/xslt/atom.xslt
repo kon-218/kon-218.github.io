@@ -179,6 +179,11 @@
 
                       
 
+                      <li><a  href="http://localhost:4000/portfolio/ligand-x/">Ligand-X</a></li>
+                    
+
+                      
+
                       <li><a  href="http://localhost:4000/portfolio/rep-sampling-for-nea/">Rep. Sampling for NEA</a></li>
                     
 
