@@ -54,15 +54,15 @@ Feel free to explore the various projects by clicking the image above for the co
 <div class="row">
 <div class="medium-4 columns t30 project">
 <a href="/portfolio/ligand-x/">
-<img src="{{ site.urlimg }}ligandx_thumb.jpeg" alt="">
+<img src="{{ site.urlimg }}ligandx.png" alt="">
 </a>
 <div class="project-content">
 <h6>Ligand-X: Automated Protein Simulation</h6>
-<span class="project-skills"> React | Python | Bioinformatics | RDKit</span>
+<span class='project-skills'> React | Python | Computational Chemistry </span>
 <ul>
 <li>Integrated web platform for protein analysis and simulation</li>
 <li>Microservices architecture for scalability</li>
-<li>Comprehensive suite: Cleaning, Docking, MD, Free Energy, QM</li>
+<li> Cleaning, Docking, MD, Free Energy, QM</li>
 </ul>
 </div>
 </div><!-- /.medium-4.columns -->
@@ -73,7 +73,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>Representative Sampling for Quantum Chemistry calculations</h6>
-<span class="project-skills">ORCA | Bash | Python | HPC | SLURM </span>
+<span class='project-skills'>ORCA | Bash | Python | HPC | SLURM </span>
 <ul>
 <li>Implemented the representative sampling method with the Nuclear Ensemble Method</li>
 <li>Acheived a subset reduction of 99 %</li>
@@ -88,7 +88,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>Simulating Protein-Ligand complexes using Open Source tools</h6>
-<span class="project-skills"> Python | RDKit | OpenMM | OpenFF </span>
+<span class='project-skills'> Python | RDKit | OpenMM | OpenFF </span>
 <ul>
 <li>Researched methods for computation of binding free energies</li>
 <li>Implemented frameworks for setting up and running OpenMM protein-ligand simulations</li>
@@ -102,7 +102,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>Biscuit Dunking Analysis</h6>
-<span class="project-skills">EDA | Clustering | Deep Learning</span>
+<span class='project-skills'>EDA | Clustering | Deep Learning</span>
 <ul>
 <li>Performed EDA on 5 data sets using pandas, matplotlib</li>
 <li>Identified 3 types of biscuits using scikitlearn unsupervised learning</li>
@@ -117,7 +117,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>Distributed Data Processing</h6>
-<span class="project-skills"> Docker | Docker Swarm | RabbitMQ </span>
+<span class='project-skills'> Docker | Docker Swarm | RabbitMQ </span>
 <ul>
 <li>Decomposed an ATLAS data processing script into containerized services</li>
 <li>Demonstrated scalability by deploying to a local swarm and scaling data reading and processing services</li>
@@ -131,7 +131,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>An investigation on wine</h6>
-<span class="project-skills"> Machine Learning | Bayesian Inference  </span>
+<span class='project-skills'> Machine Learning | Bayesian Inference  </span>
 <ul>
 <li>Trained a logistic regression model for the classification of wine as red or white from physiochemical properties</li>
 <li> Investigated the probability of a good or bad wine</li>
@@ -146,7 +146,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>Data Visualization Module</h6>
-<span class="project-skills">Python | iPyWidgets | Bokeh | Numpy</span>
+<span class='project-skills'>Python | iPyWidgets | Bokeh | Numpy</span>
 <ul>
 <li>Developed an interactive module for the calculation and visualization of photolysis rate</li>
 <li>Researched and tested for typical chemical values</li>
@@ -161,7 +161,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>This Website!</h6>
-<span class="project-skills"> Jekyll | SCSS | HTML </span>
+<span class='project-skills'> Jekyll | SCSS | HTML </span>
 <ul>
 <li>Developed my knowledge of SCSS and HTML for website design</li>
 <li>Continuous integration and continuous deployment functions</li>
@@ -176,7 +176,7 @@ Feel free to explore the various projects by clicking the image above for the co
 </a>
 <div class="project-content">
 <h6>Accelerating Python Code</h6>
-<span class="project-skills">Python | MPI | C++ | Cython | Numba</span>
+<span class='project-skills'>Python | MPI | C++ | Cython | Numba</span>
 <ul>
 <li>Identifying and analysing code bottlenecks</li>
 <li>Reducing computational intensity using a combination of Cython, MPI and C++</li>

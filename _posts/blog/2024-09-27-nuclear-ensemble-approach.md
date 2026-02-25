@@ -28,7 +28,7 @@ Recent advances in Computational Chemistry have enabled the insilico calculation
 
 ## What is the Nuclear Ensemble Approach?
 
-Imagine trying to predict how a molecule will absorb light. The traditional quantum mechanical way would require solving the Schrödinger equation for both ground and excited states, considering all possible vibrational and electronic states - an extremely complex task! The Nuclear Ensemble Approach offers a clever shortcut that gives us surprisingly accurate results by sampling the ground state wavefunction and using these samples to predict the photoabsorption spectra.
+Imagine trying to predict how a molecule will absorb light. The traditional quantum mechanical way would require solving the Schrödinger equation for both ground and excited states, considering all possible vibrational and electronic states—an extremely complex task! The Nuclear Ensemble Approach offers a clever shortcut that gives us surprisingly accurate results by sampling the ground state wavefunction and using these samples to predict the photoabsorption spectra.
 
 ### The Quantum Mechanical Foundation
 
@@ -40,7 +40,7 @@ At its core, NEA is based on the reflection principle from quantum mechanics. In
 
 This approach cleverly avoids calculating the excited state wavefunction, which is typically the most computationally expensive part of traditional methods.
 
-> **Essentially:** We're calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule's structure affects its interaction with light.
+> We're calculating how likely the molecule is to absorb light at different energies, taking into account how the molecule's structure affects its interaction with light.
 
 
 ### Applications 
@@ -51,7 +51,7 @@ The presented method stands as a reliable and relatively cheap way of predicting
 While the NEA might not provide the extremely fine details that more complex quantum mechanical methods offer, this trade-off is often exactly what atmospheric chemists need. In studying atmospheric processes, we're typically more interested in the overall shape and intensity of absorption bands rather than their precise vibronic structure. 
 The NEA's ability to efficiently calculate photoabsorption cross-sections for unstable VOCs has made it an invaluable tool in atmospheric chemistry. When combined with optimal sampling techniques, it provides a practical pathway for studying these elusive molecules that are so crucial to our understanding of atmospheric processes, from urban smog formation to global climate chemistry.
 
-> **Key Takeaway:** The Nuclear Ensemble Approach represents a significant breakthrough in computational photochemistry, offering atmospheric scientists a practical tool for studying light-molecule interactions that were previously either computationally intractable or experimentally challenging to measure.
+> The Nuclear Ensemble Approach represents a significant breakthrough in computational photochemistry, offering atmospheric scientists a practical tool for studying light-molecule interactions that were previously either computationally intractable or experimentally challenging to measure.
 
 <h3>Other Blog posts</h3>
 {: .t60 }
