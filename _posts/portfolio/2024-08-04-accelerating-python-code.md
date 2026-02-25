@@ -9,6 +9,10 @@ breadcrumb: true
 tags:
     - Python
     - C++
+    - Cython
+    - Numba 
+    - JIT
+    - MPI
     - Efficiency
 categories:
     - projects
@@ -70,6 +74,6 @@ The MPI approaches were very successful, providing a 3x speedup with just MPI on
 
 The Cythonized approach was also successful in decreasing the runtime, although dwarfed by the MPI and Numba methods, it provides relatively linear scaling through sample sizes < 900. Due to a lack of support for Cythonized code on BC4 the parallelization was run locally, limiting the number of cores. From the limited data it is possible that the overhead exeeds the benefit from the MPI implementation.
 
-## Other Post Formats
+## Other Projects
 {: .t60 }
 {% include list-posts category='projects' %}

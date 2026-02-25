@@ -18,7 +18,7 @@ categories:
 image:
     thumb: protein_complex.png
     title: protein_complex.png
-    caption: "credit: MSU - Dept. Biochemistry"
+    caption: "MSU - Dept. Biochemistry"
     caption_url: https://kuhnlab.natsci.msu.edu/software/index.html
 permalink: /blog/simulating-protein-ligand-complexes/
 header: no

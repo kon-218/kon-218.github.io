@@ -7,7 +7,7 @@
   side: left
   dropdown:
   - title: "About"
-    url: "/about/"
+    url: "/info/"
   - title: "CV"
     url: "/cv/"
 
@@ -15,6 +15,8 @@
   url: "/portfolio/"
   side: left
   dropdown:
+    - title: "Ligand-X"
+      url: "/portfolio/ligand-x/"
     - title: "Rep. Sampling for NEA"
       url: "/portfolio/rep-sampling-for-nea/"
     - title: "Biscuit Dunking Analysis"

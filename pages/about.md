@@ -6,7 +6,6 @@ teaser: "An Oxford native with a passion for Chemistry, Computing, Mathematics, 
 permalink: "/info/"
 header:
     image_fullwidth: "header_drop.jpg"
-permalink: /about/
 ---
 
 ## Oxford

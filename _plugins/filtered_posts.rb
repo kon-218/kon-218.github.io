@@ -6,12 +6,9 @@ module Jekyll
         post.data['categories'].include?('guides') || post.data['categories'].include?('reports')
       end
   
-      # Only paginate if pagination is enabled and configured correctly
-      if site.config['pagination'] && site.config['pagination']['per_page']
-        paginate(site, site.data['filtered_posts'])
-      else
-        puts "Pagination is not configured properly in _config.yml"
-      end
+      # Pagination disabled - _pagination.html uses filtered_posts directly
+      # The paginate method was incorrectly trying to read templates from _site
+      # which doesn't exist during generation
     end
   
     private
