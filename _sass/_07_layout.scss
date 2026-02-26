@@ -1165,7 +1165,7 @@ textarea {
 }
 
 input[type=submit] {
-    background-color: #04AA6D;
+    background-color: $ci-2;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -1174,7 +1174,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: $ci-1;
 }
 
 .container {
@@ -1197,7 +1197,7 @@ form input[required]:invalid {
 
 form input:focus,
 form textarea:focus {
-    border-color: #04AA6D;
+    border-color: $ci-2;
     outline: none;
 }
 

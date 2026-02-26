@@ -21,12 +21,11 @@ header: no
 
 ### Video Walkthrough
 
-<!-- YouTube video placeholder - replace VIDEO_ID with actual video ID -->
 <div class="flex-video widescreen">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID_MD" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/NhV21Gl4pvs" frameborder="0" allowfullscreen></iframe>
 </div>
 
-> **Coming Soon:** Video walkthrough demonstrating MD simulation setup in Ligand-X.
+> **Look at them wiggle!** Video walkthrough demonstrating MD simulation setup and execution from a PDB ID using Ligand-X.
 
 ---
 

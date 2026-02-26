@@ -10,7 +10,7 @@ tags:
     - Python
     - C++
     - Cython
-    - Numba 
+    - Numba
     - JIT
     - MPI
     - Efficiency

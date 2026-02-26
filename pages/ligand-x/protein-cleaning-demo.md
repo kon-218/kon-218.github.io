@@ -12,9 +12,8 @@ tags:
 categories:
     - portfolio
 image:
-    thumb: cleaning_demo.jpeg
-    title: cleaning_demo.jpeg
-    caption: Cleaning Workflow
+    thumb: md.png
+    title: md.png
 permalink: /portfolio/ligand-x/protein-cleaning-demo
 header: no
 ---
@@ -23,10 +22,10 @@ header: no
 
 <!-- YouTube video placeholder - replace VIDEO_ID with actual video ID -->
 <div class="flex-video widescreen">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID_CLEANING" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/hUWTSDUAag4" frameborder="0" allowfullscreen></iframe>
 </div>
 
-> **Coming Soon:** Video walkthrough demonstrating protein cleaning in Ligand-X.
+> **Fast & Easy:** Fetch and clean your protein structures for simulation in seconds!
 
 ---
 
