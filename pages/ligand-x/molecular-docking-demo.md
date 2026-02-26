@@ -3,7 +3,7 @@ layout: page
 sidebar: none
 subheadline: Ligand-X Demo
 title:  "Demo: Molecular Docking"
-teaser: "See Ligand-X performing high-throughput molecular docking with AutoDock Vina to predict ligand binding poses and affinities."
+teaser: "See Ligand-X executing molecular docking with AutoDock Vina to predict ligand binding poses and affinities."
 breadcrumb: true
 tags:
     - Ligand-X
@@ -21,12 +21,11 @@ header: no
 
 ### Video Walkthrough
 
-<!-- YouTube video placeholder - replace VIDEO_ID with actual video ID -->
 <div class="flex-video widescreen">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID_DOCKING" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/JQo8EczUMAE" frameborder="0" allowfullscreen></iframe>
 </div>
 
-> **Coming Soon:** Video walkthrough demonstrating molecular docking in Ligand-X.
+> **Docking:** Rapid screening for binding poses and affinities.
 
 ---
 
