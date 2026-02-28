@@ -1,7 +1,7 @@
 ---
 layout: page
 sidebar: none
-subheadline: Theory
+subheadline: Computational Drug Design
 title: "Molecular Docking: Accelerating Lead Discovery with In Silico Tools"
 teaser: "Drug-like chemical space contains an estimated $10^{60}$ molecules — far more than can ever be synthesised and tested. Molecular docking provides a rapid in silico filter, screening millions of candidates in hours and returning a ranked shortlist that guides what chemists actually make."
 breadcrumb: true
@@ -18,13 +18,13 @@ permalink: /blog/molecular-docking-theory
 header: no
 ---
 
-### The Scale Problem in Drug Discovery
+### The Scale of Chemical Space
 
 Finding a new drug begins with identifying a molecule, the ligand, that binds tightly and selectively to a disease-relevant protein target, the receptor. The receptor presents a specific cavity on its surface, the binding pocket or active site, whose shape and chemical environment determine which molecules fit and how tightly.
 
-The challenge is one of scale. Estimates of drug-like chemical space range from $10^{60}$ to $10^{100}$ synthetically accessible molecules. Even high-throughput screening (HTS), the experimental gold standard, can realistically test only a few hundred thousand compounds per campaign, a vanishingly small fraction. Every compound that is synthesised and tested costs time and money, so the question becomes: how do you decide which molecules are worth making in the first place?
+The challenge is one of scale. Estimates of drug-like chemical space range from $10^{60}$ to $10^{100}$ synthetically accessible molecules. Even high-throughput screening (HTS), the experimental gold standard, can realistically test only a few hundred thousand compounds per campaign, a vanishingly small fraction. Every compound that is synthesised and tested costs time and money so how do you decide which molecules are worth investigating in the first place?
 
-Molecular docking provides an answer. A single docking evaluation takes milliseconds on modern hardware. A library of one million compounds can be screened in hours, returning a ranked shortlist that guides synthetic effort, compressing years of exploratory chemistry into a prioritised queue that experimentalists can act on immediately.
+Molecular docking provides chemists with a quick in silico filter. A single docking evaluation takes milliseconds on powerful GPU hardware, meaning a library of one million compounds can be screened in hours; returning a ranked shortlist that guides synthetic effort. This can compress years of exploratory chemistry into a prioritised queue that experimentalists can act on.
 
 ### What Docking is Measuring
 
@@ -32,7 +32,7 @@ For docking to be useful, its ranking must correlate with real binding strength.
 
 $$\Delta G_{bind} = \Delta H_{bind} - T\Delta S_{bind}$$
 
-The enthalpic term ($\Delta H$) captures direct non-covalent interactions — hydrogen bonds, van der Waals contacts, and electrostatic interactions such as salt bridges. The entropic term ($-T\Delta S$) accounts for the loss of conformational freedom when a flexible ligand locks into the pocket, and the gain in entropy as ordered water molecules are expelled into bulk solvent.
+The enthalpic term ($\Delta H$) captures direct non-covalent interactions such as hydrogen bonds and van der Waals contacts; as well as electrostatic interactions. The entropic term ($-T\Delta S$) accounts for the loss of conformational freedom when a flexible ligand locks into the pocket, and the gain in entropy as ordered water molecules are expelled into bulk solvent.
 
 This free energy has a directly measurable laboratory counterpart, the dissociation constant $K_d$:
 
@@ -42,10 +42,10 @@ At 298 K, a $\Delta G$ of −9 kcal/mol corresponds to a $K_d$ of roughly 200 nM
 
 ### Searching Conformational Space
 
-Before a score can be assigned, the algorithm must find the best-fitting orientation — the pose — of the ligand in the pocket. For a flexible ligand with many rotatable bonds and six degrees of translational and rotational freedom, the number of possible poses is enormous. Several search strategies make this tractable:
+Before a score can be assigned, the algorithm must find the best-fitting orientation, the pose, of the ligand in the pocket. For a flexible ligand with many rotatable bonds and six degrees of translational and rotational freedom, the number of possible poses is enormous. Several search strategies make this tractable:
 
 - Genetic Algorithms: Used by tools like AutoDock 4, these evolve a population of candidate poses through "crossover" and "mutation" operators, analogous to biological evolution, until high-affinity configurations emerge
-- Incremental Construction: The molecule is fragmented, each piece is docked into sub-pockets, and fragments are reassembled — efficiently exploring the combinatorial space
+- Incremental Construction: The molecule is fragmented, each piece is docked into sub-pockets, and fragments are reassembled, efficiently exploring the combinatorial space
 - Protein Flexibility: Early "lock and key" models treated the receptor as rigid. Modern approaches allow side-chain movement and, in induced-fit protocols, backbone rearrangement. This better reflects the reality that binding often reshapes the pocket around the ligand
 
 ### Scoring Functions
@@ -53,24 +53,24 @@ Before a score can be assigned, the algorithm must find the best-fitting orienta
 Once a pose is generated, a scoring function ranks it. This is the core computational challenge: a function fast enough to evaluate millions of poses must still correlate with binding affinity. Functions fall into three families:
 
 1. Physics-based: Use classical mechanics (van der Waals and Coulombic potentials) to estimate interaction energies directly
-2. Empirical: Express affinity as a weighted sum of hydrogen bonds, hydrophobic contacts, and rotatable bond penalties — weights trained by regression against experimental binding data
+2. Empirical: Express affinity as a weighted sum of hydrogen bonds, hydrophobic contacts, and rotatable bond penalties, with weights trained by regression against experimental binding data
 3. Machine learning: Learn preferred interaction geometries from the PDB, or use deep learning (e.g., GNINA) to predict affinity from raw atomic coordinates without hand-crafted energy terms
 
 ### Virtual Screening in Practice
 
 The full virtual screening workflow has three phases:
 
-1. Preparation: Clean the receptor structure, assign protonation states, define the search box around the binding pocket. Prepare each ligand — convert SMILES to a 3D model, enumerate tautomers, assign charges.
+1. Preparation: Clean the receptor structure, assign protonation states, define the search box around the binding pocket. Prepare each ligand: convert SMILES to a 3D model, enumerate tautomers, assign charges.
 2. Docking: Run the pose search and scoring for every compound in the library; rank by score
 3. Validation: Before trusting a screen, re-dock ligands with known crystal structures. Tools like AutoDock Vina achieve ~80% success at reproducing the native pose (RMSD ≤ 2.0 Å), establishing that the protocol is working before real predictions are made
 
-The key metric for evaluating a virtual screen is the Enrichment Factor (EF): the ratio of known actives recovered in the top-ranked fraction of results relative to random chance. An EF of 10 at 1% of the library means docking found 10× more active compounds in the top 1% than random selection would — a meaningful compression of experimental effort.
+The key metric for evaluating a virtual screen is the Enrichment Factor (EF): the ratio of known actives recovered in the top-ranked fraction of results relative to random chance. An EF of 10 at 1% of the library means docking found 10× more active compounds in the top 1% than random selection would, a meaningful compression of chemical space required to explore experimentally.
 
-### Where Docking Fits, and Where It Stops
+### Limitations of docking
 
-Docking's speed is also its limitation. Scoring functions make significant approximations: entropic contributions are simplified, protein flexibility is often neglected, and solvation effects are difficult to capture. Scores correlate imperfectly with experimental affinities, and rankings can mislead for structurally diverse compound sets.
+Docking's ability to rapidly produce results comes at a cost, it is good for casting a wide net but should not be used for precise ranking of compounds. Scoring functions make significant approximations: entropic contributions are simplified, protein flexibility is often neglected, and solvation effects are difficult to capture. Scores correlate imperfectly with experimental affinities and rankings can be misleading for structurally diverse compound sets.
 
-The correct mental model is that docking is a filter, not a measurement. It narrows a library of millions to a tractable shortlist of hundreds; it does not replace experimental binding assays. For rigorous affinity ranking of the shortlist, the physics-based methods described in the [ABFE](/blog/abfe-theory) and [RBFE](/blog/rbfe-theory) posts provide much higher accuracy at greater computational cost.
+The correct perspective is to use docking as a filter, not a measurement. It narrows a library of millions to a tractable shortlist of hundreds, but it does not replace experimental binding assays. For rigorous affinity ranking of the shortlist, the physics-based methods described in the [ABFE](/blog/abfe-theory) and [RBFE](/blog/rbfe-theory) posts provide much higher accuracy at greater computational cost.
 
 ### References
 

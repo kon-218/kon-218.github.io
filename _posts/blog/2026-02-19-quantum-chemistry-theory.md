@@ -1,7 +1,7 @@
 ---
 layout: page
 sidebar: none
-subheadline: Theory
+subheadline: Computational Chemistry
 title: "Quantum Chemistry: Probing the Electronic Structure of Molecules"
 teaser: "Quantum mechanical (QM) methods provide a rigorous, physics-based framework for understanding molecular structure, properties, and reactivity at the atomic level."
 breadcrumb: true
@@ -22,20 +22,30 @@ header: no
 
 ### Beyond Classical Force Fields
 
-Classical molecular dynamics force fields are powerful tools for simulating large systems, but they treat atoms as point charges with fixed, pre-assigned properties. Bond lengths, angles, and partial charges are set once from experimental data or higher-level calculations and then frozen for the duration of the simulation. This approximation breaks down whenever we need to understand where electrons actually are — which determines chemical reactivity, charge distribution, and spectroscopic properties.
+Classical molecular dynamics force fields are powerful tools for simulating large systems, but they treat atoms as point charges with fixed, pre-assigned properties. Bond lengths, angles, and partial charges are set once from experimental data or higher-level calculations and then frozen for the duration of the simulation. This approximation breaks down whenever we need to understand where electrons actually are; which determines chemical reactivity, charge distribution, and spectroscopic properties.
 
 In principle, all molecular properties follow from solving the time-independent Schrödinger equation, $\hat{H}\psi = E\psi$, for the system's wavefunction $\psi$. For a molecule with more than a handful of electrons, exact solutions are computationally intractable. Quantum chemistry provides a hierarchy of tractable approximations to this problem.
 
-The dominant method in modern chemistry is Density Functional Theory (DFT). Rather than computing the full many-electron wavefunction, DFT works with the electron density $\rho(\mathbf{r})$ — a three-dimensional function describing how many electrons are present at each point in space. The Hohenberg-Kohn theorems (1964) proved that this density uniquely determines all ground-state properties of the system: the external potential, and hence the total energy. Kohn and Sham (1965) made this practical by introducing a fictitious system of non-interacting electrons that reproduces the same density as the real interacting system, transforming the many-body problem into a set of tractable single-particle equations.
-
-In practice, DFT improves significantly on Hartree-Fock (HF) theory, which treats electron-electron repulsion through an average field and neglects correlation between electrons. DFT captures this correlation through an approximate exchange-correlation functional — a mathematical expression encoding all the complex quantum mechanical effects of electron-electron interactions. The choice of functional is the primary lever controlling accuracy.
+The dominant method in modern chemistry is Density Functional Theory (DFT). Rather than computing the full many-electron wavefunction DFT works with the electron density $\rho(\mathbf{r})$, a three-dimensional function describing how many electrons are present at each point in space. The Hohenberg-Kohn theorems (1964) proved that this density uniquely determines all ground-state properties of the system: the external potential, and hence the total energy. Kohn and Sham (1965) made this practical by introducing a fictitious system of non-interacting electrons that reproduces the same density as the real interacting system, transforming the many-body problem into a set of tractable single-particle equations.
 
 <div style="text-align: center;">
   <img src="/images/pes.jpg" alt="Figure 1: Potential Energy Surface" style="width: 400px;">
   <p style="text-align: center; font-style: italic;">Figure 1: Potential Energy Surface (source: <a href="https://onlinelibrary.wiley.com/doi/10.1002/jcc.10231">J. Comp. Chem.</a>)</p>
 </div>
 
+In practice, DFT improves significantly on Hartree-Fock (HF) theory, which treats electron-electron repulsion through an average field and neglects correlation between electrons. DFT captures this correlation through an approximate exchange-correlation functional, which is a mathematical expression encoding all the complex quantum mechanical effects of electron-electron interactions. The choice of functional is therefore a primary lever controlling accuracy.
+
 In drug discovery and the broader Ligand-X workflow, QM methods serve two key roles: geometry optimisation provides accurate 3D ligand structures for docking and molecular dynamics, and reactivity descriptors reveal electronic effects that classical force fields cannot capture. The central object for both is the Potential Energy Surface (PES), a landscape describing the total energy of the system as a function of all nuclear positions.
+
+### Choosing a Method
+
+The accuracy of any QM calculation depends on two choices: the functional and the basis set.
+
+Functionals range from simple Local Density Approximation (LDA) to sophisticated hybrid and double-hybrid functionals. The "gold standard" in quantum chemistry is Coupled Cluster theory with single, double, and perturbative triple excitations (CCSD(T)), which gives near-exact answers for small molecules at very high computational cost. For practical work on drug-sized molecules, hybrid DFT functionals such as B3LYP or PBE0 strike a good balance between cost and accuracy. Dispersion corrections (D3, D4) are essential for large organic molecules, where London dispersion forces significantly affect geometry and binding energies but are absent from standard functionals.
+
+Basis sets define the mathematical space used to represent the electronic wavefunction as a linear combination of atom-centred functions. Reliable thermochemistry requires at least triple-ζ quality (e.g., def2-TZVP). Systems with anions or diffuse electron density need additional diffuse basis functions to describe the loosely bound electrons.
+
+For rapid geometry optimisation of large organic molecules, for example: pre-processing a ligand library before docking, semiempirical methods such as GFN2-xTB offer DFT-quality geometries at a fraction of the cost by parameterising key integrals rather than computing them from first principles. This makes them practical for routine, high-throughput ligand preparation.
 
 ### Geometry Optimization
 
@@ -67,15 +77,7 @@ Conceptual DFT provides intuitive descriptors for predicting where a molecule is
 
 By condensing these 3D functions onto individual atoms, researchers obtain numerical rankings that predict regioselectivity in complex reactions: which site on a molecule gets functionalized first.
 
-### Choosing a Method
-
-The accuracy of any QM calculation depends on two choices: the functional and the basis set.
-
-Functionals range from simple Local Density Approximation (LDA) to sophisticated hybrid and double-hybrid functionals. The "gold standard" in quantum chemistry is CCSD(T) — coupled cluster theory with single, double, and perturbative triple excitations — which gives near-exact answers for small molecules at very high computational cost. For practical work on drug-sized molecules, hybrid DFT functionals such as B3LYP or PBE0 strike a good balance between cost and accuracy. Dispersion corrections (D3, D4) are essential for large organic molecules, where London dispersion forces significantly affect geometry and binding energies but are absent from standard functionals.
-
-Basis sets define the mathematical space used to represent the electronic wavefunction as a linear combination of atom-centred functions. Reliable thermochemistry requires at least triple-ζ quality (e.g., def2-TZVP). Systems with anions or diffuse electron density need additional diffuse basis functions to describe the loosely bound electrons.
-
-For rapid geometry optimisation of large organic molecules — for example, pre-processing a ligand library before docking — semiempirical methods such as GFN2-xTB offer DFT-quality geometries at a fraction of the cost by parameterising key integrals rather than computing them from first principles. This makes them practical for routine, high-throughput ligand preparation.
+---
 
 Quantum chemistry also underpins computational photochemistry: the nuclear ensemble approach used in the [AtmoSpec](/blog/what-is-atmospec) workflow to calculate photoabsorption cross-sections relies on the same DFT framework to compute vertical excitation energies across a statistical ensemble of molecular geometries.
 

@@ -14,7 +14,6 @@ categories:
 image:
     thumb: md.png
     title: md.png
-    caption: MD Workflow
 permalink: /portfolio/ligand-x/molecular-dynamics-demo
 header: no
 ---

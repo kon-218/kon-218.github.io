@@ -1,7 +1,7 @@
 ---
 layout: page
 sidebar: none
-subheadline: Theory
+subheadline: Biophysics simulation
 title: "Molecular Dynamics: Physics-based simulation of biomolecules"
 teaser: "Molecular Dynamics (MD) simulations allow us to study the physical movements of atoms and molecules, providing a view of the dynamic evolution of the system."
 breadcrumb: true

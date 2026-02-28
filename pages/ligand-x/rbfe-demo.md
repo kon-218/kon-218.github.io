@@ -14,7 +14,6 @@ categories:
 image:
     thumb: rbfe.png
     title: rbfe.png
-    caption: RBFE Network Workflow
 permalink: /portfolio/ligand-x/rbfe-demo
 header: no
 ---

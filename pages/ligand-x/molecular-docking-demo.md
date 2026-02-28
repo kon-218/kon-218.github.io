@@ -14,7 +14,6 @@ categories:
 image:
     thumb: docking.png
     title: docking.png
-    caption: Docking Workflow
 permalink: /portfolio/ligand-x/molecular-docking-demo
 header: no
 ---

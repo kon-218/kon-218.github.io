@@ -15,7 +15,6 @@ categories:
 image:
     thumb: qc.png
     title: qc.png
-    caption: QM Workflow
 permalink: /portfolio/ligand-x/quantum-chemistry-demo
 header: no
 ---

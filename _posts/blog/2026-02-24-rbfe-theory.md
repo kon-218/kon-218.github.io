@@ -1,7 +1,7 @@
 ---
 layout: page
 sidebar: none
-subheadline: Theory
+subheadline: Binding Free Energy
 title: "Relative Binding Free Energy: Comparing Different Candidates"
 teaser: "RBFE calculations let us compare how strongly different molecules bind to a protein target, helping medicinal chemists prioritize which compounds to synthesize next."
 breadcrumb: true
@@ -46,16 +46,16 @@ $$\Delta\Delta G_{bind} = \Delta G_{bind}^{A} - \Delta G_{bind}^{B} = \Delta G_{
 
 ### Why "Alchemical"?
 
-We call these calculations "alchemical" because we're doing something impossible in the real world: gradually transforming one molecule into another inside the simulation. The atoms unique to molecule A are slowly "turned off" while the atoms unique to molecule B are "turned on". This is controlled by a coupling parameter λ (lambda), the same approach used in [ABFE](/blog/abfe-theory): at λ = 0 molecule A is fully present; at λ = 1 molecule B is fully present; intermediate λ values describe a continuous, non-physical hybrid state.
+We call these calculations "alchemical" because we're doing something impossible in the real world: gradually transforming one molecule into another inside the simulation. The atoms unique to molecule A are slowly "turned off" while the atoms unique to molecule B are "turned on". This is controlled by a coupling parameter $λ$ (lambda), the same approach used in [ABFE](/blog/abfe-theory): at $λ = 0$ molecule A is fully present; at $λ = 1$ molecule B is fully present; intermediate $λ$ values describe a continuous, non-physical hybrid state.
 
 <div style="text-align: center;">
   <img src="/images/alchemical_transformation_rbfe.png" alt="Alchemical transformation of benzene to benzaldehyde over 11 lambda states" style="width: 400px;">
   <p style="text-align: center; font-style: italic;">Figure 2: Alchemical transformation of benzene to benzaldehyde over 11 lambda states</p>
 </div>
 
-Think of it like a movie dissolve effect, but for molecules. This continuous, controlled transformation lets us precisely measure the energy difference between the two states.
+Think of it like a dissolve or fade effect, but for molecules. This continuous, controlled transformation lets us precisely measure the energy difference between the two states.
 
-A technical subtlety is that as atoms appear or disappear at the endpoints (λ = 0 or λ = 1), standard Lennard-Jones potentials become singular — two atoms occupying the same space would produce infinite repulsion. Soft-core potentials solve this by smoothly switching on van der Waals interactions, preventing numerical instabilities at the transformation endpoints.
+A technical subtlety is that as atoms appear or disappear at the endpoints ($λ = 0$ or $λ = 1$), standard Lennard-Jones potentials become singular, meaning that two atoms occupying the same space would produce infinite repulsion. Soft-core potentials solve this by smoothly switching on van der Waals interactions, preventing instabilities at the transformation endpoints.
 
 ### Building a Network
 
@@ -94,13 +94,13 @@ Kartograf is a 3D-aware atom mapper that considers both chemical similarity and 
 
 ### Interpreting the Results
 
-RBFE results are reported as ΔΔG values in kcal/mol:
+RBFE results are reported as $ΔΔG$ values in kcal/mol:
 
-- Negative ΔΔG: The new molecule binds more strongly than the reference
-- Positive ΔΔG: The new molecule binds more weakly than the reference
+- Negative: The new molecule binds more strongly than the reference
+- Positive: The new molecule binds more weakly than the reference
 - Magnitude: Every 1.4 kcal/mol corresponds to roughly a 10-fold change in binding affinity
 
-For example, a molecule with ΔΔG = −2.8 kcal/mol relative to the reference binds approximately 100× more tightly.
+For example, a molecule with $ΔΔG$ = −2.8 kcal/mol relative to the reference binds approximately 100× more tightly.
 
 ### Accuracy and Limitations
 
@@ -110,7 +110,7 @@ Modern RBFE calculations typically achieve:
 - Correlation (R²): 0.5–0.8 with experimental data
 - Best for: Similar molecules sharing a common scaffold — the core ring system or backbone shared by the series — with varied substituents around it
 
-The method works best when molecules are structurally similar. Large scaffold changes, where the central ring system itself changes, or unusual chemistry can reduce reliability: in those cases, [ABFE](/blog/abfe-theory) is the better choice. A rough decision guide:
+The method works best when molecules are structurally similar. Large scaffold changes, where the central ring system itself changes, or unusual chemistry can reduce reliability: in those cases, [ABFE](/blog/abfe-theory) is the better choice.
 
 | Situation | Recommended Method |
 |-----------|-------------------|
@@ -135,7 +135,7 @@ A typical workflow proceeds as:
 4. Run calculations across all transformation edges
 5. Analyze results as a ranked list with uncertainty estimates
 
-For understanding the electronic properties of the ligands themselves — charge distribution, reactivity, conformational preferences — [quantum chemistry methods](/blog/quantum-chemistry-theory) provide a complementary perspective that classical force fields cannot offer.
+For understanding the electronic properties of the ligands themselves — charge distribution, reactivity, conformational preferences — [quantum chemistry methods](/blog/quantum-chemistry-theory) provide an insightful, complementary perspective.
 
 ### References
 

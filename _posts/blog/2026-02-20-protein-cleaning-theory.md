@@ -1,7 +1,7 @@
 ---
 layout: page
 sidebar: none
-subheadline: Theory
+subheadline: Garbage In, Garbage Out
 title:  "Input Sanitization: Preparing for Simulation"
 teaser: "Before any protein simulation can begin, the raw PDB structure must be cleaned and prepared. This involves removing water molecules, adding missing hydrogens, and fixing incomplete residues. Similarly, small molecule ligands must be converted from SMILES / 3D coordinates to a chemically accurate 3D model."
 breadcrumb: true

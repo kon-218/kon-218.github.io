@@ -1,7 +1,7 @@
 ---
 layout: page
 sidebar: none
-subheadline: Theory
+subheadline: Binding Free Energy
 title: "Absolute Binding Free Energy: Measuring Affinity In Silico"
 teaser: "ABFE calculations determine the exact binding strength of a drug molecule to its protein target—the gold standard measurement for understanding how potent a compound really is."
 breadcrumb: true
