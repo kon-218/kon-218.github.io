@@ -3,7 +3,7 @@ layout: page
 sidebar: none
 subheadline: Computational Drug Design
 title: "Molecular Docking: Accelerating Lead Discovery with In Silico Tools"
-teaser: "Drug-like chemical space contains an estimated $10^{60}$ molecules — far more than can ever be synthesised and tested. Molecular docking provides a rapid in silico filter, screening millions of candidates in hours and returning a ranked shortlist that guides what chemists actually make."
+teaser: "Drug-like chemical space contains an estimated $10^{60}$ molecules, which is far more than can ever be synthesised and tested feasibly. Molecular docking provides a quick in silico filter, screening millions of candidates in hours and returning a ranked shortlist that guides what chemists synthesise."
 breadcrumb: true
 tags:
 - Molecular Docking

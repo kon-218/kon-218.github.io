@@ -23,7 +23,7 @@ header: no
 
 Structural biology has long relied on techniques like X-ray crystallography and cryo-EM to reveal protein structures. But these methods capture a single frozen snapshot. Proteins are not static sculptures: they are dynamic machines, and their function depends on how they move.
 
-Molecular dynamics (MD) bridges this gap. Rather than a single structure, MD produces a trajectory — a time-ordered sequence of snapshots, typically saved every picosecond, showing where every atom is at each instant. Think of it as a molecular slow-motion film: each frame is a complete atomic configuration, and playing them in sequence reveals how the protein breathes, flexes, and responds to its environment. This lets us observe phenomena ranging from rapid hydrogen bond fluctuations to large-scale conformational changes linked to protein function.
+Molecular dynamics (MD) is a computational method that simulates the physical movements of atoms and molecules over time. Rather than a single structure, MD produces a trajectory: a time-ordered sequence of snapshots, typically saved every picosecond, showing where every atom is at each instant. It can be thought of as a molecular slow-motion film: each frame is a complete atomic configuration, and playing them in sequence reveals how the protein flexes, and responds to its environment. This lets us observe phenomena ranging from rapid hydrogen bond fluctuations to large-scale conformational changes linked to protein function.
 
 ### The Physics of Motion
 
@@ -43,7 +43,7 @@ A force field approximates the total energy through two classes of interactions:
 
 ### Numerical Integration
 
-Given a force field that returns the force on each atom, the next challenge is propagating the system forward in time. Because these equations have no analytical solution for systems of thousands of atoms, they must be solved numerically. The integrator advances the simulation one small time step (Δt) at a time — typically 1–2 femtoseconds — small enough to resolve the fastest molecular vibrations (e.g., O–H bond stretching at ~3500 cm⁻¹). Common algorithms include the Leap-Frog and Velocity Verlet integrators, both of which conserve energy with high accuracy over long simulations.
+Given a force field that returns the force on each atom, the next challenge is propagating the system forward in time. Because these equations have no analytical solution for systems of thousands of atoms, they must be solved numerically. The integrator advances the simulation one small time step (Δt) at a time, typically 1–2 femtoseconds, small enough to resolve the fastest molecular vibrations (e.g., O–H bond stretching at ~3500 cm⁻¹). Common algorithms include the Leap-Frog and Velocity Verlet integrators, both of which conserve energy with high accuracy over long simulations.
 
 One important practical consideration is long-range electrostatics: direct summation of Coulombic interactions between all pairs of atoms would scale as $O(N^2)$, becoming prohibitive for large systems. Particle Mesh Ewald (PME) exploits the periodicity of the simulation box to compute electrostatics on a grid using fast Fourier transforms, reducing the cost to $O(N \log N)$ and making large-scale protein simulations tractable.
 
@@ -62,10 +62,10 @@ Getting reliable results requires careful preparation before the production run 
 Once a trajectory is generated, several metrics characterize the system's behavior:
 
 - RMSD (Root Mean Square Deviation): Measures global structural stability over time. An RMSD that rises sharply and never stabilises suggests the protein is undergoing large structural changes, while one that plateaus and fluctuates around a stable mean indicates the simulation has converged
-- RMSF (Root Mean Square Fluctuation): Quantifies the flexibility of individual residues, averaged over the whole trajectory. High RMSF residues are mobile and often functionally important — they may form flexible binding loops or hinge regions
+- RMSF (Root Mean Square Fluctuation): Quantifies the flexibility of individual residues, averaged over the whole trajectory. High RMSF residues are mobile and often functionally important, for example they may form flexible binding loops or hinge regions
 - Radius of Gyration ($R_g$): Measures molecular compactness; useful for studying protein folding or collapse
 
-An important limitation of standard MD is timescale. A typical production simulation covers nanoseconds to microseconds on modern GPU hardware. Many biologically relevant events — protein folding, large domain rearrangements, slow conformational changes — occur on timescales of milliseconds or longer, which remains beyond the reach of standard MD without enhanced sampling techniques.
+An important limitation of standard MD is timescale. A typical production simulation covers nanoseconds to microseconds on modern GPU hardware. Many biologically relevant events, such as protein folding, large domain rearrangements, and slow conformational changes, occur on timescales of milliseconds or longer, which remains beyond the reach of standard MD without enhanced sampling techniques.
 
 These descriptors form the foundation for downstream analyses. Beyond structural characterisation, MD trajectories provide the microscopic sampling that underpins the binding free energy calculations described in the [ABFE](/blog/abfe-theory) and [RBFE](/blog/rbfe-theory) posts.
 

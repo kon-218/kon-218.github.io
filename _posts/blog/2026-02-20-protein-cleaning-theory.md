@@ -19,7 +19,7 @@ header: no
 
 ### Why Preparation Matters
 
-The reliability of any molecular simulation is only as good as the input structure. Experimental protein structures are deposited in the Protein Data Bank (PDB), a freely accessible repository of over 200,000 experimentally determined 3D structures. Each entry is stored as a `.pdb` file containing the Cartesian coordinates of every non-hydrogen atom resolved by the experiment. Similarly, small molecules are often encoded as SMILES strings (Simplified Molecular Input Line Entry System) — a compact text notation that encodes atomic connectivity, such as `CCO` for ethanol — which must be converted to a 3D structure before simulation.
+The reliability of any molecular simulation is only as good as the input structure. Experimental protein structures are deposited in the Protein Data Bank (PDB), a freely accessible repository of over 200,000 experimentally determined 3D structures. Each entry is stored as a `.pdb` file containing the Cartesian coordinates of every non-hydrogen atom resolved by the experiment. Similarly, small molecules are often encoded as SMILES strings (Simplified Molecular Input Line Entry System), a compact text notation that encodes atomic connectivity, such as `CCO` for ethanol, which must be converted to a 3D structure before simulation.
 
 Neither of these formats is simulation-ready out of the box. X-ray crystallography, for instance, often fails to resolve hydrogen atom positions, flexible loop regions, or the correct protonation states of titratable residues. Running a simulation on an uncleaned structure is a guaranteed path to bad results, which is why preparation is treated as a disciplined, systematic process.
 
@@ -48,18 +48,18 @@ Small molecule ligands often begin as a 1D SMILES string: a compact encoding of 
 
 ### System Integration and Relaxation
 
-Once both the protein and ligand are individually prepared, they must be assembled into a single simulation system. This requires combining their respective force field topologies — files that define the atom types, partial charges, and bonding connectivity that the simulation engine will use. Different force fields are used for different components: **ff14SB** is a widely used parameter set for proteins, while a specialized force field such as **GAFF2** (General Amber Force Field 2) or **OpenFF Sage**, designed for small organic molecules, both having been parameterised to reproduce experimental geometries and thermodynamic data.
+Once both the protein and ligand are individually prepared, they must be assembled into a single simulation system. This requires combining their respective force field topologies, which are files that define the atom types, partial charges, and bonding connectivity that the simulation engine will use. Different force fields are used for different components: **ff14SB** is a widely used parameter set for proteins, while a specialized force field such as **GAFF2** (General Amber Force Field 2) or **OpenFF Sage**, designed for small organic molecules, both having been parameterised to reproduce experimental geometries and thermodynamic data.
 
 <div style="text-align: center;">
   <img src="/images/solvated_system.png" alt="Image Description" style="width: 400px;">
   <p style="text-align: center; font-style: italic;">Figure 2: Solvated FLT3 system with a small molecule inhibitor</p>
 </div>
-The combined system is then placed in a periodic box of explicit water molecules. The most commonly used water model is **TIP3P** (Transferable Intermolecular Potential with 3 Points), which represents each water molecule as three point charges — one oxygen and two hydrogens — at experimental geometry. The box must include a sufficient buffer of water around the solute (typically ~10 Å) on all sides. Periodic boundary conditions (PBC) are applied so that atoms leaving one face of the box re-enter from the opposite face, effectively mimicking an infinite bulk environment and eliminating artificial surface effects. Counterions (Na⁺, Cl⁻) are added to neutralise the total charge and reach physiological salt concentration (~150 mM).
+The combined system is then placed in a periodic box of explicit water molecules. The most commonly used water model is **TIP3P** (Transferable Intermolecular Potential with 3 Points), which represents each water molecule as three point charges: one oxygen and two hydrogens, at experimental geometry. The box must include a sufficient buffer of water around the solute, typically ~10 Å on all sides. Periodic boundary conditions (PBC) are applied so that atoms leaving one face of the box re-enter from the opposite face, effectively mimicking an infinite bulk environment and eliminating artificial surface effects. Counterions (Na⁺, Cl⁻) are added to neutralise the total charge and reach physiological salt concentration (~150 mM).
 
 Finally, a tiered relaxation protocol prepares the system for production:
-1. **Energy minimization**: Resolves steric clashes — atoms that accidentally overlap during system assembly — using gradient-based algorithms such as Steepest Descent
-2. **NVT equilibration**: Heats the system to the target temperature at constant **N**umber of particles, **V**olume, and **T**emperature
-3. **NPT equilibration**: Adjusts pressure and density at constant **N**umber of particles, **P**ressure, and **T**emperature, stabilising the box dimensions before data collection begins
+1. **Energy minimization**: Resolves steric clashesusing gradient-based algorithms such as Steepest Descent
+2. **NVT equilibration**: Heats the system to the target temperature at constant Number of particles, Volume, and Temperature
+3. **NPT equilibration**: Adjusts pressure and density at constant Number of particles, Pressure, and Temperature, stabilising the box dimensions before data collection begins
 
 The quality of this preparation determines the reliability of every downstream measurement. As the principle goes: garbage in, garbage out.
 

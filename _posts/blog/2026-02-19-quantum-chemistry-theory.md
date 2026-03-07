@@ -58,7 +58,7 @@ The process is iterative: starting from an initial geometry (e.g., from a SMILES
 Geometry optimization finds a stationary point on the PES, but it doesn't tell us whether that point is a stable minimum or a saddle point (transition state). A frequency calculation answers this by computing the Hessian matrix, the second derivatives of energy with respect to nuclear positions.
 
 - All positive eigenvalues: A true energy minimum (a stable molecule)
-- Exactly one negative (imaginary) frequency: A first-order saddle point—a transition state connecting two minima
+- Exactly one negative (imaginary) frequency: A first-order saddle point (a transition state connecting two minima)
 
 Frequency calculations also yield the zero-point energy (ZPE), the vibrational energy a molecule retains at absolute zero, along with thermal corrections that convert raw electronic energy into Gibbs free energy (G), which is the quantity needed to assess thermodynamic spontaneity.
 
