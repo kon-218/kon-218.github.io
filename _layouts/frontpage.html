@@ -1,0 +1,103 @@
+---
+layout: default
+format: frontpage
+---
+
+<style>
+    .custom-button {
+        width: 500px; /* Adjust this value as needed */
+        border-radius: 10px; /* Adjust this value as needed */
+        padding: 10px; /* Optional */
+        display: block; /* Make it a block element */
+        margin: 0 auto; /* Center the button */
+    }
+</style>
+
+<div class="row t30">
+    <div class="medium-8 columns">
+        <!-- Main content area -->
+        <h1>Welcome to My Website!</h1>
+        <h3>Who am I?</h3>
+
+        <p>
+            My name is Konstantin, and I'm a proud graduate of the University of Bristol, where I achieved a First Class Honours degree in Chemistry with Computing. Having recently moved to the United States, I am excited to dive into new opportunities and challenges that align with my passion for merging the worlds of computing and chemistry.
+        </p>
+        <p>
+            Throughout my academic journey, I have developed a deep interest in how data science, software engineering, and high-performance computing (HPC) can drive scientific progress. I am deeply grateful that my University course allowed me to explore the powerful contributions that computational chemistry can make research.
+        </p>
+
+        <h3>What can you find here?</h3>
+        
+        
+            <ul>
+                <li>It's a place for me to showcase my work and experience.</li>
+                <li>It's a place for me to share my thoughts and ideas.</li>
+                <li>It's a place for you to learn more about me and get in touch.</li>
+            </ul>
+        
+        <p>
+        I also hope to be able to put up little programming guides to teach you about jekyll, css, and html as I build and expand the website. There is a chance that this will turn into broader programming guides for beginners, but we'll see how it goes.
+        </p>
+        <p>
+        </p>
+    </div>
+
+    <div class="medium-4 columns">
+        <!-- Right sidebar content -->
+        <div class="panel">
+            <h4>Connect with Me</h4>
+            <ul class="social-connections">
+                <li><a href="k-nom@outlook.com"><i class="fas fa-envelope"></i> k-nom@outlook.com</a></li>
+                <li><a href="https://www.linkedin.com/in/k-nom/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://www.instagram.com/k._.o.n" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+            </ul>
+
+            <h4>Quick Links</h4>
+            <ul class="quick-links">
+                <li><a href="{{ url }}/about"><i class="fas fa-info-circle"></i> About Me</a></li>
+                <li><a href="{{ url }}/portfolio"><i class="fa-solid fa-newspaper"></i> Portfolio </a></li>
+                <li><a href="{{ url }}/cv"><i class="fas fa-blog"></i> CV</a></li>
+                <li><a href="{{ url }}/contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<!-- Widgets Section -->
+<div class="row t60">
+    <div class="small-12 columns">
+        <div class="widgets-container">
+            {% if page.widget1.image or page.widget1.video or page.widget1.title %}
+                {% include _frontpage-widget.html widget=page.widget1 %}
+            {% endif %}
+
+            {% if page.widget2.image or page.widget2.video or page.widget2.title %}
+                {% include _frontpage-widget.html widget=page.widget2 %}
+            {% endif %}
+
+            {% if page.widget3.image or page.widget3.video or page.widget3.title %}
+                {% include _frontpage-widget.html widget=page.widget3 %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Button -->
+{% if page.callforaction %}
+    <div class="row t60 b60">
+        <div class="small-12 text-center columns">
+            <a class="button radius custom-button {{ page.callforaction.style }} small-button large-button" href="{{ url }}{{ page.callforaction.url }}"{% if page.callforaction.url contains 'http' %} target="_blank" {% endif %}>{{ page.callforaction.text }}</a>
+        </div>
+    </div>
+{% endif %}
+
+{% comment %}
+*
+* Finally, if there is content, spit it out.
+*
+{% endcomment %}
+
+<div class="row">
+    {{ content }}
+</div><!-- /.row -->

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accelerating Python code</title>
+
+<!-- Add Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/styles_feeling_responsive.css">
+
+
+
+<script src="http://localhost:4000/assets/js/modernizr.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script>
+    WebFont.load({
+        google: {
+            families: [ 'Lato:400,700,400italic:latin', 'Volkhov::latin' ]
+        }
+    });
+</script>
+
+<noscript>
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic%7CVolkhov" rel="stylesheet" type="text/css">
+</noscript>
+
+<!-- Search Engine Optimization -->
+<meta name="description" content="Exploring tools such as OpenMP, MPI and C++, as well as Python modules Cython and Numba to increase the efficiency of the computationally intensive Lebwhol-Lasher fluid model coded in Python">
+<meta name="google-site-verification" content="Vk0IOJ2jwG_qEoG7fuEXYqv0m2rLa8P778Fi_GrsgEQ">
+<meta name="msvalidate.01" content="0FB4C028ABCF07C908C54386ABD2D97F">
+
+
+
+<link rel="canonical" href="http://localhost:4000/portfolio/accelerating-python-code/">
+
+<!-- Facebook Open Graph -->
+<meta property="og:title" content="Accelerating Python code">
+<meta property="og:description" content="Exploring tools such as OpenMP, MPI and C++, as well as Python modules Cython and Numba to increase the efficiency of the computationally intensive Lebwhol-Lasher fluid model coded in Python">
+<meta property="og:url" content="http://localhost:4000/portfolio/accelerating-python-code/">
+<meta property="og:locale" content="en_EN">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Konstantin Nomerotski - Portfolio">
+<meta property="og:image" content="/images/cpython.png">
+<meta property="article:author" content="https://www.facebook.com/phlow.media">
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="phlow">
+<meta name="twitter:creator" content="phlow">
+<meta name="twitter:title" content="Accelerating Python code">
+<meta name="twitter:description" content="Exploring tools such as OpenMP, MPI and C++, as well as Python modules Cython and Numba to increase the efficiency of the computationally intensive Lebwhol-Lasher fluid model coded in Python">
+<meta name="twitter:image" content="/images/cpython.png">
+
+
+<link type="text/plain" rel="author" href="http://localhost:4000/humans.txt">
+
+
+
+
+
+	<link rel="icon" sizes="32x32" href="http://localhost:4000/assets/img/favicon-32x32.png">
+
+	<link rel="icon" sizes="192x192" href="http://localhost:4000/assets/img/touch-icon-192x192.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="http://localhost:4000/assets/img/apple-touch-icon-180x180-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://localhost:4000/assets/img/apple-touch-icon-152x152-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/assets/img/apple-touch-icon-144x144-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://localhost:4000/assets/img/apple-touch-icon-120x120-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/assets/img/apple-touch-icon-114x114-precomposed.png">
+
+	
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://localhost:4000/assets/img/apple-touch-icon-76x76-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/assets/img/apple-touch-icon-72x72-precomposed.png">
+
+	<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/assets/img/apple-touch-icon-precomposed.png">	
+
+	<meta name="msapplication-TileImage" content="http://localhost:4000/assets/img/msapplication_tileimage.png">
+
+	<meta name="msapplication-TileColor" content="#fabb00">
+
+
+
+
+
+
+</head>
+<body id="top-of-page" class="post">
+	
+	
+<div id="navigation" class="sticky">
+  <nav class="top-bar" role="navigation" data-topbar data-options="scrolltop: false">
+    <ul class="title-area">
+      <li class="name">
+        <h1 class="hide-for-large-up">
+<a href="http://localhost:4000" class="icon-tree site-title"> Konstantin Nomerotski - Portfolio</a>
+        </h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar toggle-topbar-click menu-icon"><a><span>Nav</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+      
+      <ul class="left">
+        
+
+        
+
+        
+        
+
+        
+        
+        <li><a href="http://localhost:4000/">Home</a></li>
+          <li class="divider">
+
+          
+          
+          
+          
+
+        
+
+        
+        
+
+        
+        
+
+          </li>
+<li class="has-dropdown">
+            <a href="http://localhost:4000/cv/">CV</a>
+
+            <ul class="dropdown">
+              
+
+              
+
+              <li><a href="http://localhost:4000/info/">About</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/cv/">CV</a></li>
+              
+            </ul>
+
+          </li>
+          <li class="divider">
+          
+          
+          
+
+        
+
+        
+        
+
+        
+        
+
+          </li>
+<li class="has-dropdown">
+            <a href="http://localhost:4000/portfolio/">Portfolio</a>
+
+            <ul class="dropdown">
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/ligand-x/">Ligand-X</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/rep-sampling-for-nea/">Rep. Sampling for NEA</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/biscuit-dunking-analysis/">Biscuit Dunking Analysis</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/">Cloud paradigm ATLAS data processing</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/atmospec-data-visualization-module/">Atmospec Data Visualization module</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/this-website/">This Website</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/portfolio/accelerating-python-code/">Python code acceleration</a></li>
+              
+            </ul>
+
+          </li>
+          <li class="divider">
+          
+          
+          
+
+        
+
+        
+        
+
+        
+        
+
+          </li>
+<li class="has-dropdown">
+            <a href="http://localhost:4000/blog/">Blog</a>
+
+            <ul class="dropdown">
+              
+
+              
+
+              <li><a href="http://localhost:4000/blog/">Recent</a></li>
+              
+
+              
+
+              <li><a href="http://localhost:4000/blog/archive/">Blog Archive</a></li>
+              
+            </ul>
+
+          </li>
+          <li class="divider">
+          
+          
+          
+
+        
+
+        
+        
+
+        
+        
+
+          </li>
+<li class="has-dropdown">
+            <a href="http://localhost:4000/guides/">Guides &amp; Tutorials</a>
+
+            <ul class="dropdown">
+              
+
+              
+
+              <li><a href="http://localhost:4000/guides/">Topics</a></li>
+              
+            </ul>
+
+          </li>
+          <li class="divider">
+          
+          
+          
+
+        
+
+        
+        
+          
+
+        
+
+        
+        
+          
+          
+      </li>
+</ul>
+
+
+      
+      <ul class="right">
+        
+
+        
+
+
+
+        
+        
+          
+
+        
+
+
+
+        
+        
+          
+
+        
+
+
+
+        
+        
+          
+
+        
+
+
+
+        
+        
+          
+
+        
+
+
+
+        
+        
+          
+
+        
+
+
+
+        
+        
+        
+        
+        <li class="divider">
+        </li>
+<li><a href="http://localhost:4000/search/">Search</a></li>
+
+          
+          
+          
+          
+
+        
+
+
+
+        
+        
+        
+        
+        <li class="divider">
+        </li>
+<li><a href="http://localhost:4000/contact/">Contact</a></li>
+
+          
+          
+          
+          
+          
+      </ul>
+
+    </section>
+  </nav>
+</div>
+<!-- /#navigation -->
+	
+
+	
+
+
+
+
+<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+ <a href="http://localhost:4000">Start</a>
+ 
+   
+    
+        <a href="http://localhost:4000/portfolio/">portfolio</a>
+    
+  
+    
+        <a class="current">Accelerating Python code</a>
+    
+  
+</nav>
+
+
+
+
+	<div class="row t30">
+	<div class="medium-8 columns">
+		<article itemscope itemtype="http://schema.org/Article">
+			<header>
+				
+				<figure>
+					<img src="/images/cpython.png" width="970" alt="Accelerating Python code" itemprop="image">
+
+					
+				</figure>
+				
+
+				<div itemprop="name">
+					<p class="subheadline">Increasing Efficiency</p>
+					<h1>Accelerating Python code</h1>
+				</div>
+			</header>
+
+
+			
+			<p class="teaser" itemprop="description">
+				Exploring tools such as OpenMP, MPI and C++, as well as Python modules Cython and Numba to increase the efficiency of the computationally intensive Lebwhol-Lasher fluid model coded in Python
+			</p>
+			
+
+			<div itemprop="articleSection">
+			<h3>Project Objectives</h3>
+
+<p>To increase the efficiency of Lebwhol Lasher model, coded in Python, by investigating and reducing code bottlenecks. A combination of techniques were used including OpenMP, MPI and C++, as well as Python modules numba and numpy.</p>
+
+<h3>Background</h3>
+<h5>Lebwohl Lasher model:</h5>
+
+<p>The Lebwohl-Lasher model is used for modelling the properities and phase transitions of liquid crystals, which are defined as materials with properties between conventional liquids and solid crystals. Such materials are widely used in displays, for example, in TVs and smartphones. The model provides a simplistic way to simulate complex interactions, using a lattice based structure where eah site represents a stationary molecule, considering only its orientation. The model can be used to explore the elastic properties of crystal liquids, which are important in understanding their reaction to external forces. Similarly it can be used to study the confinement of liquid crystals in small spaces, which has applications in the design of new devices. Most importantly, it can be used to simulate phase transitions, such as from a disordered (isotropic) to an ordered (nematic) state. Unfortunately, the model is extremely computationally intensive when implemented using Python, therefore, several options were explored to increase the efficiency of the code.</p>
+
+<h5>Increasing the efficiency</h5>
+<h5>Approaches:</h5>
+<p><b>Profiling</b><br>
+The initial exploration of bottlenecks was performed using cProfile, Python's built-in profiling module. It collects detailed runtime statistics, such as the time spent in each function and the number of function calls, which are extremely helpful when identifying bottlenecks. Additionally, timeit was used for more hands-on timing of individual functions to check and troubleshoot improvements.</p>
+<p><b>Parallelization</b><br>
+Parallelization is an extremely valuable technique when there is a single task that is done multiple times, as it can be used to create sub-tasks which are all executed simultaneously on different processors/cores to increase the efficiency of the program. MPI (Message Passing Interface) was used to facilitate parallelization across nodes on the BlueCrystal4 cluster using collective communication.
+</p>
+<p><b>Numba</b><br>
+Numba is a Python module that provides a just-in-time (JIT) compiler, translating any Python and NumPy code into machine code at runtime making it extremely fast to execute. It is an extremely pleasant and easy module to use that provides satisfying decreases in runtime with the simple addition of a function tag
+</p>
+<p><b>C approaches</b><br>
+<i>Cython</i> and <i>C++</i> were used to reduce the runtime. C code is compiled into machine code before runtime, eliminating the need for interpretation. Moreover, it allows for more hands-on memory management leading to more efficient resource use. Cython was used as it allows the implementation of C-like features in Python code.
+</p>
+
+<h3>Results</h3>
+
+<p>Implemented combinations of accelleration methods to reduce bottlenecks in the computationally intensive Lebwohl Lasher method.</p>
+
+<section>
+   <div class="container-fluid">
+      <div class="row">
+         <center>
+            <img src="/images/acc_python_results.png">
+         </center>
+      </div>            
+  </div>
+</section>
+<p><i>Figure 1: (left) MPI alongside original runtime (center) MPI using Vectorized code (right) MPI using Vectorized and JIT compiled code. Parallelization executed on BlueCrystal4 (BC4) full 28 core node.</i></p>
+
+<p>The MPI approaches were very successful, providing a 3x speedup with just MPI on a single cluster node. The combination of Vectorization and MPI provided additional improvement, however, the MPI implementation added unecessary overhead in comparison to the vectorization approach alone. Finally, the combination of MPI, Vectorization and JIT compilation provided the best increase in efficiency. A decrease of two orderes of magnitude was seen even at relatively large sample sizes of 1000 using a full BlueCrystal4 (BC4) node</p>
+<div style="text-align: center;">
+  <img src="/images/LL_Cython_OG.png" alt="Image Description" style="width: 280px;">
+</div>
+
+<p><i>Figure 2: Cythonized code alongside original runtimes. Parallelization was executed over 6 core Ryzen 4000 Series 5 Processor.</i></p>
+
+<p>The Cythonized approach was also successful in decreasing the runtime, although dwarfed by the MPI and Numba methods, it provides relatively linear scaling through sample sizes &lt; 900. Due to a lack of support for Cythonized code on BC4 the parallelization was run locally, limiting the number of cores. From the limited data it is possible that the overhead exeeds the benefit from the MPI implementation.</p>
+
+<h2 class="t60" id="other-projects">Other Projects</h2>
+
+<ul class="side-nav">
+
+  
+
+    
+      <li><a href="http://localhost:4000/portfolio/ligand-x/">Full Stack · <strong>Ligand-X: Automated Protein Simulation Platform</strong></a></li>
+    
+      <li><a href="http://localhost:4000/blog/simulating-protein-ligand-complexes/">Bioinformatics · <strong>Simulating Protein-Ligand Complexes using Open Source tools</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/an-investigation-on-wine/">Data Science · <strong>An investigation on wine</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/this-website/">Web development · <strong>This Website</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/rep-sampling-for-nea/">Data Science · <strong>Representative Samping for the Nuclear Ensemble Approach</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/cloud-paradigm-atlas-data-processing/">Cloud paradigms · <strong>Improving scalability using cloud paradigms</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/biscuit-dunking-analysis/">Data Science · <strong>Biscuit Dunking Data Analysis</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/atmospec-data-visualization-module/">Data Visualization · <strong>Atmospec Visualization Module</strong></a></li>
+    
+      <li><a href="http://localhost:4000/portfolio/accelerating-python-code/">Increasing Efficiency · <strong>Accelerating Python code</strong></a></li>
+    
+      <li class="text-right"><a href="http://localhost:4000/blog/archive/"><strong>More ›</strong></a></li>
+
+
+  
+</ul>
+
+
+			</div>
+
+			
+						<div id="page-meta" class="t30">
+				<p>
+					<!-- Look the author details up from the site config. -->
+					
+					<!-- Output author details if some exist. -->
+					
+					<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="pr20 icon-edit"><a href="http://k-nom.com" target="_blank"> Konstantin N</a></span>
+				</span>
+				
+
+				
+				<time class="icon-calendar pr20" datetime="2024-08-04T00:00:00-04:00" itemprop="datePublished"> 2024-08-04</time>
+				
+
+				<span class="icon-archive pr20"> PROJECTS</span>
+				<br>
+				<span class="pr20"><span class="icon-price-tag pr10"> Python</span> <span class="icon-price-tag pr10"> C++</span> <span class="icon-price-tag pr10"> Cython</span> <span class="icon-price-tag pr10"> Numba</span> <span class="icon-price-tag pr10"> JIT</span> <span class="icon-price-tag pr10"> MPI</span> <span class="icon-price-tag pr10"> Efficiency</span> </span>
+			</p>
+
+			
+			<div id="post-nav" class="row">
+				
+				<div class="medium-5 columns"><a class="button small radius prev" href="http://localhost:4000/blog/predicting-solubility">« Predicting molecular properties: Solubility</a></div>
+<!-- /.small-4.columns -->
+				
+				<div class="medium-2 columns text-center"><a class="button small radius expand" href="http://localhost:4000/blog/archive/" title="Blog Archive">Archive</a></div>
+<!-- /.small-4.columns -->
+				
+				<div class="medium-5 columns text-right"><a class="button small radius next" href="http://localhost:4000/portfolio/atmospec-data-visualization-module/">Atmospec Visualization Module »</a></div>
+<!-- /.small-4.columns -->
+				
+			</div>
+			
+			</div>
+<!--  /.page-meta -->
+
+			
+
+			
+		</article>
+	</div>
+<!-- /.medium-8.columns -->
+
+
+	
+
+	
+		<div class="medium-4 columns">
+			<aside>
+	<div class="panel radius">
+		<h3>Sidebar</h3>
+		<p>
+			<b>Optimization with C:</b><br> Optimized Python code using Cython, numba, and C++ to improve performance of bottlenecks by 30%.<br>
+			<b>Parallel Computing:</b><br> Parallelised Python code using MPI to reduce computation time by 50% on a cluster.<br>
+			<b>Vectorization:</b> <br> Used numpy and pandas to vectorize operations.
+
+		</p>
+	</div>
+</aside>
+		</div>
+<!-- /.medium-4.columns -->
+	
+</div>
+<!-- /.row -->
+
+
+	
+	    <div id="up-to-top" class="row">
+      <div class="small-12 columns" style="text-align: right;">
+        <a class="iconfont" href="#top-of-page"></a>
+      </div>
+<!-- /.small-12.columns -->
+    </div>
+<!-- /.row -->
+
+
+    <footer id="footer-content" class="bg-grau">
+      <div id="footer">
+        <div class="row">
+          <div class="medium-6 large-5 columns">
+            <h5 class="shadow-black">About This Site</h5>
+
+            <p class="shadow-black">
+              » Showcasing my portfolio in Chemistry, Computing, and Data Science «
+              <a href="http://localhost:4000/info/">More ›</a>
+            </p>
+          </div>
+<!-- /.large-6.columns -->
+
+
+          <div class="small-6 medium-3 large-3 large-offset-1 columns">
+            
+              
+                <h5 class="shadow-black">Services</h5>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+
+              <ul class="no-bullet shadow-black">
+              
+                
+                  <li>
+                    <a href="http://localhost:4000" title=""></a>
+                  </li>
+              
+                
+                  <li>
+                    <a href="http://localhost:4000/contact/" title="Contact">Contact</a>
+                  </li>
+              
+                
+                  <li>
+                    <a href="http://localhost:4000/feed.xml" title="Subscribe to RSS Feed">RSS</a>
+                  </li>
+              
+                
+                  <li>
+                    <a href="http://localhost:4000/atom.xml" title="Subscribe to Atom Feed">Atom</a>
+                  </li>
+              
+                
+                  <li>
+                    <a href="http://localhost:4000/sitemap.xml" title="Sitemap for Google Webmaster Tools">sitemap.xml</a>
+                  </li>
+              
+              </ul>
+          </div>
+<!-- /.large-4.columns -->
+
+
+          <div class="small-6 medium-3 large-3 columns">
+            
+              
+                <h5 class="shadow-black">Aknowledgements</h5>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+
+            <ul class="no-bullet shadow-black">
+            
+              
+                <li>
+                  <a href="http://localhost:4000" title=""></a>
+                </li>
+            
+              
+                <li class="network-entypo">
+                  <a href="http://entypo.com/" target="_blank" title="Icons by Daniel Bruce">Icons by Daniel Bruce</a>
+                </li>
+            
+              
+                <li class="services-newsletter">
+                  <a href="http://foundation.zurb.com/" target="_blank" title="Built on Foundation">Built on Foundation</a>
+                </li>
+            
+              
+                <li class="rss-link">
+                  <a href="http://unsplash.com/" target="_blank" title="Images by Unsplash">Images by Unsplash</a>
+                </li>
+            
+              
+                <li class="sitemap-link">
+                  <a href="http://srobbin.com/jquery-plugins/backstretch/" target="_blank" title="Using Backstretch by Scott Robbin">Using Backstretch by Scott Robbin</a>
+                </li>
+            
+            </ul>
+          </div>
+<!-- /.large-3.columns -->
+        </div>
+<!-- /.row -->
+
+      </div>
+<!-- /#footer -->
+
+
+      <div id="subfooter">
+        <nav class="row">
+          <section id="subfooter-left" class="small-12 medium-6 columns credits">
+            <p>Created with  <a href="http://phlow.de/">Phlow</a> and <a href="http://jekyllrb.com/" target="_blank">Jekyll</a></p>
+          </section>
+
+          <section id="subfooter-right" class="small-12 medium-6 columns">
+            <ul class="inline-list social-icons">
+            
+              <li><a href="http://github.com/kon-218" target="_blank" class="icon-github" title="Code projects"></a></li>
+            
+              <li><a href="http://twitter.com/phlow" target="_blank" class="icon-twitter" title="Immer das Neuste von Phlow gibt es auf Twitter"></a></li>
+            
+              <li><a href="http://www.mixcloud.com/phlow/" target="_blank" class="icon-cloud" title="Mixe, was sonst?"></a></li>
+            
+            </ul>
+          </section>
+        </nav>
+      </div>
+<!-- /#subfooter -->
+    </footer>
+
+	
+
+	
+
+
+<script src="http://localhost:4000/assets/js/javascript.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

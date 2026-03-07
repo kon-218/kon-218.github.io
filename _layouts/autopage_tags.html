@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<h1>Posts tagged with "{{ page.autopages.display_name }}"</h1>
+
+<ul>
+  {% for post in paginator.posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      ({{ post.date | date: "%B %d, %Y" }})
+    </li>
+  {% endfor %}
+</ul>
+
+{% include _pagination.html %}
