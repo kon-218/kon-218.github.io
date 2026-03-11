@@ -89,6 +89,26 @@ permalink: /cv/
     <div class="cv-section project-section">
         <h2>Project Experience</h2>
 
+        <div class="cv-item">
+            <h3><a href="/portfolio/ligand-x/" style="color: inherit; text-decoration: none;">Ligand-X: Automated Protein Simulation Platform</a></h3>
+            <p>Full Stack Web Application / Cheminformatics</p>
+            <p>2025 – Present</p>
+            <ul>
+                <li>
+                    Developed a comprehensive web-based platform for structural, physical, and chemical analysis of ligand-protein complexes, streamlining computer-aided drug discovery workflows.
+                </li>
+                <li>
+                    Designed and implemented a distributed microservices architecture utilizing FastAPI, Celery, RabbitMQ, and Redis to orchestrate computationally intensive simulations.
+                </li>
+                <li>
+                    Integrated state-of-the-art computational chemistry tools into isolated Docker containers, including OpenMM, AutoDock Vina, OpenFF, OpenFE, and ORCA.
+                </li>
+                <li>
+                    Built a responsive frontend using React, Next.js, TypeScript, Mol* 3D visualization, and Ketcher molecular editor for seamless interactive data analysis.
+                </li>
+            </ul>
+        </div>
+
         <a href="/portfolio/this-website/" class="project-link">
             <div class="cv-item">
                 <h3>Portfolio Website <span class="cv-date">Oct 2024 – Present</span></h3>
