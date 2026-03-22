@@ -23,10 +23,10 @@ header: no
 
 <!-- YouTube video placeholder - replace VIDEO_ID with actual video ID -->
 <div class="flex-video widescreen">
-    <iframe src="https://www.youtube.com/embed/hUWTSDUAag4" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/RnPZ47xtPRg" frameborder="0" allowfullscreen></iframe>
 </div>
 
-> **Coming Soon:** Video walkthrough demonstrating quantum chemistry calculations in Ligand-X.
+> **Properties from first principles:** Video walkthrough demonstrating quantum chemistry calculations in Ligand-X.
 
 ---
 
