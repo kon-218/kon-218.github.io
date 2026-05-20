@@ -106,7 +106,7 @@
 &lt;div class=&quot;feature-card&quot;&gt;
     &lt;div class=&quot;row&quot;&gt;
         &lt;div class=&quot;small-4 medium-3 columns text-center&quot;&gt;
-            &lt;img src=&quot;../../images/md.png&quot; alt=&quot;Protein Cleaning&quot; class=&quot;feature-image&quot; /&gt;
+            &lt;img src=&quot;../../images/cleaning.png&quot; alt=&quot;Protein Cleaning&quot; class=&quot;feature-image&quot; /&gt;
         &lt;/div&gt;
         &lt;div class=&quot;small-8 medium-6 columns feature-content&quot;&gt;
             &lt;h4&gt;Structure Cleaning&lt;/h4&gt;
@@ -236,7 +236,7 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;**Backend**&lt;/td&gt;
-      &lt;td&gt;FastAPI, Celery, Redis, PostgreSQL&lt;/td&gt;
+      &lt;td&gt;FastAPI, Celery, RabbitMQ, Redis, PostgreSQL&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;**Chemistry**&lt;/td&gt;
@@ -244,7 +244,7 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;**Deployment**&lt;/td&gt;
-      &lt;td&gt;Docker Compose, Conda, GPU support&lt;/td&gt;
+      &lt;td&gt;Docker Compose, Conda, CUDA support&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -353,16 +353,16 @@ the celery workers will be available at &lt;code class=&quot;language-plaintext 
 
 &lt;h3 id=&quot;why-alchemical&quot;&gt;Why “Alchemical”?&lt;/h3&gt;
 
-&lt;p&gt;We call these calculations “alchemical” because we’re doing something impossible in the real world: gradually transforming one molecule into another inside the simulation. The atoms unique to molecule A are slowly “turned off” while the atoms unique to molecule B are “turned on”. This is controlled by a coupling parameter λ (lambda), the same approach used in &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt;: at λ = 0 molecule A is fully present; at λ = 1 molecule B is fully present; intermediate λ values describe a continuous, non-physical hybrid state.&lt;/p&gt;
+&lt;p&gt;We call these calculations “alchemical” because we’re doing something impossible in the real world: gradually transforming one molecule into another inside the simulation. The atoms unique to molecule A are slowly “turned off” while the atoms unique to molecule B are “turned on”. This is controlled by a coupling parameter $λ$ (lambda), the same approach used in &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt;: at $λ = 0$ molecule A is fully present; at $λ = 1$ molecule B is fully present; intermediate $λ$ values describe a continuous, non-physical hybrid state.&lt;/p&gt;
 
 &lt;div style=&quot;text-align: center;&quot;&gt;
   &lt;img src=&quot;/images/alchemical_transformation_rbfe.png&quot; alt=&quot;Alchemical transformation of benzene to benzaldehyde over 11 lambda states&quot; style=&quot;width: 400px;&quot; /&gt;
   &lt;p style=&quot;text-align: center; font-style: italic;&quot;&gt;Figure 2: Alchemical transformation of benzene to benzaldehyde over 11 lambda states&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Think of it like a movie dissolve effect, but for molecules. This continuous, controlled transformation lets us precisely measure the energy difference between the two states.&lt;/p&gt;
+&lt;p&gt;Think of it like a dissolve or fade effect, but for molecules. This continuous, controlled transformation lets us precisely measure the energy difference between the two states.&lt;/p&gt;
 
-&lt;p&gt;A technical subtlety is that as atoms appear or disappear at the endpoints (λ = 0 or λ = 1), standard Lennard-Jones potentials become singular — two atoms occupying the same space would produce infinite repulsion. Soft-core potentials solve this by smoothly switching on van der Waals interactions, preventing numerical instabilities at the transformation endpoints.&lt;/p&gt;
+&lt;p&gt;A technical subtlety is that as atoms appear or disappear at the endpoints ($λ = 0$ or $λ = 1$), standard Lennard-Jones potentials become singular, meaning that two atoms occupying the same space would produce infinite repulsion. Soft-core potentials solve this by smoothly switching on van der Waals interactions, preventing instabilities at the transformation endpoints.&lt;/p&gt;
 
 &lt;h3 id=&quot;building-a-network&quot;&gt;Building a Network&lt;/h3&gt;
 
@@ -426,15 +426,15 @@ the celery workers will be available at &lt;code class=&quot;language-plaintext 
 
 &lt;h3 id=&quot;interpreting-the-results&quot;&gt;Interpreting the Results&lt;/h3&gt;
 
-&lt;p&gt;RBFE results are reported as ΔΔG values in kcal/mol:&lt;/p&gt;
+&lt;p&gt;RBFE results are reported as $ΔΔG$ values in kcal/mol:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Negative ΔΔG: The new molecule binds more strongly than the reference&lt;/li&gt;
-  &lt;li&gt;Positive ΔΔG: The new molecule binds more weakly than the reference&lt;/li&gt;
+  &lt;li&gt;Negative: The new molecule binds more strongly than the reference&lt;/li&gt;
+  &lt;li&gt;Positive: The new molecule binds more weakly than the reference&lt;/li&gt;
   &lt;li&gt;Magnitude: Every 1.4 kcal/mol corresponds to roughly a 10-fold change in binding affinity&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;For example, a molecule with ΔΔG = −2.8 kcal/mol relative to the reference binds approximately 100× more tightly.&lt;/p&gt;
+&lt;p&gt;For example, a molecule with $ΔΔG$ = −2.8 kcal/mol relative to the reference binds approximately 100× more tightly.&lt;/p&gt;
 
 &lt;h3 id=&quot;accuracy-and-limitations&quot;&gt;Accuracy and Limitations&lt;/h3&gt;
 
@@ -446,7 +446,7 @@ the celery workers will be available at &lt;code class=&quot;language-plaintext 
   &lt;li&gt;Best for: Similar molecules sharing a common scaffold — the core ring system or backbone shared by the series — with varied substituents around it&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The method works best when molecules are structurally similar. Large scaffold changes, where the central ring system itself changes, or unusual chemistry can reduce reliability: in those cases, &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt; is the better choice. A rough decision guide:&lt;/p&gt;
+&lt;p&gt;The method works best when molecules are structurally similar. Large scaffold changes, where the central ring system itself changes, or unusual chemistry can reduce reliability: in those cases, &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt; is the better choice.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -495,7 +495,7 @@ the celery workers will be available at &lt;code class=&quot;language-plaintext 
   &lt;li&gt;Analyze results as a ranked list with uncertainty estimates&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;For understanding the electronic properties of the ligands themselves — charge distribution, reactivity, conformational preferences — &lt;a href=&quot;/blog/quantum-chemistry-theory&quot;&gt;quantum chemistry methods&lt;/a&gt; provide a complementary perspective that classical force fields cannot offer.&lt;/p&gt;
+&lt;p&gt;For understanding the electronic properties of the ligands themselves — charge distribution, reactivity, conformational preferences — &lt;a href=&quot;/blog/quantum-chemistry-theory&quot;&gt;quantum chemistry methods&lt;/a&gt; provide an insightful, complementary perspective.&lt;/p&gt;
 
 &lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
 
@@ -675,7 +675,7 @@ $$ΔG_{bind} = ΔG_{complex} − ΔG_{solvent}$$&lt;/p&gt;
 
 &lt;p&gt;Structural biology has long relied on techniques like X-ray crystallography and cryo-EM to reveal protein structures. But these methods capture a single frozen snapshot. Proteins are not static sculptures: they are dynamic machines, and their function depends on how they move.&lt;/p&gt;
 
-&lt;p&gt;Molecular dynamics (MD) bridges this gap. Rather than a single structure, MD produces a trajectory — a time-ordered sequence of snapshots, typically saved every picosecond, showing where every atom is at each instant. Think of it as a molecular slow-motion film: each frame is a complete atomic configuration, and playing them in sequence reveals how the protein breathes, flexes, and responds to its environment. This lets us observe phenomena ranging from rapid hydrogen bond fluctuations to large-scale conformational changes linked to protein function.&lt;/p&gt;
+&lt;p&gt;Molecular dynamics (MD) is a computational method that simulates the physical movements of atoms and molecules over time. Rather than a single structure, MD produces a trajectory: a time-ordered sequence of snapshots, typically saved every picosecond, showing where every atom is at each instant. It can be thought of as a molecular slow-motion film: each frame is a complete atomic configuration, and playing them in sequence reveals how the protein flexes, and responds to its environment. This lets us observe phenomena ranging from rapid hydrogen bond fluctuations to large-scale conformational changes linked to protein function.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-physics-of-motion&quot;&gt;The Physics of Motion&lt;/h3&gt;
 
@@ -697,7 +697,7 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;h3 id=&quot;numerical-integration&quot;&gt;Numerical Integration&lt;/h3&gt;
 
-&lt;p&gt;Given a force field that returns the force on each atom, the next challenge is propagating the system forward in time. Because these equations have no analytical solution for systems of thousands of atoms, they must be solved numerically. The integrator advances the simulation one small time step (Δt) at a time — typically 1–2 femtoseconds — small enough to resolve the fastest molecular vibrations (e.g., O–H bond stretching at ~3500 cm⁻¹). Common algorithms include the Leap-Frog and Velocity Verlet integrators, both of which conserve energy with high accuracy over long simulations.&lt;/p&gt;
+&lt;p&gt;Given a force field that returns the force on each atom, the next challenge is propagating the system forward in time. Because these equations have no analytical solution for systems of thousands of atoms, they must be solved numerically. The integrator advances the simulation one small time step (Δt) at a time, typically 1–2 femtoseconds, small enough to resolve the fastest molecular vibrations (e.g., O–H bond stretching at ~3500 cm⁻¹). Common algorithms include the Leap-Frog and Velocity Verlet integrators, both of which conserve energy with high accuracy over long simulations.&lt;/p&gt;
 
 &lt;p&gt;One important practical consideration is long-range electrostatics: direct summation of Coulombic interactions between all pairs of atoms would scale as $O(N^2)$, becoming prohibitive for large systems. Particle Mesh Ewald (PME) exploits the periodicity of the simulation box to compute electrostatics on a grid using fast Fourier transforms, reducing the cost to $O(N \log N)$ and making large-scale protein simulations tractable.&lt;/p&gt;
 
@@ -719,11 +719,11 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;ul&gt;
   &lt;li&gt;RMSD (Root Mean Square Deviation): Measures global structural stability over time. An RMSD that rises sharply and never stabilises suggests the protein is undergoing large structural changes, while one that plateaus and fluctuates around a stable mean indicates the simulation has converged&lt;/li&gt;
-  &lt;li&gt;RMSF (Root Mean Square Fluctuation): Quantifies the flexibility of individual residues, averaged over the whole trajectory. High RMSF residues are mobile and often functionally important — they may form flexible binding loops or hinge regions&lt;/li&gt;
+  &lt;li&gt;RMSF (Root Mean Square Fluctuation): Quantifies the flexibility of individual residues, averaged over the whole trajectory. High RMSF residues are mobile and often functionally important, for example they may form flexible binding loops or hinge regions&lt;/li&gt;
   &lt;li&gt;Radius of Gyration ($R_g$): Measures molecular compactness; useful for studying protein folding or collapse&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;An important limitation of standard MD is timescale. A typical production simulation covers nanoseconds to microseconds on modern GPU hardware. Many biologically relevant events — protein folding, large domain rearrangements, slow conformational changes — occur on timescales of milliseconds or longer, which remains beyond the reach of standard MD without enhanced sampling techniques.&lt;/p&gt;
+&lt;p&gt;An important limitation of standard MD is timescale. A typical production simulation covers nanoseconds to microseconds on modern GPU hardware. Many biologically relevant events, such as protein folding, large domain rearrangements, and slow conformational changes, occur on timescales of milliseconds or longer, which remains beyond the reach of standard MD without enhanced sampling techniques.&lt;/p&gt;
 
 &lt;p&gt;These descriptors form the foundation for downstream analyses. Beyond structural characterisation, MD trajectories provide the microscopic sampling that underpins the binding free energy calculations described in the &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt; and &lt;a href=&quot;/blog/rbfe-theory&quot;&gt;RBFE&lt;/a&gt; posts.&lt;/p&gt;
 
@@ -745,13 +745,13 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 				<title>Molecular Docking: Accelerating Lead Discovery with In Silico Tools</title>
 				<link>http://localhost:4000/blog/molecular-docking-theory</link>
 				<pubDate>Sat, 21 Feb 2026 00:00:00 -0500</pubDate>
-				<description>&lt;h3 id=&quot;the-scale-problem-in-drug-discovery&quot;&gt;The Scale Problem in Drug Discovery&lt;/h3&gt;
+				<description>&lt;h3 id=&quot;the-scale-of-chemical-space&quot;&gt;The Scale of Chemical Space&lt;/h3&gt;
 
 &lt;p&gt;Finding a new drug begins with identifying a molecule, the ligand, that binds tightly and selectively to a disease-relevant protein target, the receptor. The receptor presents a specific cavity on its surface, the binding pocket or active site, whose shape and chemical environment determine which molecules fit and how tightly.&lt;/p&gt;
 
-&lt;p&gt;The challenge is one of scale. Estimates of drug-like chemical space range from $10^{60}$ to $10^{100}$ synthetically accessible molecules. Even high-throughput screening (HTS), the experimental gold standard, can realistically test only a few hundred thousand compounds per campaign, a vanishingly small fraction. Every compound that is synthesised and tested costs time and money, so the question becomes: how do you decide which molecules are worth making in the first place?&lt;/p&gt;
+&lt;p&gt;The challenge is one of scale. Estimates of drug-like chemical space range from $10^{60}$ to $10^{100}$ synthetically accessible molecules. Even high-throughput screening (HTS), the experimental gold standard, can realistically test only a few hundred thousand compounds per campaign, a vanishingly small fraction. Every compound that is synthesised and tested costs time and money so how do you decide which molecules are worth investigating in the first place?&lt;/p&gt;
 
-&lt;p&gt;Molecular docking provides an answer. A single docking evaluation takes milliseconds on modern hardware. A library of one million compounds can be screened in hours, returning a ranked shortlist that guides synthetic effort, compressing years of exploratory chemistry into a prioritised queue that experimentalists can act on immediately.&lt;/p&gt;
+&lt;p&gt;Molecular docking provides chemists with a quick in silico filter. A single docking evaluation takes milliseconds on powerful GPU hardware, meaning a library of one million compounds can be screened in hours; returning a ranked shortlist that guides synthetic effort. This can compress years of exploratory chemistry into a prioritised queue that experimentalists can act on.&lt;/p&gt;
 
 &lt;h3 id=&quot;what-docking-is-measuring&quot;&gt;What Docking is Measuring&lt;/h3&gt;
 
@@ -759,7 +759,7 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;p&gt;$$\Delta G_{bind} = \Delta H_{bind} - T\Delta S_{bind}$$&lt;/p&gt;
 
-&lt;p&gt;The enthalpic term ($\Delta H$) captures direct non-covalent interactions — hydrogen bonds, van der Waals contacts, and electrostatic interactions such as salt bridges. The entropic term ($-T\Delta S$) accounts for the loss of conformational freedom when a flexible ligand locks into the pocket, and the gain in entropy as ordered water molecules are expelled into bulk solvent.&lt;/p&gt;
+&lt;p&gt;The enthalpic term ($\Delta H$) captures direct non-covalent interactions such as hydrogen bonds and van der Waals contacts; as well as electrostatic interactions. The entropic term ($-T\Delta S$) accounts for the loss of conformational freedom when a flexible ligand locks into the pocket, and the gain in entropy as ordered water molecules are expelled into bulk solvent.&lt;/p&gt;
 
 &lt;p&gt;This free energy has a directly measurable laboratory counterpart, the dissociation constant $K_d$:&lt;/p&gt;
 
@@ -769,11 +769,11 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;h3 id=&quot;searching-conformational-space&quot;&gt;Searching Conformational Space&lt;/h3&gt;
 
-&lt;p&gt;Before a score can be assigned, the algorithm must find the best-fitting orientation — the pose — of the ligand in the pocket. For a flexible ligand with many rotatable bonds and six degrees of translational and rotational freedom, the number of possible poses is enormous. Several search strategies make this tractable:&lt;/p&gt;
+&lt;p&gt;Before a score can be assigned, the algorithm must find the best-fitting orientation, the pose, of the ligand in the pocket. For a flexible ligand with many rotatable bonds and six degrees of translational and rotational freedom, the number of possible poses is enormous. Several search strategies make this tractable:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Genetic Algorithms: Used by tools like AutoDock 4, these evolve a population of candidate poses through “crossover” and “mutation” operators, analogous to biological evolution, until high-affinity configurations emerge&lt;/li&gt;
-  &lt;li&gt;Incremental Construction: The molecule is fragmented, each piece is docked into sub-pockets, and fragments are reassembled — efficiently exploring the combinatorial space&lt;/li&gt;
+  &lt;li&gt;Incremental Construction: The molecule is fragmented, each piece is docked into sub-pockets, and fragments are reassembled, efficiently exploring the combinatorial space&lt;/li&gt;
   &lt;li&gt;Protein Flexibility: Early “lock and key” models treated the receptor as rigid. Modern approaches allow side-chain movement and, in induced-fit protocols, backbone rearrangement. This better reflects the reality that binding often reshapes the pocket around the ligand&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -783,7 +783,7 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;ol&gt;
   &lt;li&gt;Physics-based: Use classical mechanics (van der Waals and Coulombic potentials) to estimate interaction energies directly&lt;/li&gt;
-  &lt;li&gt;Empirical: Express affinity as a weighted sum of hydrogen bonds, hydrophobic contacts, and rotatable bond penalties — weights trained by regression against experimental binding data&lt;/li&gt;
+  &lt;li&gt;Empirical: Express affinity as a weighted sum of hydrogen bonds, hydrophobic contacts, and rotatable bond penalties, with weights trained by regression against experimental binding data&lt;/li&gt;
   &lt;li&gt;Machine learning: Learn preferred interaction geometries from the PDB, or use deep learning (e.g., GNINA) to predict affinity from raw atomic coordinates without hand-crafted energy terms&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -792,18 +792,18 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 &lt;p&gt;The full virtual screening workflow has three phases:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Preparation: Clean the receptor structure, assign protonation states, define the search box around the binding pocket. Prepare each ligand — convert SMILES to a 3D model, enumerate tautomers, assign charges.&lt;/li&gt;
+  &lt;li&gt;Preparation: Clean the receptor structure, assign protonation states, define the search box around the binding pocket. Prepare each ligand: convert SMILES to a 3D model, enumerate tautomers, assign charges.&lt;/li&gt;
   &lt;li&gt;Docking: Run the pose search and scoring for every compound in the library; rank by score&lt;/li&gt;
   &lt;li&gt;Validation: Before trusting a screen, re-dock ligands with known crystal structures. Tools like AutoDock Vina achieve ~80% success at reproducing the native pose (RMSD ≤ 2.0 Å), establishing that the protocol is working before real predictions are made&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The key metric for evaluating a virtual screen is the Enrichment Factor (EF): the ratio of known actives recovered in the top-ranked fraction of results relative to random chance. An EF of 10 at 1% of the library means docking found 10× more active compounds in the top 1% than random selection would — a meaningful compression of experimental effort.&lt;/p&gt;
+&lt;p&gt;The key metric for evaluating a virtual screen is the Enrichment Factor (EF): the ratio of known actives recovered in the top-ranked fraction of results relative to random chance. An EF of 10 at 1% of the library means docking found 10× more active compounds in the top 1% than random selection would, a meaningful compression of chemical space required to explore experimentally.&lt;/p&gt;
 
-&lt;h3 id=&quot;where-docking-fits-and-where-it-stops&quot;&gt;Where Docking Fits, and Where It Stops&lt;/h3&gt;
+&lt;h3 id=&quot;limitations-of-docking&quot;&gt;Limitations of docking&lt;/h3&gt;
 
-&lt;p&gt;Docking’s speed is also its limitation. Scoring functions make significant approximations: entropic contributions are simplified, protein flexibility is often neglected, and solvation effects are difficult to capture. Scores correlate imperfectly with experimental affinities, and rankings can mislead for structurally diverse compound sets.&lt;/p&gt;
+&lt;p&gt;Docking’s ability to rapidly produce results comes at a cost, it is good for casting a wide net but should not be used for precise ranking of compounds. Scoring functions make significant approximations: entropic contributions are simplified, protein flexibility is often neglected, and solvation effects are difficult to capture. Scores correlate imperfectly with experimental affinities and rankings can be misleading for structurally diverse compound sets.&lt;/p&gt;
 
-&lt;p&gt;The correct mental model is that docking is a filter, not a measurement. It narrows a library of millions to a tractable shortlist of hundreds; it does not replace experimental binding assays. For rigorous affinity ranking of the shortlist, the physics-based methods described in the &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt; and &lt;a href=&quot;/blog/rbfe-theory&quot;&gt;RBFE&lt;/a&gt; posts provide much higher accuracy at greater computational cost.&lt;/p&gt;
+&lt;p&gt;The correct perspective is to use docking as a filter, not a measurement. It narrows a library of millions to a tractable shortlist of hundreds, but it does not replace experimental binding assays. For rigorous affinity ranking of the shortlist, the physics-based methods described in the &lt;a href=&quot;/blog/abfe-theory&quot;&gt;ABFE&lt;/a&gt; and &lt;a href=&quot;/blog/rbfe-theory&quot;&gt;RBFE&lt;/a&gt; posts provide much higher accuracy at greater computational cost.&lt;/p&gt;
 
 &lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
 
@@ -825,7 +825,7 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 				<pubDate>Fri, 20 Feb 2026 00:00:00 -0500</pubDate>
 				<description>&lt;h3 id=&quot;why-preparation-matters&quot;&gt;Why Preparation Matters&lt;/h3&gt;
 
-&lt;p&gt;The reliability of any molecular simulation is only as good as the input structure. Experimental protein structures are deposited in the Protein Data Bank (PDB), a freely accessible repository of over 200,000 experimentally determined 3D structures. Each entry is stored as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pdb&lt;/code&gt; file containing the Cartesian coordinates of every non-hydrogen atom resolved by the experiment. Similarly, small molecules are often encoded as SMILES strings (Simplified Molecular Input Line Entry System) — a compact text notation that encodes atomic connectivity, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CCO&lt;/code&gt; for ethanol — which must be converted to a 3D structure before simulation.&lt;/p&gt;
+&lt;p&gt;The reliability of any molecular simulation is only as good as the input structure. Experimental protein structures are deposited in the Protein Data Bank (PDB), a freely accessible repository of over 200,000 experimentally determined 3D structures. Each entry is stored as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pdb&lt;/code&gt; file containing the Cartesian coordinates of every non-hydrogen atom resolved by the experiment. Similarly, small molecules are often encoded as SMILES strings (Simplified Molecular Input Line Entry System), a compact text notation that encodes atomic connectivity, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CCO&lt;/code&gt; for ethanol, which must be converted to a 3D structure before simulation.&lt;/p&gt;
 
 &lt;p&gt;Neither of these formats is simulation-ready out of the box. X-ray crystallography, for instance, often fails to resolve hydrogen atom positions, flexible loop regions, or the correct protonation states of titratable residues. Running a simulation on an uncleaned structure is a guaranteed path to bad results, which is why preparation is treated as a disciplined, systematic process.&lt;/p&gt;
 
@@ -854,19 +854,19 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;h3 id=&quot;system-integration-and-relaxation&quot;&gt;System Integration and Relaxation&lt;/h3&gt;
 
-&lt;p&gt;Once both the protein and ligand are individually prepared, they must be assembled into a single simulation system. This requires combining their respective force field topologies — files that define the atom types, partial charges, and bonding connectivity that the simulation engine will use. Different force fields are used for different components: &lt;strong&gt;ff14SB&lt;/strong&gt; is a widely used parameter set for proteins, while a specialized force field such as &lt;strong&gt;GAFF2&lt;/strong&gt; (General Amber Force Field 2) or &lt;strong&gt;OpenFF Sage&lt;/strong&gt;, designed for small organic molecules, both having been parameterised to reproduce experimental geometries and thermodynamic data.&lt;/p&gt;
+&lt;p&gt;Once both the protein and ligand are individually prepared, they must be assembled into a single simulation system. This requires combining their respective force field topologies, which are files that define the atom types, partial charges, and bonding connectivity that the simulation engine will use. Different force fields are used for different components: &lt;strong&gt;ff14SB&lt;/strong&gt; is a widely used parameter set for proteins, while a specialized force field such as &lt;strong&gt;GAFF2&lt;/strong&gt; (General Amber Force Field 2) or &lt;strong&gt;OpenFF Sage&lt;/strong&gt;, designed for small organic molecules, both having been parameterised to reproduce experimental geometries and thermodynamic data.&lt;/p&gt;
 
 &lt;div style=&quot;text-align: center;&quot;&gt;
   &lt;img src=&quot;/images/solvated_system.png&quot; alt=&quot;Image Description&quot; style=&quot;width: 400px;&quot; /&gt;
   &lt;p style=&quot;text-align: center; font-style: italic;&quot;&gt;Figure 2: Solvated FLT3 system with a small molecule inhibitor&lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;The combined system is then placed in a periodic box of explicit water molecules. The most commonly used water model is &lt;strong&gt;TIP3P&lt;/strong&gt; (Transferable Intermolecular Potential with 3 Points), which represents each water molecule as three point charges — one oxygen and two hydrogens — at experimental geometry. The box must include a sufficient buffer of water around the solute (typically ~10 Å) on all sides. Periodic boundary conditions (PBC) are applied so that atoms leaving one face of the box re-enter from the opposite face, effectively mimicking an infinite bulk environment and eliminating artificial surface effects. Counterions (Na⁺, Cl⁻) are added to neutralise the total charge and reach physiological salt concentration (~150 mM).&lt;/p&gt;
+&lt;p&gt;The combined system is then placed in a periodic box of explicit water molecules. The most commonly used water model is &lt;strong&gt;TIP3P&lt;/strong&gt; (Transferable Intermolecular Potential with 3 Points), which represents each water molecule as three point charges: one oxygen and two hydrogens, at experimental geometry. The box must include a sufficient buffer of water around the solute, typically ~10 Å on all sides. Periodic boundary conditions (PBC) are applied so that atoms leaving one face of the box re-enter from the opposite face, effectively mimicking an infinite bulk environment and eliminating artificial surface effects. Counterions (Na⁺, Cl⁻) are added to neutralise the total charge and reach physiological salt concentration (~150 mM).&lt;/p&gt;
 
 &lt;p&gt;Finally, a tiered relaxation protocol prepares the system for production:&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Energy minimization&lt;/strong&gt;: Resolves steric clashes — atoms that accidentally overlap during system assembly — using gradient-based algorithms such as Steepest Descent&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;NVT equilibration&lt;/strong&gt;: Heats the system to the target temperature at constant &lt;strong&gt;N&lt;/strong&gt;umber of particles, &lt;strong&gt;V&lt;/strong&gt;olume, and &lt;strong&gt;T&lt;/strong&gt;emperature&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;NPT equilibration&lt;/strong&gt;: Adjusts pressure and density at constant &lt;strong&gt;N&lt;/strong&gt;umber of particles, &lt;strong&gt;P&lt;/strong&gt;ressure, and &lt;strong&gt;T&lt;/strong&gt;emperature, stabilising the box dimensions before data collection begins&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Energy minimization&lt;/strong&gt;: Resolves steric clashesusing gradient-based algorithms such as Steepest Descent&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;NVT equilibration&lt;/strong&gt;: Heats the system to the target temperature at constant Number of particles, Volume, and Temperature&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;NPT equilibration&lt;/strong&gt;: Adjusts pressure and density at constant Number of particles, Pressure, and Temperature, stabilising the box dimensions before data collection begins&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;The quality of this preparation determines the reliability of every downstream measurement. As the principle goes: garbage in, garbage out.&lt;/p&gt;
@@ -958,20 +958,30 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 				<pubDate>Thu, 19 Feb 2026 00:00:00 -0500</pubDate>
 				<description>&lt;h3 id=&quot;beyond-classical-force-fields&quot;&gt;Beyond Classical Force Fields&lt;/h3&gt;
 
-&lt;p&gt;Classical molecular dynamics force fields are powerful tools for simulating large systems, but they treat atoms as point charges with fixed, pre-assigned properties. Bond lengths, angles, and partial charges are set once from experimental data or higher-level calculations and then frozen for the duration of the simulation. This approximation breaks down whenever we need to understand where electrons actually are — which determines chemical reactivity, charge distribution, and spectroscopic properties.&lt;/p&gt;
+&lt;p&gt;Classical molecular dynamics force fields are powerful tools for simulating large systems, but they treat atoms as point charges with fixed, pre-assigned properties. Bond lengths, angles, and partial charges are set once from experimental data or higher-level calculations and then frozen for the duration of the simulation. This approximation breaks down whenever we need to understand where electrons actually are; which determines chemical reactivity, charge distribution, and spectroscopic properties.&lt;/p&gt;
 
 &lt;p&gt;In principle, all molecular properties follow from solving the time-independent Schrödinger equation, $\hat{H}\psi = E\psi$, for the system’s wavefunction $\psi$. For a molecule with more than a handful of electrons, exact solutions are computationally intractable. Quantum chemistry provides a hierarchy of tractable approximations to this problem.&lt;/p&gt;
 
-&lt;p&gt;The dominant method in modern chemistry is Density Functional Theory (DFT). Rather than computing the full many-electron wavefunction, DFT works with the electron density $\rho(\mathbf{r})$ — a three-dimensional function describing how many electrons are present at each point in space. The Hohenberg-Kohn theorems (1964) proved that this density uniquely determines all ground-state properties of the system: the external potential, and hence the total energy. Kohn and Sham (1965) made this practical by introducing a fictitious system of non-interacting electrons that reproduces the same density as the real interacting system, transforming the many-body problem into a set of tractable single-particle equations.&lt;/p&gt;
+&lt;p&gt;The dominant method in modern chemistry is Density Functional Theory (DFT). Rather than computing the full many-electron wavefunction DFT works with the electron density $\rho(\mathbf{r})$, a three-dimensional function describing how many electrons are present at each point in space. The Hohenberg-Kohn theorems (1964) proved that this density uniquely determines all ground-state properties of the system: the external potential, and hence the total energy. Kohn and Sham (1965) made this practical by introducing a fictitious system of non-interacting electrons that reproduces the same density as the real interacting system, transforming the many-body problem into a set of tractable single-particle equations.&lt;/p&gt;
 
-&lt;p&gt;In practice, DFT improves significantly on Hartree-Fock (HF) theory, which treats electron-electron repulsion through an average field and neglects correlation between electrons. DFT captures this correlation through an approximate exchange-correlation functional — a mathematical expression encoding all the complex quantum mechanical effects of electron-electron interactions. The choice of functional is the primary lever controlling accuracy.&lt;/p&gt;
+&lt;p&gt;In practice, DFT improves significantly on Hartree-Fock (HF) theory, which treats electron-electron repulsion through an average field and neglects correlation between electrons. DFT captures this correlation through an approximate exchange-correlation functional, which is a mathematical expression encoding all the complex quantum mechanical effects of electron-electron interactions. The choice of functional is therefore a primary lever controlling accuracy.&lt;/p&gt;
+
+&lt;p&gt;In drug discovery and the broader Ligand-X workflow, QM methods serve two key roles: geometry optimisation provides accurate 3D ligand structures for docking and molecular dynamics, and reactivity descriptors reveal electronic effects that classical force fields cannot capture. The central object for both is the Potential Energy Surface (PES), a landscape describing the total energy of the system as a function of all nuclear positions.&lt;/p&gt;
+
+&lt;h3 id=&quot;choosing-a-method&quot;&gt;Choosing a Method&lt;/h3&gt;
+
+&lt;p&gt;The accuracy of any QM calculation depends on two choices: the functional and the basis set.&lt;/p&gt;
+
+&lt;p&gt;Functionals range from simple Local Density Approximation (LDA) to sophisticated hybrid and double-hybrid functionals. The “gold standard” in quantum chemistry is Coupled Cluster theory with single, double, and perturbative triple excitations (CCSD(T)), which gives near-exact answers for small molecules at very high computational cost. For practical work on drug-sized molecules, hybrid DFT functionals such as B3LYP or PBE0 strike a good balance between cost and accuracy. Dispersion corrections (D3, D4) are essential for large organic molecules, where London dispersion forces significantly affect geometry and binding energies but are absent from standard functionals.&lt;/p&gt;
+
+&lt;p&gt;Basis sets define the mathematical space used to represent the electronic wavefunction as a linear combination of atom-centred functions. Reliable thermochemistry requires at least triple-ζ quality (e.g., def2-TZVP). Systems with anions or diffuse electron density need additional diffuse basis functions to describe the loosely bound electrons.&lt;/p&gt;
+
+&lt;p&gt;For rapid geometry optimisation of large organic molecules, for example: pre-processing a ligand library before docking, semiempirical methods such as GFN2-xTB offer DFT-quality geometries at a fraction of the cost by parameterising key integrals rather than computing them from first principles. This makes them practical for routine, high-throughput ligand preparation.&lt;/p&gt;
 
 &lt;div style=&quot;text-align: center;&quot;&gt;
   &lt;img src=&quot;/images/pes.jpg&quot; alt=&quot;Figure 1: Potential Energy Surface&quot; style=&quot;width: 400px;&quot; /&gt;
   &lt;p style=&quot;text-align: center; font-style: italic;&quot;&gt;Figure 1: Potential Energy Surface (source: &lt;a href=&quot;https://onlinelibrary.wiley.com/doi/10.1002/jcc.10231&quot;&gt;J. Comp. Chem.&lt;/a&gt;)&lt;/p&gt;
 &lt;/div&gt;
-
-&lt;p&gt;In drug discovery and the broader Ligand-X workflow, QM methods serve two key roles: geometry optimisation provides accurate 3D ligand structures for docking and molecular dynamics, and reactivity descriptors reveal electronic effects that classical force fields cannot capture. The central object for both is the Potential Energy Surface (PES), a landscape describing the total energy of the system as a function of all nuclear positions.&lt;/p&gt;
 
 &lt;h3 id=&quot;geometry-optimization&quot;&gt;Geometry Optimization&lt;/h3&gt;
 
@@ -985,7 +995,7 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;ul&gt;
   &lt;li&gt;All positive eigenvalues: A true energy minimum (a stable molecule)&lt;/li&gt;
-  &lt;li&gt;Exactly one negative (imaginary) frequency: A first-order saddle point—a transition state connecting two minima&lt;/li&gt;
+  &lt;li&gt;Exactly one negative (imaginary) frequency: A first-order saddle point (a transition state connecting two minima)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Frequency calculations also yield the zero-point energy (ZPE), the vibrational energy a molecule retains at absolute zero, along with thermal corrections that convert raw electronic energy into Gibbs free energy (G), which is the quantity needed to assess thermodynamic spontaneity.&lt;/p&gt;
@@ -1007,15 +1017,7 @@ m_i \frac{d^2\mathbf{r}_i(t)}{dt^2} = \mathbf{F}_i = -\nabla_i U(\mathbf{r}_1, \
 
 &lt;p&gt;By condensing these 3D functions onto individual atoms, researchers obtain numerical rankings that predict regioselectivity in complex reactions: which site on a molecule gets functionalized first.&lt;/p&gt;
 
-&lt;h3 id=&quot;choosing-a-method&quot;&gt;Choosing a Method&lt;/h3&gt;
-
-&lt;p&gt;The accuracy of any QM calculation depends on two choices: the functional and the basis set.&lt;/p&gt;
-
-&lt;p&gt;Functionals range from simple Local Density Approximation (LDA) to sophisticated hybrid and double-hybrid functionals. The “gold standard” in quantum chemistry is CCSD(T) — coupled cluster theory with single, double, and perturbative triple excitations — which gives near-exact answers for small molecules at very high computational cost. For practical work on drug-sized molecules, hybrid DFT functionals such as B3LYP or PBE0 strike a good balance between cost and accuracy. Dispersion corrections (D3, D4) are essential for large organic molecules, where London dispersion forces significantly affect geometry and binding energies but are absent from standard functionals.&lt;/p&gt;
-
-&lt;p&gt;Basis sets define the mathematical space used to represent the electronic wavefunction as a linear combination of atom-centred functions. Reliable thermochemistry requires at least triple-ζ quality (e.g., def2-TZVP). Systems with anions or diffuse electron density need additional diffuse basis functions to describe the loosely bound electrons.&lt;/p&gt;
-
-&lt;p&gt;For rapid geometry optimisation of large organic molecules — for example, pre-processing a ligand library before docking — semiempirical methods such as GFN2-xTB offer DFT-quality geometries at a fraction of the cost by parameterising key integrals rather than computing them from first principles. This makes them practical for routine, high-throughput ligand preparation.&lt;/p&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;Quantum chemistry also underpins computational photochemistry: the nuclear ensemble approach used in the &lt;a href=&quot;/blog/what-is-atmospec&quot;&gt;AtmoSpec&lt;/a&gt; workflow to calculate photoabsorption cross-sections relies on the same DFT framework to compute vertical excitation energies across a statistical ensemble of molecular geometries.&lt;/p&gt;
 
@@ -1206,17 +1208,17 @@ The NEA’s ability to efficiently calculate photoabsorption cross-sections for 
   
 
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/rbfe-theory&quot;&gt;Theory &amp;middot; &lt;strong&gt;Relative Binding Free Energy: Comparing Different Candidates&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/rbfe-theory&quot;&gt;Binding Free Energy &amp;middot; &lt;strong&gt;Relative Binding Free Energy: Comparing Different Candidates&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/abfe-theory&quot;&gt;Theory &amp;middot; &lt;strong&gt;Absolute Binding Free Energy: Measuring Affinity In Silico&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/abfe-theory&quot;&gt;Binding Free Energy &amp;middot; &lt;strong&gt;Absolute Binding Free Energy: Measuring Affinity In Silico&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-dynamics-theory&quot;&gt;Theory &amp;middot; &lt;strong&gt;Molecular Dynamics: Physics-based simulation of biomolecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-dynamics-theory&quot;&gt;Biophysics simulation &amp;middot; &lt;strong&gt;Molecular Dynamics: Physics-based simulation of biomolecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-docking-theory&quot;&gt;Theory &amp;middot; &lt;strong&gt;Molecular Docking: Accelerating Lead Discovery with In Silico Tools&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/molecular-docking-theory&quot;&gt;Computational Drug Design &amp;middot; &lt;strong&gt;Molecular Docking: Accelerating Lead Discovery with In Silico Tools&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/protein-cleaning-theory&quot;&gt;Theory &amp;middot; &lt;strong&gt;Input Sanitization: Preparing for Simulation&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/protein-cleaning-theory&quot;&gt;Garbage In, Garbage Out &amp;middot; &lt;strong&gt;Input Sanitization: Preparing for Simulation&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
-      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/quantum-chemistry-theory&quot;&gt;Theory &amp;middot; &lt;strong&gt;Quantum Chemistry: Probing the Electronic Structure of Molecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/quantum-chemistry-theory&quot;&gt;Computational Chemistry &amp;middot; &lt;strong&gt;Quantum Chemistry: Probing the Electronic Structure of Molecules&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
       &lt;li&gt;&lt;a href=&quot;http://localhost:4000/blog/nuclear-ensemble-approach&quot;&gt;Photochemistry &amp;middot; &lt;strong&gt;The Nuclear Ensemble Approach&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
     
