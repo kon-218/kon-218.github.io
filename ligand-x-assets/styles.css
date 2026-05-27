@@ -363,7 +363,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .hero-meta {
   display: flex;
@@ -1075,7 +1075,7 @@ img { max-width: 100%; display: block; }
 }
 .story-hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 56px;
   align-items: center;
   width: 100%;
@@ -1088,6 +1088,22 @@ img { max-width: 100%; display: block; }
 .story-hero-copy h1 em {
   color: var(--accent);
   font-style: normal;
+}
+.hero-headline {
+  margin-top: 28px !important;
+  font-size: clamp(56px, 8.5vw, 104px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.035em !important;
+  font-weight: 700 !important;
+  color: var(--ink);
+}
+.hero-headline-serif {
+  display: inline-block;
+  position: relative;
+  color: var(--accent);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
 }
 .capability-strip {
   display: flex;
@@ -1590,27 +1606,23 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
 }
 .pain-list {
-  list-style: none;
   padding: 0;
   margin: 0;
 }
-.pain-list li {
-  position: relative;
-  margin: 0;
-  padding: 16px 20px 16px 44px;
+.pain-list-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 15px 20px;
   border-bottom: 1px solid var(--border);
   color: var(--ink-2);
   font-size: 15px;
 }
-.pain-list li::before {
-  content: '';
-  position: absolute;
-  left: 22px;
-  top: 24px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--muted-2);
+.pain-index {
+  color: var(--muted-2);
+  font-size: 12px;
+  padding-top: 1px;
 }
 .pain-statement {
   margin: 0;
@@ -1622,6 +1634,10 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
 }
 .workflow-intro {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.workflow-table-section {
   background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
@@ -1817,6 +1833,9 @@ img { max-width: 100%; display: block; }
   }
   .story-section.flip .story-copy {
     order: 0;
+  }
+  .workflow-row-grid {
+    grid-template-columns: 1fr !important;
   }
   .hero-product-body {
     grid-template-columns: 110px 1fr;

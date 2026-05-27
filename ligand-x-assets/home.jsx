@@ -30,32 +30,45 @@ const HOME_PRO_MODULES = [
 
 const STORY_STAGES = [
   {
+    n: "01",
     eyebrow: "Create a project",
     title: "Start with a persistent workspace, not another folder tree.",
     text: "Import proteins, ligands, structures, and generated assets into one project so the experiment has a durable record from the first file onward.",
     points: ["Project-scoped proteins, molecules, pockets, jobs, and outputs", "Ketcher editing with SMILES, SDF, and PDB import/export", "Mol* review for proteins, complexes, pockets, and poses"],
-    visual: "workspace",
+    annotType: "files",
+    annotValue: "project.json · 4W52.pdb · leads.sdf",
+    cli: "lx new && lx import …",
   },
   {
+    n: "02",
     eyebrow: "Prepare the target",
     title: "Turn raw structures into modeling-ready systems.",
     text: "Clean proteins, detect components, handle waters, ions, metals, and ligands, find pockets, and align sequences before the calculation starts.",
     points: ["PDB, mmCIF, SDF, and SMILES-to-3D handling", "Protein cleanup and component detection", "Pocket finding plus pairwise and multiple-sequence alignment"],
-    visual: "target",
+    annotType: "outputs",
+    annotValue: "cleaned.pdb · pockets[] · alignment",
+    cli: "lx prep --align --pockets",
   },
   {
+    n: "03",
     eyebrow: "Screen and simulate",
     title: "Move from docked poses to MD trajectories without leaving the app.",
     text: "Dock ligands, review ranked poses, inspect interactions, run MD, and track jobs through the same local workspace.",
     points: ["AutoDock Vina docking with receptor and ligand preparation", "Batch results, affinity scores, interactions, and pose downloads", "OpenMM minimization, equilibration, trajectories, checkpoints, and analytics"],
-    visual: "simulate",
+    annotType: "outputs",
+    annotValue: "poses[] · scores · trajectory.dcd",
+    cli: "lx dock && lx md",
   },
   {
+    n: "04",
     eyebrow: "Prioritize with Pro",
     title: "Add advanced modules when the project needs stronger decisions.",
     text: "Licensed Pro services extend the same workflow with property risk, binding confidence, design expansion, and mechanistic insight.",
     points: ["QC and ADMET for property risk", "Boltz-2, ABFE, and RBFE for binding confidence", "GenAI and kinetics workflows for design expansion and mechanism"],
-    visual: "pro",
+    annotType: "inputs",
+    annotValue: "license key · target.pdb · ligand.sdf",
+    cli: "lx pro boltz · lx pro abfe",
+    pro: true,
   },
 ];
 
@@ -85,40 +98,50 @@ const USE_CASES = [
   },
 ];
 
-const HeroPreview = () => (
-  <div className="hero-product" aria-hidden="true">
-    <div className="hero-product-head">
-      <span>Project: EGFR lead series</span>
-      <span className="status-dot">local</span>
-    </div>
-    <div className="hero-product-body">
-      <div className="hero-product-side">
-        {["Library", "Protein", "Docking", "MD", "Pro"].map((item, i) => (
-          <div className={`hero-side-row ${i === 2 ? "active" : ""}`} key={item}>
-            <span className="mini-square" />
-            {item}
-          </div>
-        ))}
-      </div>
-      <div className="hero-product-main">
-        <MoleculePlaceholder pdb="PDB 4W52  -  docked pose" />
-        <div className="hero-job-stack">
-          {[
-            ["Batch docking", "24 ligands", "complete"],
-            ["MD equilibration", "OpenMM", "running"],
-            ["RBFE network", "Pro", "queued"],
-          ].map(([name, meta, state]) => (
-            <div className="hero-job" key={name}>
-              <div>
-                <strong>{name}</strong>
-                <span>{meta}</span>
-              </div>
-              <em>{state}</em>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+const MoleculeScene = () => (
+  <div style={{ position: 'relative', width: '100%', aspectRatio: '1 / 1', maxWidth: 400 }}>
+    <svg viewBox="0 0 560 560" style={{ width: '100%', height: '100%' }}>
+      <defs>
+        <radialGradient id="hero-aura" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#7BCAB8" stopOpacity="0.45" />
+          <stop offset="55%" stopColor="#E8F5F2" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#F5F3ED" stopOpacity="0" />
+        </radialGradient>
+        <pattern id="hero-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+          <path d="M28 0H0V28" fill="none" stroke="rgba(14,138,126,0.10)" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="560" height="560" fill="url(#hero-grid)" />
+      <circle cx="280" cy="280" r="240" fill="url(#hero-aura)" />
+      <g transform="translate(280 280)">
+        <circle r="200" fill="none" stroke="#0E8A7E" strokeOpacity="0.16" strokeWidth="38" />
+        <circle r="160" fill="none" stroke="#0E8A7E" strokeOpacity="0.22" strokeWidth="6" strokeDasharray="2 6" />
+        <path d="M -180 30 a 180 180 0 0 1 320 -80" fill="none" stroke="#0E8A7E" strokeWidth="9" strokeLinecap="round" strokeOpacity="0.7" />
+        <path d="M 160 -80 a 180 180 0 0 1 -10 230" fill="none" stroke="#0a6b61" strokeWidth="7" strokeLinecap="round" strokeOpacity="0.55" />
+        <path d="M -100 130 a 140 140 0 0 1 0 -190" fill="none" stroke="#0a6b61" strokeWidth="5" strokeLinecap="round" strokeOpacity="0.55" />
+        <line x1="-22" y1="14" x2="14" y2="-6" stroke="#0E1412" strokeWidth="3" />
+        <line x1="14" y1="-6" x2="34" y2="22" stroke="#0E1412" strokeWidth="3" />
+        <line x1="14" y1="-6" x2="42" y2="-32" stroke="#0E1412" strokeWidth="3" />
+        <line x1="-22" y1="14" x2="-44" y2="-16" stroke="#0E1412" strokeWidth="3" />
+        <line x1="-44" y1="-16" x2="-72" y2="6" stroke="#0E1412" strokeWidth="3" />
+        <line x1="34" y1="22" x2="60" y2="46" stroke="#0E1412" strokeWidth="3" />
+        <circle cx="-22" cy="14" r="10" fill="#0E1412" />
+        <circle cx="14" cy="-6" r="10" fill="#0E1412" />
+        <circle cx="34" cy="22" r="9" fill="#c44b3a" />
+        <circle cx="42" cy="-32" r="9" fill="#3a73c4" />
+        <circle cx="-44" cy="-16" r="9" fill="#0E1412" />
+        <circle cx="-72" cy="6" r="8" fill="#c44b3a" />
+        <circle cx="60" cy="46" r="8" fill="#0E1412" />
+      </g>
+      <g fontFamily="'IBM Plex Mono', monospace" fontSize="11" fill="#7a8480">
+        <line x1="430" y1="180" x2="370" y2="220" stroke="#b0b8b5" strokeWidth="1" />
+        <text x="436" y="184">pocket A</text>
+        <line x1="120" y1="380" x2="200" y2="320" stroke="#b0b8b5" strokeWidth="1" />
+        <text x="40" y="396">&#x2212;9.4 kcal/mol</text>
+        <line x1="430" y1="430" x2="350" y2="370" stroke="#b0b8b5" strokeWidth="1" />
+        <text x="436" y="434">trajectory · 5 ns</text>
+      </g>
+    </svg>
   </div>
 );
 
@@ -126,37 +149,54 @@ const HomeHero = () => (
   <section className="story-hero">
     <div className="container story-hero-inner">
       <div className="story-hero-copy">
-        <div className="eyebrow"><span className="dot" />Self-hosted CADD workbench</div>
-        <h1>
-          Local CADD workflows without the <em>script sprawl</em>.
+        <div className="eyebrow">
+          <span className="dot" />The local CADD workbench
+        </div>
+        <h1 className="hero-headline">
+          Integrated.<br />
+          Self-hosted.<br />
+          Reliable.<br />
+          <span className="hero-headline-serif">
+            Ligand-X
+            <svg width="100%" height="14" style={{ position: 'absolute', left: 0, bottom: -4 }} viewBox="0 0 600 14" preserveAspectRatio="none">
+              <path d="M2 9 C 140 2, 280 14, 598 6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+            </svg>
+          </span>
         </h1>
         <p className="hero-lede">
-          Ligand-X is a self-hosted computational chemistry workbench for protein preparation,
-          molecule editing, docking, molecular dynamics, project storage, and advanced licensed
-          prediction modules.
+          Prepare proteins. Edit ligands. Dock, simulate, and analyze —
+          all in one self-hosted workspace that keeps every structure,
+          job, and result on your machine.
         </p>
         <div className="hero-cta">
           <button className="btn btn-primary btn-lg" onClick={() => window.__nav('download')}>
             <Icon name="download" size={16} />
             Download Ligand-X
           </button>
-          <button className="btn btn-secondary btn-lg" onClick={() => window.__nav('features')}>
-            View capabilities
+          <button className="btn btn-secondary btn-lg" onClick={() => window.open('https://github.com/kon-218/ligand-x', '_blank')}>
+            <Icon name="github" size={16} />
+            Star · 2.4k
+          </button>
+          <button className="btn btn-secondary btn-lg" onClick={() => window.__nav('docs')}>
+            Read whitepaper
             <Icon name="arrow" size={14} />
           </button>
-          <button className="btn btn-ghost btn-lg" onClick={() => window.open('https://github.com/kon-218/ligand-x', '_blank')}>
-            <Icon name="github" size={16} />
-            GitHub
-          </button>
-        </div>
-        <div className="capability-strip" aria-label="Deployment proof points">
-          {["Runs locally", "Docker-first", "Open core", "Pro modules available"].map((item) => <span key={item}>{item}</span>)}
         </div>
       </div>
-      <HeroPreview />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <MoleculeScene />
+      </div>
     </div>
   </section>
 );
+
+const PAIN_ITEMS = [
+  "Structures live in one folder. Ligands live somewhere else.",
+  "Docking outputs need manual parsing before they're useful.",
+  "MD setup becomes a separate workflow from the docking review.",
+  "Results are hard to connect back to the original experiment.",
+  "Reproducing a calculation means reconstructing the full script chain.",
+];
 
 const PainValueSection = () => (
   <section className="section pain-section">
@@ -169,13 +209,14 @@ const PainValueSection = () => (
         </p>
       </div>
       <div className="pain-panel">
-        <ul className="pain-list">
-          <li>Structures live in one folder.</li>
-          <li>Ligands live somewhere else.</li>
-          <li>Docking outputs need manual parsing.</li>
-          <li>MD setup becomes a separate workflow.</li>
-          <li>Results are hard to connect back to the project.</li>
-        </ul>
+        <div className="pain-list">
+          {PAIN_ITEMS.map((item, i) => (
+            <div key={i} className="pain-list-row">
+              <span className="mono pain-index">{String(i + 1).padStart(2, "0")}</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
         <p className="pain-statement">
           Ligand-X keeps proteins, molecules, pockets, jobs, poses, trajectories, and generated outputs in one project workspace.
         </p>
@@ -184,90 +225,64 @@ const PainValueSection = () => (
   </section>
 );
 
-const WorkflowIntro = () => (
-  <section className="section-tight workflow-intro">
-    <div className="container section-head">
-      <div>
-        <div className="eyebrow"><span className="dot" />Main workflow</div>
-        <h2>From target setup to project decisions.</h2>
+const WorkflowSection = () => (
+  <section className="section workflow-table-section">
+    <div className="container">
+      <div className="section-head" style={{ marginBottom: 48 }}>
+        <div>
+          <div className="eyebrow"><span className="dot" />Main workflow</div>
+          <h2>From target setup to project decisions.</h2>
+        </div>
+        <p className="sub">
+
+        </p>
       </div>
-      <p className="sub">
-        The core workflow follows the way computational chemists actually move: create a project,
-        prepare the target, screen and simulate, then add advanced modules when prioritization needs more evidence.
-      </p>
+      <div>
+        {STORY_STAGES.map((stage, i) => (
+          <WorkflowRow key={stage.n} stage={stage} first={i === 0} />
+        ))}
+      </div>
     </div>
   </section>
 );
 
-const StoryVisual = ({ type }) => {
-  if (type === "workspace") {
-    return (
-      <div className="story-visual workspace-visual">
-        <div className="visual-toolbar"><span /> <span /> <span /></div>
-        <div className="workspace-grid">
-          <div className="workspace-panel tall">
-            <h5>Project assets</h5>
-            {["4W52.pdb", "lead_023.sdf", "pocket_A", "dock_run_12"].map((x) => <p key={x}>{x}</p>)}
-          </div>
-          <div className="workspace-panel molecule-sketch"><Icon name="atom" size={64} /></div>
-          <div className="workspace-panel"><strong>Jobs</strong><span>12 complete</span></div>
-          <div className="workspace-panel"><strong>Library</strong><span>86 molecules</span></div>
-        </div>
-      </div>
-    );
-  }
-  if (type === "target") {
-    return (
-      <div className="story-visual target-visual">
-        <MoleculePlaceholder pdb="cleaned target  -  pockets" live={false} />
-        <div className="pocket-tags"><span>pocket 01</span><span>chain A</span><span>MSA ready</span></div>
-      </div>
-    );
-  }
-  if (type === "simulate") {
-    return (
-      <div className="story-visual simulate-visual">
-        {[
-          ["Dock", "-9.4 kcal/mol", 100],
-          ["Review poses", "Mol*", 100],
-          ["Equilibrate", "OpenMM", 64],
-          ["Analyze", "trajectory", 28],
-        ].map(([name, meta, pct]) => (
-          <div className="run-row" key={name}>
-            <div><strong>{name}</strong><span>{meta}</span></div>
-            <div className="run-bar"><i style={{ width: `${pct}%` }} /></div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-  return (
-    <div className="story-visual pro-visual">
-      {HOME_PRO_MODULES.map((item) => (
-        <div className="pro-visual-card" key={item.name}>
-          <strong>{item.name}</strong>
-          <span>{item.decision}</span>
-        </div>
+const WorkflowRow = ({ stage, first }) => (
+  <div className="workflow-row-grid" style={{
+    display: 'grid',
+    gridTemplateColumns: '72px 1fr 1fr',
+    gap: '0 32px',
+    padding: '40px 0',
+    borderTop: `1px solid ${first ? 'var(--ink-2, #444)' : 'var(--border)'}`,
+    alignItems: 'start',
+  }}>
+    <div>
+      <div style={{
+        fontSize: 30, fontWeight: 600, lineHeight: 1,
+        color: stage.pro ? '#b45309' : 'var(--accent)',
+        fontFamily: 'var(--font-mono)',
+      }}>{stage.n}</div>
+      <div style={{
+        marginTop: 10, fontSize: 10, fontFamily: 'var(--font-mono)',
+        color: 'var(--muted-2)', letterSpacing: '0.1em', textTransform: 'uppercase',
+      }}>{stage.eyebrow}</div>
+    </div>
+    <div>
+      <h3 style={{ margin: 0, fontSize: 20, lineHeight: 1.25, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--ink)' }}>{stage.title}</h3>
+      <p style={{ marginTop: 12, fontSize: 14, lineHeight: 1.65, color: 'var(--ink-2)', margin: '12px 0 0' }}>{stage.text}</p>
+    </div>
+    <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+      {stage.points.map((b) => (
+        <li key={b} style={{
+          display: 'flex', gap: 10, padding: '8px 0',
+          borderTop: '1px solid var(--border)',
+          fontSize: 14, color: 'var(--ink-2)', alignItems: 'baseline',
+        }}>
+          <span style={{ fontFamily: 'var(--font-mono)', color: stage.pro ? '#b45309' : 'var(--accent)', flexShrink: 0 }}>→</span>
+          {b}
+        </li>
       ))}
-    </div>
-  );
-};
-
-const StorySection = ({ stage, index }) => (
-  <section className={`story-section ${index % 2 ? "flip" : ""}`}>
-    <div className="container story-grid">
-      <div className="story-copy">
-        <div className="story-number">{String(index + 1).padStart(2, "0")}</div>
-        <div className="eyebrow"><span className="dot" />{stage.eyebrow}</div>
-        <h2>{stage.title}</h2>
-        <p>{stage.text}</p>
-        <ul className="story-points">
-          {stage.points.map((point) => <li key={point}>{point}</li>)}
-        </ul>
-      </div>
-      <StoryVisual type={stage.visual} />
-    </div>
-  </section>
+    </ul>
+  </div>
 );
 
 const LocalValueSection = () => (
@@ -383,15 +398,30 @@ const UseCasesSection = () => (
   </section>
 );
 
+const INSTALL_STEPS = [
+  ["01", "Install Docker", "Docker Desktop or Docker Engine + Compose plugin"],
+  ["02", "Open the Ligand-X launcher", "Download the launcher for your OS — no terminal needed"],
+  ["03", "Select modules and start", "Enable Free modules, or add licensed Pro modules"],
+  ["04", "Open localhost:3000", "Frontend, gateway, and workers all live"],
+];
+
 const QuickStartSection = () => (
   <section className="section quick-story-section">
     <div className="container quick-story-grid">
       <div>
         <div className="eyebrow"><span className="dot" />Installation</div>
         <h2>Use the launcher for desktops, or Compose for servers.</h2>
-        <p>
-          Desktop: install Docker, open the Ligand-X launcher, select modules, and start. Server: clone the repo, configure the environment, and run Compose.
-        </p>
+        <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 10, fontSize: 14 }}>
+          {INSTALL_STEPS.map(([n, title, sub]) => (
+            <div key={n} style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gap: 14, alignItems: 'baseline' }}>
+              <span className="mono" style={{ color: 'var(--muted-2)', fontSize: 13 }}>{n}</span>
+              <div>
+                <div style={{ fontWeight: 500 }}>{title}</div>
+                <div style={{ color: 'var(--muted)', fontSize: 13, marginTop: 2 }}>{sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <CodeBlock
         tabs={[
@@ -456,8 +486,7 @@ const HomePage = () => (
   <div className="page-fade">
     <HomeHero />
     <PainValueSection />
-    <WorkflowIntro />
-    {STORY_STAGES.map((stage, index) => <StorySection stage={stage} index={index} key={stage.eyebrow} />)}
+    <WorkflowSection />
     <LocalValueSection />
     <OpenCoreProSection />
     <ArchitectureProofSection />
