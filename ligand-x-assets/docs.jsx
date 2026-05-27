@@ -580,9 +580,9 @@ const DocsPage = () => {
                 {currentGuide.desc}
               </p>
               <div style={{ display: 'flex', gap: 10, marginTop: 18, flexWrap: 'wrap', alignItems: 'center' }}>
-                <span className="tag">
-                  <Icon name="book" size={11} />
-                  ~{currentGuide.time} read
+                <span className="read-time-pill">
+                  <Icon name="clock" size={13} />
+                  <span>{currentGuide.time} read</span>
                 </span>
                 {currentGuide.isPro && <span className="tag" style={{ color: '#b45309' }}>Requires Pro license</span>}
               </div>
@@ -621,24 +621,14 @@ const DocsPage = () => {
             <aside className="docs-side">
               <h6>Getting started</h6>
               <ul>
-                {docView === "getting-started" ? (
-                  DOCS_SECTIONS.map((s) => (
-                    <li key={s.id}>
-                      <button
-                        className={activeSection === s.id ? "active" : ""}
-                        onClick={() => scrollTo(s.id)}
-                      >
-                        {s.title}
-                      </button>
-                    </li>
-                  ))
-                ) : (
-                  <li>
-                    <button onClick={() => switchToGettingStarted(null)}>
-                      Installation guide
-                    </button>
-                  </li>
-                )}
+                <li>
+                  <button
+                    className={docView === "getting-started" ? "active" : ""}
+                    onClick={() => switchToGettingStarted(null)}
+                  >
+                    Installation guide
+                  </button>
+                </li>
               </ul>
 
               <h6>Guides</h6>

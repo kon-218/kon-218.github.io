@@ -17,6 +17,7 @@ const Icon = ({ name, size = 16, ...rest }) => {
     play: <path fill="currentColor" d="M8 5v14l11-7z"/>,
     search: <g stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-3.5-3.5"/></g>,
     book: <g stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h12a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4z"/><path d="M20 4H8a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h12z"/></g>,
+    clock: <g stroke="currentColor" strokeWidth="1.7" fill="none" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></g>,
     box: <g stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M21 8L12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v9"/></g>,
     flask: <g stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3h6M10 3v6L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-6-10V3"/><path d="M7 14h10"/></g>,
     chip: <g stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM2 9h2M2 15h2M20 9h2M20 15h2M9 2v2M15 2v2M9 20v2M15 20v2"/></g>,
