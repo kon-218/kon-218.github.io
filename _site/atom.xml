@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<id>http://localhost:4000/</id>
 	<title>Konstantin Nomerotski - Portfolio</title>
-	<updated>2026-05-21T11:23:57-04:00</updated>
+	<updated>2026-05-27T01:43:07-04:00</updated>
 
 	<subtitle>» Showcasing my portfolio in Chemistry, Computing, and Data Science «</subtitle>
 
@@ -46,7 +46,28 @@
 				</author>
 			
 			<summary>Ligand-X is a web application for structural, physical, and chemical analysis of ligand-protein complexes, lowering the barrier to entry for advanced bioinformatics and cheminformatics simulations.</summary>
-			<content type="html" xml:base="http://localhost:4000/portfolio/ligand-x/">&lt;h3 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h3&gt;
+			<content type="html" xml:base="http://localhost:4000/portfolio/ligand-x/">&lt;div class=&quot;lx-banner&quot;&gt;
+  &lt;strong&gt;Interactive product page:&lt;/strong&gt;
+  &lt;a href=&quot;/ligand-x/&quot;&gt;Open the Ligand-X micro-site →&lt;/a&gt;
+  &lt;span&gt;Full feature tour, docs, and download.&lt;/span&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.lx-banner {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.lx-banner a { color: #15803d; font-weight: 600; }
+.lx-banner span { color: #6b7280; font-size: 0.9em; }
+&lt;/style&gt;
+
+&lt;h3 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h3&gt;
 
 &lt;p&gt;Ligand-X is a comprehensive web-based platform for molecular structure analysis, visualization, and computational chemistry workflows. It serves as a bridge between complex computational chemistry tools and researchers, providing a suite of microservices for cheminformatics and bioinformatics simulation, all accessible through a modern, intuitive web interface. The application supports multiple file formats (PDB, CIF, mmCIF, SDF), integrates with the RCSB PDB database, and features an interactive molecular editor and viewer, powered by Ketcher and Mol* respectively.&lt;/p&gt;
 
