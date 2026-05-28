@@ -122,7 +122,7 @@ const FEATURES = [
     id: "qc",
     icon: "sigma",
     tier: "Pro",
-    tag: "pro",
+    tag: "simulation",
     title: "Quantum Chemistry",
     summary: "Licensed ORCA-backed calculations for geometries, charges, energetics, and molecular properties.",
     details: [
@@ -138,7 +138,7 @@ const FEATURES = [
     id: "admet",
     icon: "flask",
     tier: "Pro",
-    tag: "pro",
+    tag: "structure",
     title: "ADMET Prediction",
     summary: "Licensed screening for drug-likeness and ADMET properties across single molecules or batches.",
     details: [
@@ -154,7 +154,7 @@ const FEATURES = [
     id: "boltz2",
     icon: "atom",
     tier: "Pro",
-    tag: "pro",
+    tag: "structure",
     title: "Boltz-2 Affinity Prediction",
     summary: "Licensed GPU service for Boltz-2 structure and binding-affinity prediction workflows.",
     details: [
@@ -170,7 +170,7 @@ const FEATURES = [
     id: "free-energy",
     icon: "scale",
     tier: "Pro",
-    tag: "pro",
+    tag: "simulation",
     title: "ABFE and RBFE Workflows",
     summary: "Licensed alchemical free-energy calculations for single ligands and lead-optimization series.",
     details: [
@@ -186,7 +186,7 @@ const FEATURES = [
     id: "reinvent",
     icon: "sigma",
     tier: "Pro",
-    tag: "pro",
+    tag: "structure",
     title: "REINVENT Generative Design",
     summary: "Licensed de novo molecule generation and optimization workflows backed by private workers.",
     details: [
@@ -202,7 +202,7 @@ const FEATURES = [
     id: "kinetics",
     icon: "wave",
     tier: "Pro",
-    tag: "pro",
+    tag: "simulation",
     title: "Binding Kinetics",
     summary: "Licensed kinetics workflows for residence-time and pathway analysis using advanced simulation methods.",
     details: [
@@ -225,10 +225,61 @@ const CATEGORIES = [
   { id: "pro", label: "Pro" },
 ];
 
+const MODULE_STEP_LABELS = {
+  structure: "Cleaning",
+  "pocket-finder": "Binding-Site",
+  docking: "Docking",
+  admet: "ADMET",
+  editor: "Molecule",
+  qc: "Quantum",
+  alignment: "Alignment",
+  md: "MD",
+  "free-energy": "FEP",
+  kinetics: "Kinetics",
+  reinvent: "GenAI",
+  boltz2: "Boltz-2",
+};
+
+const WORKFLOW_PRESETS = [
+  {
+    id: "preset-docking",
+    name: "Docking workflow",
+    desc: "Clean a target, find a pocket, dock a library, score with ADMET.",
+    modules: ["structure", "pocket-finder", "docking", "admet"],
+  },
+  {
+    id: "preset-admet",
+    name: "ADMET screen",
+    desc: "Triage a library against drug-likeness and basic property risk.",
+    modules: ["editor", "admet", "qc"],
+  },
+  {
+    id: "preset-fep",
+    name: "FEP campaign",
+    desc: "Align a series, run MD, then drive an RBFE campaign with kinetics.",
+    modules: ["alignment", "md", "free-energy", "kinetics"],
+  },
+  {
+    id: "preset-gen",
+    name: "Generative loop",
+    desc: "Generate candidates with GenAI, dock, predict affinity, and re-score with ADMET.",
+    modules: ["reinvent", "docking", "boltz2", "admet"],
+  },
+];
+
 const filterFeature = (feature, category) => {
   if (category === "all") return true;
   if (category === "core") return feature.tier === "Open Core";
+  if (category === "pro") return feature.tier === "Pro";
   return feature.tag === category;
+};
+
+const toTagLabel = (tag) => {
+  if (!tag) return "";
+  return tag
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
 };
 
 const FeatureDetail = ({ feature }) => (
@@ -240,7 +291,7 @@ const FeatureDetail = ({ feature }) => (
       <div>
         <div className="fx-detail-meta">
           <span className={`fx-detail-tier ${feature.tier === "Pro" ? "pro" : ""}`}>{feature.tier}</span>
-          <span className="fx-detail-tag">{feature.tag}</span>
+          <span className="fx-detail-tag">{toTagLabel(feature.tag)}</span>
         </div>
         <h3>{feature.title}</h3>
       </div>
@@ -289,10 +340,77 @@ const FeatureDetail = ({ feature }) => (
   </div>
 );
 
+const WorkflowShowcase = ({ featureMap, onPreview }) => (
+  <section className="fx-workflow-section">
+    <div className="fx-workflow-head">
+      <div>
+        <div className="eyebrow"><span className="dot" />Workflows</div>
+        <h2>Custom pipelines you compose inside a project.</h2>
+      </div>
+      <button className="btn btn-secondary btn-sm">
+        Open builder
+        <Icon name="arrow" size={12} />
+      </button>
+    </div>
+    <p className="fx-workflow-sub">
+      Chain modules into a reusable pipeline scoped to your project. Start from a preset,
+      swap modules in or out, and rerun the flow in minutes.
+    </p>
+
+    <div className="fx-workflow-grid">
+      {WORKFLOW_PRESETS.map((preset, idx) => {
+        const modules = preset.modules.map((id) => featureMap[id]).filter(Boolean);
+        const proCount = modules.filter((m) => m.tier === "Pro").length;
+        return (
+          <article className="fx-workflow-card" key={preset.id}>
+            <div className="fx-workflow-top">
+              <span className="fx-workflow-preset">Preset · {String(idx + 1).padStart(2, "0")}</span>
+            </div>
+            <h4>{preset.name}</h4>
+            <p>{preset.desc}</p>
+
+            <div className="fx-workflow-chain">
+              {modules.map((mod, i) => (
+                <React.Fragment key={mod.id}>
+                  <div className={`fx-workflow-step ${mod.tier === "Pro" ? "pro" : ""}`}>
+                    <Icon name={mod.icon} size={13} />
+                    <span>{MODULE_STEP_LABELS[mod.id] || mod.title.split(" ")[0]}</span>
+                  </div>
+                  {i < modules.length - 1 && <span className="fx-workflow-arrow">→</span>}
+                </React.Fragment>
+              ))}
+            </div>
+
+            <div className="fx-workflow-foot">
+              <div className="fx-workflow-meta">
+                <span>{modules.length} steps</span>
+                <span>{proCount} pro</span>
+                <span>~{modules.length * 4} min</span>
+              </div>
+              <button className="fx-workflow-preview" onClick={() => modules[0] && onPreview(modules[0].id)}>
+                Preview
+                <Icon name="arrow" size={11} />
+              </button>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+);
+
 const FeaturesPage = () => {
   const [selectedId, setSelectedId] = React.useState("docking");
   const [cat, setCat] = React.useState("all");
   const [query, setQuery] = React.useState("");
+  const listRef = React.useRef(null);
+  const detailRef = React.useRef(null);
+  const [listMaxHeight, setListMaxHeight] = React.useState(null);
+
+  const featureMap = React.useMemo(
+    () => Object.fromEntries(FEATURES.map((f) => [f.id, f])),
+    []
+  );
 
   const filtered = FEATURES.filter((f) => {
     if (!filterFeature(f, cat)) return false;
@@ -322,9 +440,25 @@ const FeaturesPage = () => {
     pro: filtered.filter((f) => f.tier === "Pro"),
   };
 
+  React.useEffect(() => {
+    if (!detailRef.current) return;
+    const sync = () => {
+      if (!detailRef.current) return;
+      setListMaxHeight(detailRef.current.offsetHeight);
+    };
+    sync();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(sync) : null;
+    if (ro) ro.observe(detailRef.current);
+    window.addEventListener("resize", sync);
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener("resize", sync);
+    };
+  }, [selectedId, cat, query]);
+
   return (
     <div className="page-fade">
-      <section style={{ padding: 'var(--sp-8) 0 var(--sp-5)', borderBottom: '1px solid var(--border)' }}>
+      <section style={{ padding: 'var(--sp-9) 0 var(--sp-7)', borderBottom: '1px solid var(--border)' }}>
         <div className="container">
           <div className="eyebrow"><span className="dot" />Features</div>
           <h1 style={{ fontSize: 'clamp(34px, 4vw, 52px)', margin: '12px 0 16px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 600 }}>
@@ -337,7 +471,7 @@ const FeaturesPage = () => {
         </div>
       </section>
 
-      <section style={{ padding: 'var(--sp-6) 0 0' }}>
+      <section style={{ padding: 'var(--sp-7) 0 0' }}>
         <div className="container">
           <div className="fx-controls">
             <label className="fx-search">
@@ -366,10 +500,14 @@ const FeaturesPage = () => {
         </div>
       </section>
 
-      <section style={{ padding: 'var(--sp-3) 0 var(--sp-8)' }}>
+      <section style={{ padding: 'var(--sp-5) 0 var(--sp-9)' }}>
         <div className="container">
           <div className="fx-split">
-            <aside className="fx-list">
+            <aside
+              ref={listRef}
+              className="fx-list"
+              style={listMaxHeight ? { maxHeight: `${listMaxHeight}px` } : undefined}
+            >
               {grouped.core.length > 0 && (
                 <>
                   <div className="fx-group-title">Open Core</div>
@@ -414,7 +552,7 @@ const FeaturesPage = () => {
               )}
             </aside>
 
-            <main>
+            <main ref={detailRef}>
               {selected ? (
                 <FeatureDetail feature={selected} />
               ) : (
@@ -422,68 +560,12 @@ const FeaturesPage = () => {
               )}
             </main>
           </div>
-        </div>
-      </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <div className="eyebrow"><span className="dot" />How they connect</div>
-              <h2>Core workflows prepare data for optional Pro modules.</h2>
-            </div>
-            <p className="sub">
-              Start with local project assets, structure cleanup, pocket finding, docking, and MD. Add licensed Pro
-              services when you need higher-end prediction, generation, or advanced simulation workflows.
-            </p>
-          </div>
-          <PipelineFlow />
+          <WorkflowShowcase featureMap={featureMap} onPreview={setSelectedId} />
         </div>
       </section>
 
       <CTASection />
-    </div>
-  );
-};
-
-// ============================================================
-// PipelineFlow — horizontal flow diagram
-// ============================================================
-
-const PipelineFlow = () => {
-  const stages = [
-    { label: "Projects + Molecules", icon: "box", type: "input" },
-    { label: "Clean + Pockets", icon: "funnel", type: "service" },
-    { label: "Dock + Align", icon: "target", type: "service" },
-    { label: "MD + Sequence", icon: "wave", type: "service" },
-    { label: "Pro: QC / ADMET / Boltz-2", icon: "sigma", type: "service" },
-    { label: "Pro: FE / REINVENT / Kinetics", icon: "scale", type: "output" },
-  ];
-  return (
-    <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 'var(--sp-6) var(--sp-5)', overflowX: 'auto' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'space-between', minWidth: 840 }}>
-        {stages.map((s, i) => (
-          <React.Fragment key={i}>
-            <div style={{
-              flex: '0 0 auto',
-              padding: '14px 18px',
-              background: s.type === 'input' ? 'var(--bg-subtle)' : s.type === 'output' ? 'var(--accent-soft)' : 'var(--bg)',
-              border: `1px solid ${s.type === 'output' ? 'color-mix(in srgb, var(--accent) 30%, transparent)' : 'var(--border)'}`,
-              borderRadius: 'var(--radius)',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-              minWidth: 124,
-            }}>
-              <Icon name={s.icon} size={20} style={{ color: s.type === 'output' ? 'var(--accent-strong)' : 'var(--ink-2)' }} />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, color: s.type === 'output' ? 'var(--accent-ink)' : 'var(--ink-2)', textAlign: 'center', lineHeight: 1.3 }}>{s.label}</span>
-            </div>
-            {i < stages.length - 1 && (
-              <div style={{ flex: 1, height: 1, background: 'var(--border-strong)', position: 'relative', minWidth: 16 }}>
-                <div style={{ position: 'absolute', right: -1, top: -3, width: 0, height: 0, borderTop: '4px solid transparent', borderBottom: '4px solid transparent', borderLeft: '6px solid var(--border-strong)' }} />
-              </div>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
     </div>
   );
 };

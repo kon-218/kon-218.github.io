@@ -842,7 +842,156 @@ const ServiceRoutesSection = () => (
   </>
 );
 
-// ── Map group ID → section component ────────────────────────
+const ServiceRoutesCoreSection = () => (
+  <>
+    <p style={{ fontSize: 14.5, color: 'var(--ink-2)', lineHeight: 1.7 }}>
+      Core routes are available in the open edition and map directly to gateway prefixes in
+      <code> ligand-x/gateway/routers/proxy.py</code>. These routes are expected to be stable entry points
+      for first-time users and automation clients.
+    </p>
+    <table className="port-table">
+      <thead>
+        <tr>
+          <th>Route prefix</th>
+          <th>Backed by</th>
+          <th>Purpose</th>
+          <th>Source of truth</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[
+          ['/api/projects/*', 'Gateway projects router', 'Project, protein, molecule, pocket, and pose records', 'ligand-x/gateway/routers/projects.py'],
+          ['/api/structure/*', 'Structure service', 'PDB fetch, parsing, scaffold operations', 'ligand-x/services/structure/routers.py'],
+          ['/api/molecules/*', 'Structure service alias', 'Molecule CRUD and structure conversion alias', 'ligand-x/services/structure/routers.py'],
+          ['/api/library/*', 'Structure service alias', 'Library-oriented molecule operations', 'ligand-x/gateway/routers/proxy.py'],
+          ['/api/docking/*', 'Docking service', 'Receptor prep, docking, batch docking', 'ligand-x/services/docking/routers.py'],
+          ['/api/md/*', 'MD service', 'Optimization, trajectory analysis, streaming execution', 'ligand-x/services/md/routers.py'],
+          ['/api/alignment/*', 'Alignment service', 'Pairwise and multi-pose structural alignment', 'ligand-x/services/alignment/routers.py'],
+          ['/api/ketcher/*', 'Ketcher service', 'Cheminformatics conversion and editing helpers', 'ligand-x/services/ketcher/routers.py'],
+          ['/api/msa/*', 'MSA service', 'Sequence alignment generation and cache access', 'ligand-x/services/msa/routers.py'],
+          ['/api/pocket-finder/*', 'Pocket finder service', 'Binding-site prediction', 'ligand-x/services/pocket_finder/routers.py'],
+          ['/api/jobs/*', 'Gateway jobs router', 'Job submission, status, cancellation, recovery', 'ligand-x/gateway/routers/jobs.py'],
+          ['/api/workflows/*', 'Gateway workflows router', 'Canvas graph orchestration', 'ligand-x/gateway/routers/workflows.py'],
+        ].map(([prefix, service, purpose, source]) => (
+          <tr key={prefix}>
+            <td><code style={{ fontSize: 12 }}>{prefix}</code></td>
+            <td>{service}</td>
+            <td style={{ fontSize: 13, color: 'var(--ink-2)' }}>{purpose}</td>
+            <td><code style={{ fontSize: 11 }}>{source}</code></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </>
+);
+
+const ServiceRoutesProSection = () => (
+  <>
+    <p style={{ fontSize: 14.5, color: 'var(--ink-2)', lineHeight: 1.7 }}>
+      Pro routes are entitlement-gated in the gateway via <code>entitlement_for_path()</code> from
+      <code> ligand-x/lib/licensing/module_registry.py</code>. Requests to these prefixes return
+      <code> 403 license_required</code> when the license does not include the required module.
+    </p>
+    <table className="port-table">
+      <thead>
+        <tr>
+          <th>Route prefix</th>
+          <th>Module entitlement</th>
+          <th>Service</th>
+          <th>Typical operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[
+          ['/api/admet/*', 'admet', 'ADMET', 'Property prediction endpoints'],
+          ['/api/qc/*', 'qc', 'Quantum chemistry', 'Jobs, files, normal modes, presets'],
+          ['/api/boltz2/*', 'boltz2', 'Boltz-2', 'Predict, batch predict, validation'],
+          ['/api/abfe/*', 'free-energy', 'ABFE', 'Async submissions, status, detailed analysis'],
+          ['/api/rbfe/*', 'free-energy', 'RBFE', 'Network preview, submissions, diagnostics'],
+          ['/api/reinvent/*', 'reinvent', 'REINVENT', 'Campaign submit/status/results/cancel'],
+          ['/api/kinetics/*', 'kinetics', 'Kinetics', 'Submit and status for unbinding runs'],
+        ].map(([prefix, entitlement, service, operations]) => (
+          <tr key={prefix}>
+            <td><code style={{ fontSize: 12 }}>{prefix}</code></td>
+            <td><code style={{ fontSize: 12 }}>{entitlement}</code></td>
+            <td>{service}</td>
+            <td style={{ fontSize: 13, color: 'var(--ink-2)' }}>{operations}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </>
+);
+
+const GatewayProxyRulesSection = () => (
+  <>
+    <p style={{ fontSize: 14.5, color: 'var(--ink-2)', lineHeight: 1.7 }}>
+      Route handling order is intentional: explicit gateway routers are included first, then the catch-all
+      proxy router. This keeps high-value paths stable and allows route-specific behavior (timeouts, SSE,
+      auth exceptions) before generic forwarding.
+    </p>
+    <CodeBlock label="Routing order" copyText={`# ligand-x/gateway/main.py\napp.include_router(projects.router)\napp.include_router(md.router)\napp.include_router(ketcher.router)\napp.include_router(msa.router)\napp.include_router(jobs.router)\napp.include_router(jobs_websocket.router)\napp.include_router(workflows.router)\napp.include_router(proxy.router)  # fallback catch-all`}>
+      <span style={{ color: '#c9d1d9' }}>{`# ligand-x/gateway/main.py
+app.include_router(projects.router)
+app.include_router(md.router)
+app.include_router(ketcher.router)
+app.include_router(msa.router)
+app.include_router(jobs.router)
+app.include_router(jobs_websocket.router)
+app.include_router(workflows.router)
+app.include_router(proxy.router)  # fallback catch-all`}</span>
+    </CodeBlock>
+
+    <CodeBlock label="Proxy prefix map" copyText={`# ligand-x/gateway/routers/proxy.py\nAPI_PREFIX_ROUTES = {\n  "api/md": "md",\n  "api/boltz2": "boltz2",\n  "api/qc": "qc",\n  "api/alignment": "alignment",\n  "api/ketcher": "ketcher",\n  "api/admet": "admet",\n  "api/docking": "docking",\n  "api/structure": "structure",\n  "api/molecules": "structure",\n  "api/library": "structure",\n  "api/abfe": "abfe",\n  "api/rbfe": "rbfe",\n  "api/pocket-finder": "pocket_finder",\n  "api/reinvent": "reinvent",\n  "api/kinetics": "kinetics",\n}`}>
+      <span style={{ color: '#c9d1d9' }}>{`# ligand-x/gateway/routers/proxy.py
+API_PREFIX_ROUTES = {
+  "api/md": "md",
+  "api/boltz2": "boltz2",
+  "api/qc": "qc",
+  "api/alignment": "alignment",
+  "api/ketcher": "ketcher",
+  "api/admet": "admet",
+  "api/docking": "docking",
+  "api/structure": "structure",
+  "api/molecules": "structure",
+  "api/library": "structure",
+  "api/abfe": "abfe",
+  "api/rbfe": "rbfe",
+  "api/pocket-finder": "pocket_finder",
+  "api/reinvent": "reinvent",
+  "api/kinetics": "kinetics",
+}`}</span>
+    </CodeBlock>
+
+    <table className="port-table">
+      <thead>
+        <tr>
+          <th>Behavior</th>
+          <th>Where configured</th>
+          <th>Current value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[
+          ['MD proxy timeout', 'ligand-x/gateway/routers/md.py', '3600 seconds'],
+          ['MSA proxy timeout', 'ligand-x/gateway/routers/msa.py', '660 seconds'],
+          ['Default service timeout', 'ligand-x/lib/common/timeouts.py', '300 seconds'],
+          ['HTTP read timeout', 'ligand-x/lib/common/timeouts.py', '600 seconds'],
+          ['Auth-exempt routes', 'ligand-x/gateway/main.py', '/, /health, /api/services/health, /api/auth/*, /api/license/status, /api/jobs/ws*'],
+          ['License gating', 'ligand-x/lib/licensing/module_registry.py', 'Longest matching pro prefix wins'],
+        ].map(([rule, source, value]) => (
+          <tr key={rule}>
+            <td>{rule}</td>
+            <td><code style={{ fontSize: 11 }}>{source}</code></td>
+            <td style={{ fontSize: 13, color: 'var(--ink-2)' }}>{value}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </>
+);
+
+// ── Section registry ────────────────────────────────────────
 const SECTION_COMPONENTS = {
   authentication: AuthenticationSection,
   health: HealthSection,
@@ -856,6 +1005,9 @@ const SECTION_COMPONENTS = {
   websocket: WebSocketSection,
   workflows: WorkflowsSection,
   'service-routes': ServiceRoutesSection,
+  'service-routes-core': ServiceRoutesCoreSection,
+  'service-routes-pro': ServiceRoutesProSection,
+  'gateway-proxy-rules': GatewayProxyRulesSection,
 };
 
 // ── Error response reference ─────────────────────────────────
@@ -903,61 +1055,160 @@ const ErrorsSection = () => (
   </>
 );
 
-// ── Main component ───────────────────────────────────────────
+SECTION_COMPONENTS.errors = ErrorsSection;
+
+const BASE_SECTION_META = Object.fromEntries(
+  API_GROUPS.map((group) => [group.id, { title: group.title, desc: group.desc }])
+);
+
+const SECTION_META = {
+  ...BASE_SECTION_META,
+  errors: {
+    title: "Error codes",
+    desc: "Shared response envelopes and HTTP status semantics used across gateway and proxied services.",
+  },
+  "service-routes-core": {
+    title: "Core service routes",
+    desc: "Open-edition route families and where they are implemented.",
+  },
+  "service-routes-pro": {
+    title: "Pro service routes",
+    desc: "Entitlement-gated route families and their corresponding modules.",
+  },
+  "gateway-proxy-rules": {
+    title: "Gateway proxy behavior",
+    desc: "How routing precedence, aliasing, auth exemptions, and timeout policies are applied.",
+  },
+};
+
+const API_PAGES = [
+  {
+    id: "api-basics",
+    title: "API Basics",
+    caption: "Auth, liveness, and shared errors",
+    sections: ["authentication", "health", "errors"],
+  },
+  {
+    id: "project-data",
+    title: "Project Data Model",
+    caption: "Projects, proteins, molecules, pockets, poses",
+    sections: ["projects", "proteins", "molecules", "library-folders", "pockets", "poses"],
+  },
+  {
+    id: "jobs-realtime",
+    title: "Jobs & Real-Time",
+    caption: "Submission, monitoring, workflows",
+    sections: ["jobs", "websocket", "workflows"],
+  },
+  {
+    id: "service-routes-overview",
+    title: "Service Routes Overview",
+    caption: "Gateway prefixes and endpoint families",
+    sections: ["service-routes"],
+  },
+  {
+    id: "service-routes-core",
+    title: "Service Routes · Core",
+    caption: "Open-edition routes and source mapping",
+    sections: ["service-routes-core"],
+  },
+  {
+    id: "service-routes-pro",
+    title: "Service Routes · Pro",
+    caption: "License-gated routes and modules",
+    sections: ["service-routes-pro"],
+  },
+  {
+    id: "gateway-routing-rules",
+    title: "Gateway Routing Rules",
+    caption: "Proxy precedence, aliases, timeout policy",
+    sections: ["gateway-proxy-rules"],
+  },
+];
+
+const NAV_GROUPS = [
+  { title: "Reference pages", pages: ["api-basics", "project-data", "jobs-realtime"] },
+  {
+    title: "Service routes",
+    pages: [
+      "service-routes-overview",
+      "service-routes-core",
+      "service-routes-pro",
+      "gateway-routing-rules",
+    ],
+  },
+];
 
 const ApiReferencePage = ({ onBack }) => {
-  const [activeGroup, setActiveGroup] = React.useState('authentication');
-  const groupRefs = React.useRef({});
+  const [activePage, setActivePage] = React.useState(API_PAGES[0].id);
+  const [activeSection, setActiveSection] = React.useState(API_PAGES[0].sections[0]);
+  const sectionRefs = React.useRef({});
 
-  // Scroll-spy: update activeGroup based on which group heading is in view
+  const pageById = React.useMemo(
+    () => Object.fromEntries(API_PAGES.map((page) => [page.id, page])),
+    []
+  );
+  const currentPage = pageById[activePage] || API_PAGES[0];
+
+  React.useEffect(() => {
+    const firstSection = currentPage.sections[0];
+    setActiveSection(firstSection);
+  }, [activePage]);
+
   React.useEffect(() => {
     const onScroll = () => {
       const top = window.scrollY + 120;
-      let current = 'authentication';
-      for (const g of API_GROUPS) {
-        const el = groupRefs.current[g.id];
-        if (el && el.offsetTop <= top) current = g.id;
+      let current = currentPage.sections[0];
+      for (const sectionId of currentPage.sections) {
+        const el = sectionRefs.current[sectionId];
+        if (el && el.offsetTop <= top) current = sectionId;
       }
-      setActiveGroup(current);
+      setActiveSection(current);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [currentPage]);
 
-  const scrollToGroup = (id) => {
-    const el = groupRefs.current[id];
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-      setActiveGroup(id);
-    }
+  const switchPage = (pageId) => {
+    const nextPage = pageById[pageId];
+    if (!nextPage) return;
+    setActivePage(pageId);
+    setActiveSection(nextPage.sections[0]);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
+  const scrollToSection = (sectionId) => {
+    const el = sectionRefs.current[sectionId];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: "smooth" });
+    setActiveSection(sectionId);
   };
 
   return (
     <div className="page-fade">
-      {/* Page header */}
-      <section style={{ padding: 'var(--sp-8) 0 var(--sp-5)', borderBottom: '1px solid var(--border)' }}>
+      <section style={{ padding: "var(--sp-8) 0 var(--sp-5)", borderBottom: "1px solid var(--border)" }}>
         <div className="container-wide">
           <button
             onClick={onBack}
             style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-              display: 'flex', alignItems: 'center', gap: 6,
-              color: 'var(--muted)', fontSize: 13, marginBottom: 16,
-              fontFamily: 'var(--font-mono)',
+              background: "none", border: "none", cursor: "pointer", padding: 0,
+              display: "flex", alignItems: "center", gap: 6,
+              color: "var(--muted)", fontSize: 13, marginBottom: 16,
+              fontFamily: "var(--font-mono)",
             }}
           >
             ← Docs
           </button>
           <div className="eyebrow"><span className="dot" />Reference · REST API</div>
-          <h1 style={{ fontSize: 'clamp(28px, 4vw, 44px)', margin: '12px 0 12px', lineHeight: 1.1, letterSpacing: '-0.02em', fontWeight: 600 }}>
+          <h1 style={{ fontSize: "clamp(28px, 4vw, 44px)", margin: "12px 0 12px", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 600 }}>
             REST API Reference
           </h1>
-          <p style={{ color: 'var(--muted)', fontSize: 16, maxWidth: 680, margin: 0 }}>
-            Complete reference for the Ligand-X API gateway. All requests go to port <code>8000</code>.
-            Pass your API token as an <code>X-API-Key</code> header.
+          <p style={{ color: "var(--muted)", fontSize: 16, maxWidth: 700, margin: 0 }}>
+            Left navigation moves between reference pages. The right sidebar stays focused on section anchors for the current page.
+            All requests target port <code>8000</code>, and authenticated routes require <code>X-API-Key</code>.
           </p>
-          <div style={{ display: 'flex', gap: 10, marginTop: 18, flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ display: "flex", gap: 10, marginTop: 18, flexWrap: "wrap", alignItems: "center" }}>
             <span className="tag">Base URL: http://localhost:8000</span>
             <span className="tag">Content-Type: application/json</span>
             <span className="tag">OpenAPI at /docs</span>
@@ -965,87 +1216,74 @@ const ApiReferencePage = ({ onBack }) => {
         </div>
       </section>
 
-      {/* Body */}
-      <section style={{ padding: 'var(--sp-7) 0 var(--sp-9)' }}>
+      <section style={{ padding: "var(--sp-7) 0 var(--sp-9)" }}>
         <div className="container-wide">
           <div className="docs-layout">
-
-            {/* LEFT NAV */}
             <aside className="docs-side">
-              <h6>Resources</h6>
-              <ul>
-                {API_GROUPS.map((g) => (
-                  <li key={g.id}>
-                    <button
-                      className={activeGroup === g.id ? 'active' : ''}
-                      onClick={() => scrollToGroup(g.id)}
-                    >
-                      {g.title}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <h6 style={{ marginTop: 22 }}>Reference</h6>
-              <ul>
-                <li><button onClick={() => scrollToGroup('authentication')}>Error codes</button></li>
-              </ul>
+              {NAV_GROUPS.map((group) => (
+                <React.Fragment key={group.title}>
+                  <h6>{group.title}</h6>
+                  <ul>
+                    {group.pages.map((pageId) => {
+                      const page = pageById[pageId];
+                      return (
+                        <li key={page.id}>
+                          <button
+                            className={activePage === page.id ? "active" : ""}
+                            onClick={() => switchPage(page.id)}
+                            title={page.caption}
+                          >
+                            {page.title}
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </React.Fragment>
+              ))}
             </aside>
 
-            {/* MAIN CONTENT */}
             <main className="docs-main">
-              {API_GROUPS.map((g, idx) => {
-                const SectionComp = SECTION_COMPONENTS[g.id];
+              {currentPage.sections.map((sectionId, index) => {
+                const section = SECTION_META[sectionId];
+                const SectionComp = SECTION_COMPONENTS[sectionId];
+                if (!section || !SectionComp) return null;
                 return (
-                  <div key={g.id}>
+                  <div key={sectionId}>
                     <h2
-                      id={g.id}
-                      ref={(r) => { groupRefs.current[g.id] = r; }}
-                      style={idx === 0 ? { marginTop: 0, paddingTop: 0, borderTop: 'none' } : {}}
+                      id={sectionId}
+                      ref={(r) => { sectionRefs.current[sectionId] = r; }}
+                      style={index === 0 ? { marginTop: 0, paddingTop: 0, borderTop: "none" } : {}}
                     >
-                      {g.title}
+                      {section.title}
                     </h2>
-                    <p>{g.desc}</p>
-                    {SectionComp ? <SectionComp /> : null}
+                    <p>{section.desc}</p>
+                    <SectionComp />
                   </div>
                 );
               })}
-
-              {/* Error codes appendix */}
-              <div>
-                <h2 id="errors" ref={(r) => { groupRefs.current.errors = r; }}>
-                  Error codes
-                </h2>
-                <ErrorsSection />
-              </div>
             </main>
 
-            {/* RIGHT TOC */}
             <aside className="docs-toc">
               <h6>On this page</h6>
               <ul>
-                {API_GROUPS.map((g) => (
-                  <li key={g.id}>
-                    <a
-                      className={activeGroup === g.id ? 'active' : ''}
-                      onClick={() => scrollToGroup(g.id)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      {g.title}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <a
-                    className={activeGroup === 'errors' ? 'active' : ''}
-                    onClick={() => scrollToGroup('errors')}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Error codes
-                  </a>
-                </li>
+                {currentPage.sections.map((sectionId) => {
+                  const section = SECTION_META[sectionId];
+                  if (!section) return null;
+                  return (
+                    <li key={sectionId}>
+                      <a
+                        className={activeSection === sectionId ? "active" : ""}
+                        onClick={() => scrollToSection(sectionId)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {section.title}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </aside>
-
           </div>
         </div>
       </section>

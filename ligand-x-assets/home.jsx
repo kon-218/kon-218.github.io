@@ -73,12 +73,12 @@ const STORY_STAGES = [
 ];
 
 const SERVICES = [
-  { name: "FastAPI gateway", detail: "single routing layer" },
-  { name: "Docker services", detail: "isolated scientific tools" },
-  { name: "Celery workers", detail: "CPU, GPU, and long jobs" },
+  { name: "RESTfulAPI gateway", detail: "single routing layer" },
+  { name: "Containerized services", detail: "isolated scientific tools" },
+  { name: "Independent workers", detail: "CPU, GPU, and long jobs" },
   { name: "Persisted state", detail: "jobs survive page refreshes" },
   { name: "SSE/WebSocket", detail: "live progress updates" },
-  { name: "Selective startup", detail: "only enabled modules run" },
+  { name: "Modular startup", detail: "only enabled modules run" },
   { name: "Desktop launcher", detail: "local install path" },
   { name: "Server Compose", detail: "headless deployment" },
 ];
@@ -175,7 +175,7 @@ const HomeHero = () => (
           </button>
           <button className="btn btn-secondary btn-lg" onClick={() => window.open('https://github.com/kon-218/ligand-x', '_blank')}>
             <Icon name="github" size={16} />
-            Star · 2.4k
+            Star
           </button>
           <button className="btn btn-secondary btn-lg" onClick={() => window.__nav('docs')}>
             Read whitepaper

@@ -674,7 +674,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 .fx-search {
   flex: 0 0 320px;
@@ -700,7 +700,7 @@ img { max-width: 100%; display: block; }
 .fx-filter-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 .fx-filter-pill {
@@ -733,7 +733,7 @@ img { max-width: 100%; display: block; }
 .fx-split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-  gap: 20px;
+  gap: 28px;
   align-items: start;
 }
 
@@ -741,7 +741,8 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: var(--radius-lg);
-  padding: 8px;
+  padding: 12px;
+  overflow-y: auto;
 }
 .fx-group-title {
   font-family: var(--font-mono);
@@ -749,7 +750,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.08em;
   font-size: 10.5px;
   text-transform: uppercase;
-  padding: 12px 10px 8px;
+  padding: 16px 12px 10px;
 }
 
 .fx-row {
@@ -757,11 +758,11 @@ img { max-width: 100%; display: block; }
   text-align: left;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   border: none;
   background: none;
   border-radius: var(--radius);
-  padding: 10px;
+  padding: 13px 12px;
   cursor: pointer;
   transition: background 0.12s;
 }
@@ -788,12 +789,12 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   font-size: 15px;
   color: var(--ink);
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 .feature-summary {
   font-size: 13.5px;
   color: var(--muted);
-  line-height: 1.5;
+  line-height: 1.58;
 }
 .fx-pro-badge {
   margin-left: auto;
@@ -810,12 +811,12 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: var(--radius-lg);
-  padding: 22px;
+  padding: 28px;
 }
 .fx-detail-head {
   display: grid;
   grid-template-columns: 56px 1fr;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
 }
 .fx-detail-icon {
@@ -861,17 +862,17 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.02em;
 }
 .fx-detail-summary {
-  margin: 14px 0 0;
+  margin: 18px 0 0;
   color: var(--ink-2);
-  line-height: 1.65;
+  line-height: 1.72;
   font-size: 15px;
 }
 
 .fx-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 24px;
+  gap: 36px;
+  margin-top: 30px;
 }
 .fx-detail-grid h5 { margin: 0 0 10px; }
 .fx-bullet-list {
@@ -882,7 +883,7 @@ img { max-width: 100%; display: block; }
 .fx-bullet-list li {
   font-size: 14px;
   color: var(--ink-2);
-  padding: 7px 0 7px 16px;
+  padding: 10px 0 10px 16px;
   border-top: 1px solid var(--border);
   position: relative;
 }
@@ -918,10 +919,10 @@ img { max-width: 100%; display: block; }
   color: var(--ink-2);
 }
 .fx-detail-actions {
-  margin-top: 22px;
+  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 .fx-empty {
   border: 1px dashed var(--border-strong);
@@ -930,6 +931,116 @@ img { max-width: 100%; display: block; }
   color: var(--muted);
   padding: 24px;
   text-align: center;
+}
+.fx-workflow-section {
+  margin-top: 44px;
+  margin-bottom: 28px;
+}
+.fx-workflow-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+.fx-workflow-head h2 {
+  margin: 8px 0 0;
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.fx-workflow-sub {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 760px;
+  line-height: 1.7;
+}
+.fx-workflow-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.fx-workflow-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 18px;
+}
+.fx-workflow-preset {
+  font-family: var(--font-mono);
+  color: var(--muted-2);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.fx-workflow-card h4 {
+  margin: 10px 0 8px;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+}
+.fx-workflow-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.fx-workflow-chain {
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-subtle);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.fx-workflow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.fx-workflow-step.pro {
+  border-color: color-mix(in srgb, #b7791f 30%, transparent);
+  background: color-mix(in srgb, #b7791f 12%, transparent);
+  color: #7a5600;
+}
+.fx-workflow-arrow {
+  font-family: var(--font-mono);
+  color: var(--muted-2);
+  font-size: 12px;
+}
+.fx-workflow-foot {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.fx-workflow-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.fx-workflow-preview {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--accent-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 
@@ -1238,6 +1349,8 @@ img { max-width: 100%; display: block; }
   .fx-split        { grid-template-columns: 1fr; }
   .fx-detail-grid  { grid-template-columns: 1fr; }
   .fx-search       { flex: 1 1 100%; }
+  .fx-list         { max-height: none !important; }
+  .fx-workflow-grid { grid-template-columns: 1fr; }
   .docs-layout     { grid-template-columns: 200px 1fr; }
   .docs-toc        { display: none; }
   .os-grid         { grid-template-columns: repeat(2, 1fr); }
@@ -1259,6 +1372,9 @@ img { max-width: 100%; display: block; }
   .fx-detail             { padding: 16px; }
   .fx-detail-head h3     { font-size: 23px; }
   .fx-filter-pill        { font-size: 12px; }
+  .fx-workflow-head      { align-items: start; flex-direction: column; }
+  .fx-workflow-head h2   { font-size: 30px; }
+  .fx-workflow-card h4   { font-size: 20px; }
   .docs-layout           { grid-template-columns: 1fr; }
   .docs-side             { display: none; }
   .os-grid               { grid-template-columns: 1fr; }
