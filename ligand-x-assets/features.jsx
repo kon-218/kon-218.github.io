@@ -231,66 +231,96 @@ const filterFeature = (feature, category) => {
   return feature.tag === category;
 };
 
-const FeatureCard = ({ f, open, onToggle }) => (
-  <div className={`feature-card ${open ? "open" : ""}`}>
-    <div className="feature-head" onClick={onToggle}>
-      <div className="feature-icon">
-        <Icon name={f.icon} size={28} style={{ color: f.tier === "Pro" ? "#b7791f" : "var(--accent-strong)" }} />
+const FeatureDetail = ({ feature }) => (
+  <div className="fx-detail">
+    <div className="fx-detail-head">
+      <div className={`fx-detail-icon ${feature.tier === "Pro" ? "pro" : ""}`}>
+        <Icon name={feature.icon} size={26} style={{ color: feature.tier === "Pro" ? "#b7791f" : "var(--accent-strong)" }} />
       </div>
       <div>
-        <div className="feature-title">{f.title}</div>
-        <div className="feature-summary">{f.summary}</div>
+        <div className="fx-detail-meta">
+          <span className={`fx-detail-tier ${feature.tier === "Pro" ? "pro" : ""}`}>{feature.tier}</span>
+          <span className="fx-detail-tag">{feature.tag}</span>
+        </div>
+        <h3>{feature.title}</h3>
       </div>
-      <span className="feature-tag">{f.tier === "Pro" ? "Pro" : f.tag}</span>
-      <Icon name="chev" size={20} className="feature-chevron" />
     </div>
-    {open && (
-      <div className="feature-body">
-        <div>
-          <h5>Capabilities</h5>
-          <ul>
-            {f.details.map((d, i) => <li key={i}>{d}</li>)}
-          </ul>
+
+    <p className="fx-detail-summary">{feature.summary}</p>
+
+    <div className="fx-detail-grid">
+      <div>
+        <h5>Capabilities</h5>
+        <ul className="fx-bullet-list">
+          {feature.details.map((d, i) => <li key={i}>{d}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h5>Tools</h5>
+        <div className="tools">
+          {feature.tools.map((t) => <span className="tool-pill" key={t}>{t}</span>)}
         </div>
-        <div>
-          <h5>Tools</h5>
-          <div className="tools">
-            {f.tools.map((t) => <span className="tool-pill" key={t}>{t}</span>)}
-          </div>
-          <h5 style={{ marginTop: 20 }}>Input -> Output</h5>
-          <div className="tools">
-            {f.formats.map((t) => (
-              <span key={t} style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-2)' }}>{t}</span>
-            ))}
-          </div>
-          <div style={{ marginTop: 20, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {f.tier === "Pro" ? (
-              <button className="btn btn-primary btn-sm" onClick={(e) => { e.stopPropagation(); window.__nav('pro'); }}>
-                <Icon name="scale" size={12} />
-                Explore Pro
-              </button>
-            ) : (
-              <button className="btn btn-secondary btn-sm" onClick={(e) => { e.stopPropagation(); window.__nav('docs'); }}>
-                <Icon name="book" size={12} />
-                Docs
-              </button>
-            )}
-            <button className="btn btn-secondary btn-sm" onClick={(e) => e.stopPropagation()}>
-              <Icon name="play" size={12} />
-              Demo
-            </button>
-          </div>
+        <h5 style={{ marginTop: 20 }}>Input -> Output</h5>
+        <div className="fx-io-list">
+          {feature.formats.map((t) => (
+            <span key={t}>{t}</span>
+          ))}
         </div>
       </div>
-    )}
+    </div>
+
+    <div className="fx-detail-actions">
+      {feature.tier === "Pro" ? (
+        <button className="btn btn-primary btn-sm" onClick={() => window.__nav('pro')}>
+          <Icon name="scale" size={12} />
+          Explore Pro
+        </button>
+      ) : (
+        <button className="btn btn-secondary btn-sm" onClick={() => window.__nav('docs')}>
+          <Icon name="book" size={12} />
+          Docs
+        </button>
+      )}
+      <button className="btn btn-secondary btn-sm">
+        <Icon name="play" size={12} />
+        Demo
+      </button>
+    </div>
   </div>
 );
 
 const FeaturesPage = () => {
-  const [openId, setOpenId] = React.useState("docking");
+  const [selectedId, setSelectedId] = React.useState("docking");
   const [cat, setCat] = React.useState("all");
+  const [query, setQuery] = React.useState("");
 
-  const filtered = FEATURES.filter((f) => filterFeature(f, cat));
+  const filtered = FEATURES.filter((f) => {
+    if (!filterFeature(f, cat)) return false;
+    if (!query.trim()) return true;
+    const needle = query.trim().toLowerCase();
+    return [
+      f.title,
+      f.summary,
+      f.tier,
+      f.tag,
+      ...f.details,
+      ...f.tools,
+      ...f.formats,
+    ].join(" ").toLowerCase().includes(needle);
+  });
+
+  React.useEffect(() => {
+    if (!filtered.length) return;
+    if (!filtered.some((f) => f.id === selectedId)) {
+      setSelectedId(filtered[0].id);
+    }
+  }, [filtered, selectedId]);
+
+  const selected = filtered.find((f) => f.id === selectedId) || filtered[0] || null;
+  const grouped = {
+    core: filtered.filter((f) => f.tier === "Open Core"),
+    pro: filtered.filter((f) => f.tier === "Pro"),
+  };
 
   return (
     <div className="page-fade">
@@ -309,36 +339,88 @@ const FeaturesPage = () => {
 
       <section style={{ padding: 'var(--sp-6) 0 0' }}>
         <div className="container">
-          <div className="tabs">
-            {CATEGORIES.map((c) => (
-              <button
-                key={c.id}
-                className={`tab ${cat === c.id ? "active" : ""}`}
-                onClick={() => setCat(c.id)}
-              >
-                {c.label}
-                {c.id !== "all" && (
-                  <span style={{ marginLeft: 8, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--muted-2)' }}>
+          <div className="fx-controls">
+            <label className="fx-search">
+              <Icon name="search" size={14} />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search modules, tools, methods..."
+              />
+            </label>
+            <div className="fx-filter-row">
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c.id}
+                  className={`fx-filter-pill ${cat === c.id ? "active" : ""}`}
+                  onClick={() => setCat(c.id)}
+                >
+                  {c.label}
+                  <span className="fx-filter-count">
                     {FEATURES.filter((f) => filterFeature(f, c.id)).length}
                   </span>
-                )}
-              </button>
-            ))}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section style={{ padding: 'var(--sp-3) 0 var(--sp-8)' }}>
         <div className="container">
-          <div className="feature-list">
-            {filtered.map((f) => (
-              <FeatureCard
-                key={f.id}
-                f={f}
-                open={openId === f.id}
-                onToggle={() => setOpenId(openId === f.id ? null : f.id)}
-              />
-            ))}
+          <div className="fx-split">
+            <aside className="fx-list">
+              {grouped.core.length > 0 && (
+                <>
+                  <div className="fx-group-title">Open Core</div>
+                  {grouped.core.map((f) => (
+                    <button
+                      key={f.id}
+                      className={`fx-row ${selected?.id === f.id ? "active" : ""}`}
+                      onClick={() => setSelectedId(f.id)}
+                    >
+                      <div className="feature-icon">
+                        <Icon name={f.icon} size={22} style={{ color: "var(--accent-strong)" }} />
+                      </div>
+                      <div className="fx-row-copy">
+                        <div className="feature-title">{f.title}</div>
+                        <div className="feature-summary">{f.summary}</div>
+                      </div>
+                    </button>
+                  ))}
+                </>
+              )}
+
+              {grouped.pro.length > 0 && (
+                <>
+                  <div className="fx-group-title">Pro</div>
+                  {grouped.pro.map((f) => (
+                    <button
+                      key={f.id}
+                      className={`fx-row pro ${selected?.id === f.id ? "active" : ""}`}
+                      onClick={() => setSelectedId(f.id)}
+                    >
+                      <div className="feature-icon pro">
+                        <Icon name={f.icon} size={22} style={{ color: "#b7791f" }} />
+                      </div>
+                      <div className="fx-row-copy">
+                        <div className="feature-title">{f.title}</div>
+                        <div className="feature-summary">{f.summary}</div>
+                      </div>
+                      <span className="fx-pro-badge">PRO</span>
+                    </button>
+                  ))}
+                </>
+              )}
+            </aside>
+
+            <main>
+              {selected ? (
+                <FeatureDetail feature={selected} />
+              ) : (
+                <div className="fx-empty">No capabilities match your filters.</div>
+              )}
+            </main>
           </div>
         </div>
       </section>

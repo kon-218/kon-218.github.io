@@ -80,7 +80,7 @@ const Footer = () => (
         <div>
           <h6>Resources</h6>
           <ul>
-            <li><a>API reference</a></li>
+            <li><a onClick={() => { window.__nav('docs'); requestAnimationFrame(() => window.__navDocs && window.__navDocs('api-reference')); }}>API reference</a></li>
             <li><a>Theory notes</a></li>
             <li><a>Citation</a></li>
             <li><a>Roadmap</a></li>

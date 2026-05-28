@@ -467,13 +467,28 @@ const DocsPage = () => {
   const sectionRefs = React.useRef({});
   const guideRefs = React.useRef({});
 
-  const currentGuide = docView !== "getting-started"
+  // Expose a helper so the footer "API reference" link can navigate here directly
+  React.useEffect(() => {
+    window.__navDocs = (view) => {
+      setDocView(view || "getting-started");
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    };
+    return () => { delete window.__navDocs; };
+  }, []);
+
+  const isApiRef = docView === "api-reference";
+  const currentGuide = (!isApiRef && docView !== "getting-started")
     ? GUIDES.find((g) => g.id === docView)
     : null;
 
   const switchToGuide = (id) => {
     setDocView(id);
     setActiveGuideSection("prereqs");
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const switchToApiRef = () => {
+    setDocView("api-reference");
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -496,7 +511,7 @@ const DocsPage = () => {
 
   // Scroll-spy for getting-started view
   React.useEffect(() => {
-    if (docView !== "getting-started") return;
+    if (docView !== "getting-started" || isApiRef) return;
     const onScroll = () => {
       const top = window.scrollY + 100;
       let current = "overview";
@@ -547,8 +562,13 @@ const DocsPage = () => {
 
   return (
     <div className="page-fade">
-      {/* Header */}
-      <section style={{ padding: 'var(--sp-8) 0 var(--sp-5)', borderBottom: '1px solid var(--border)' }}>
+      {/* API Reference — rendered as a self-contained view */}
+      {isApiRef && (
+        <ApiReferencePage onBack={() => switchToGettingStarted(null)} />
+      )}
+
+      {/* Header — only shown for getting-started and guide views */}
+      {!isApiRef && <section style={{ padding: 'var(--sp-8) 0 var(--sp-5)', borderBottom: '1px solid var(--border)' }}>
         <div className="container-wide">
           {currentGuide ? (
             <>
@@ -610,10 +630,10 @@ const DocsPage = () => {
             </>
           )}
         </div>
-      </section>
+      </section>}
 
-      {/* Body */}
-      <section style={{ padding: 'var(--sp-7) 0 var(--sp-9)' }}>
+      {/* Body — getting-started and guide views only */}
+      {!isApiRef && <section style={{ padding: 'var(--sp-7) 0 var(--sp-9)' }}>
         <div className="container-wide">
           <div className="docs-layout">
 
@@ -655,7 +675,14 @@ const DocsPage = () => {
               <h6>Reference</h6>
               <ul>
                 <li><button onClick={() => window.__nav('features')}>Capability reference</button></li>
-                <li><button>REST API</button></li>
+                <li>
+                  <button
+                    className={docView === "api-reference" ? "active" : ""}
+                    onClick={switchToApiRef}
+                  >
+                    REST API
+                  </button>
+                </li>
                 <li><button>File formats</button></li>
                 <li><button>CLI</button></li>
               </ul>
@@ -873,7 +900,7 @@ const DocsPage = () => {
 
           </div>
         </div>
-      </section>
+      </section>}
     </div>
   );
 };
